@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <!-- 标题栏:高度48dp -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/actionbar_bg">
+
+        <TextView
+            android:id="@+id/industry_research_back_tv"
+            style="@style/actionbar_back_btn_style"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="80dp"
+            android:text="@string/documents_maintab"/>
+        <!--
+        搜索按钮 
+        <ImageButton
+            android:id="@+id/documents_main_tab_search_ib"
+            style="@style/actionbar_btn_style"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/app_name"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:src="@drawable/actionbar_search_btn_bg_selector" />
+        -->
+    </RelativeLayout>
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/document_industryresearch_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
+
+</LinearLayout>

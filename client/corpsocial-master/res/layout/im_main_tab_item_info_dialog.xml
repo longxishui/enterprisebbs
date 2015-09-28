@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="230dp"
+              android:layout_height="160dp"
+              android:background="#ffffff"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/im_main_tab_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#ffffff"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textColor="@color/level_1"
+        android:textSize="20sp"/>
+
+    <View
+        android:id="@+id/im_main_tab_divider_line_v"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ffcccccc"/>
+
+    <TextView
+        android:id="@+id/im_main_tab_move_to_top_tv"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/listview_item_bg_selector"
+        android:gravity="center"
+        android:text="置顶聊天"
+        android:textColor="#666"
+        android:textSize="16sp"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/im_main_tab_delete_chat_tv"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/listview_item_bg_selector"
+        android:gravity="center"
+        android:text="删除该聊天"
+        android:textColor="#666"
+        android:textSize="16sp"/>
+
+</LinearLayout>

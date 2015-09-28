@@ -1,0 +1,12 @@
+{
+  "tabs": [
+    {
+      "name": "常用联系人",
+      "cls": "com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookOftenFragment_"
+    },
+    {
+      "name": "集团通讯录",
+      "cls": "com.aspirecn.corpsocial.bundle.addrbook.ui.company.CompanyFragment_"
+    }
+  ]
+}

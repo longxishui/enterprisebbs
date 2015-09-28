@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="250dp"
+              android:layout_height="310dp"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <!-- 标题 -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="@string/addrbook_contacts"
+            android:textColor="@color/blue"
+            android:textSize="21sp"/>
+        <!-- 一把叉 -->
+
+        <ImageButton
+            android:id="@+id/addrbook_dailog_btn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/addrbook_dailong_close"/>
+    </RelativeLayout>
+
+    <include layout="@layout/public_line_horizontal_blue"/>
+    <!-- 查看详情 -->
+
+    <RelativeLayout
+        android:id="@+id/addrbook_dailog_personal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/addrbook_dailog_personal"
+            android:textColor="@color/grayblack"
+            android:textSize="15sp"/>
+
+        <include
+            layout="@layout/public_line_horizontal_gray"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <!-- 发短信 -->
+
+    <RelativeLayout
+        android:id="@+id/addrbook_dailog_sms"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/addrbook_dailog_sms"
+            android:textColor="@color/grayblack"
+            android:textSize="15sp"/>
+
+        <include
+            layout="@layout/public_line_horizontal_gray"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <!-- 打电话 -->
+
+    <RelativeLayout
+        android:id="@+id/addrbook_dailog_phone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/addrbook_dailog_phone"
+            android:textColor="@color/grayblack"
+            android:textSize="15sp"/>
+
+        <include
+            layout="@layout/public_line_horizontal_gray"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <!-- 发微信 -->
+
+    <RelativeLayout
+        android:id="@+id/addrbook_dailog_wxsms"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/addrbook_dailog_wxsms"
+            android:textColor="@color/grayblack"
+            android:textSize="15sp"/>
+
+        <include
+            layout="@layout/public_line_horizontal_gray"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <!-- 发微信 -->
+
+    <RelativeLayout
+        android:id="@+id/addrbook_dailog_email"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/addrbook_email"
+            android:textColor="@color/grayblack"
+            android:textSize="15sp"/>
+
+        <include
+            layout="@layout/public_line_horizontal_gray"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <!-- 发微信 -->
+
+    <RelativeLayout
+        android:id="@+id/addrbook_dailog_task"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/addrbook_task"
+            android:textColor="@color/grayblack"
+            android:textSize="15sp"/>
+
+        <include
+            layout="@layout/public_line_horizontal_gray"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+</LinearLayout>

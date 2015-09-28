@@ -1,0 +1,9 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/btn_p2pchat_setting_addmore"
+        android:state_pressed="false"/>
+    <item
+        android:drawable="@drawable/btn_p2pchat_setting_addmore_down"
+        android:state_pressed="true"/>
+
+</selector>

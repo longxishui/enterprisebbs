@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/im_main_tab_item_layout"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@drawable/listview_item_bg_selector">
+
+    <!-- 头像 -->
+    <RelativeLayout
+        android:id="@+id/im_main_tab_head_portrait_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="7.5dp">
+
+        <TextView
+            android:id="@+id/im_main_tab_head_portrait_tv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
+
+        <ImageView
+            android:id="@+id/im_main_tab_head_portrait_iv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/addrbook_contact"/>
+    </RelativeLayout>
+    <!-- 新消息数量 -->
+
+    <TextView
+        android:id="@+id/im_main_tab_msg_count_tv"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_alignRight="@id/im_main_tab_head_portrait_layout"
+        android:layout_marginRight="-7dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/im_main_tab_message_count"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/text_color1"
+        android:textSize="@dimen/text_size4"
+        android:visibility="gone"/>
+
+    <!-- 时间 -->
+
+    <TextView
+        android:id="@+id/im_main_tab_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/im_main_tab_head_portrait_layout"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/level_2_2"
+        android:textSize="12sp"/>
+    <!-- 名称 -->
+
+    <TextView
+        android:id="@+id/im_main_tab_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/im_main_tab_head_portrait_layout"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_toLeftOf="@id/im_main_tab_time_tv"
+        android:layout_toRightOf="@id/im_main_tab_head_portrait_layout"
+        android:singleLine="true"
+        android:textColor="@color/text_color3"
+        android:textSize="15sp"/>
+
+    <!-- 会话最新消息 -->
+
+    <TextView
+        android:id="@+id/im_main_tab_new_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/im_main_tab_head_portrait_layout"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="12dp"
+        android:layout_toRightOf="@id/im_main_tab_head_portrait_layout"
+        android:singleLine="true"
+        android:textColor="@color/text_color4"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_below="@id/im_main_tab_head_portrait_layout"/>
+
+</RelativeLayout>

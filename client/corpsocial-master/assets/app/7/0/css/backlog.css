@@ -1,0 +1,132 @@
+﻿@charset "utf-8";
+/*
+ * @Auther lyy
+*/
+
+/*************************************** 公用样式 *****************************************/
+*{margin: 0; padding: 0;}
+ul,ul li{list-style: none;}
+body{background:#fff;text-align:center; font-family:Arial,"微软雅黑"; font-size: 16px;}
+div{text-align: left;}
+a,a:hover{ color:#4D4D4D;text-decoration: none;}
+.FL{float: left;}
+.FR{float: right;}
+.hide{display: none;}
+.p_fixed{position: fixed; left: 0px; top: 0px;}
+.color95{color: #959595;}
+.color4D{color: #4D4D4D;}
+.H30{height: 30px; line-height: 30px;}
+.H40{height: 40px; line-height: 40px; overflow: hidden;}
+.m-t55{margin-top:55px;}
+.m-t13{margin-top:13px;}
+.m-t10{margin-top:10px;}
+.m-l10{margin-left: 9px;}
+.m-l15{margin-left: 15px;}
+.m-r15{margin-right: 15px;}
+.p-l10{padding-left: 10px;}
+.p-l15{padding-left: 15px;}
+.p-l60{padding-left: 60px;}
+.p-r5{padding-right: 5px;}
+.f-s12{font-size: 12px;}
+.t-aC{text-align: center;}
+.t-i10{text-indent: 10px;}
+.m-w55{min-width: 55px; background: red;}
+.dottedBorder{border-top: 1px dotted #ccc;}
+.solidBottomBorder{border-bottom: 1px solid #E8E8E8;}
+
+/********************************* 重写jquerymobile样式 *************************************/
+.ui-bar-a{border: none; background: none; text-shadow:none;}
+.ui-body-a{background: #fff;}
+.ui-page-footer-fixed{padding-bottom: 0;}
+.ui-body-c .ui-link:visited,.ui-body-c .ui-link{color:#4D4D4D;text-decoration: none; font-weight: normal}
+
+/*switch
+.ui-btn-down-a{border: none; background:#FFF; color: #C1C2C3;}
+.ui-btn-up-a{background: linear-gradient(#FFFFFF, #F1F1F1) repeat scroll 0 0 #EEEEEE; border: 1px solid #CCCCCC;}
+.ui-btn-hover-a{
+	background: linear-gradient(#FFFFFF, #F1F1F1) repeat scroll 0 0 #EEEEEE; 
+	border: 1px solid #CCCCCC;
+	font-weight:700;
+	color:#fff;
+	text-shadow:0 1px 0 #111;
+	background-image:none;
+}*/
+/*.ui-slider-switch.ui-mini .ui-slider-label{font-size: 20px;}*/
+
+/*************************************** backlog *****************************************/
+.back{width: 13px;height: 20px;margin-top: 13px;}
+.pageTitle{margin-left: 8px;}
+
+.content{margin: 0 20px;}
+.attachmentsTable tr td{height: 60px; border-bottom: 1px solid #D1DCE5;background-repeat: no-repeat;background-size: 31.2px 38.4px;background-position:15px center;}
+.attachmentsTable tr td.icon_xls{background-image:url(../../../commons/images/icon_xls.png);}
+.attachmentsTable tr td.icon_doc{background-image:url(../../../commons/images/icon_doc.png);}
+.attachmentsTable tr td.icon_pdf{background-image:url(../../../commons/images/icon_pdf.png);}
+.attachmentsTable tr td.icon_ppt{background-image:url(../../../commons/images/icon_ppt.png);}
+.attachmentsTable tr td.icon_office{background-image:url(../../../commons/images/icon_office.png);}
+.attachmentsTable tr td.icon_img{background-image:url(../../../commons/images/icon_img.png);}
+.attachmentsTable tr td{border-bottom: 1px solid #D1DCE5;}
+.attachmentsTable tr td.p-l60{padding-left: 53px;}
+.attachmentsTable tr td a{color: #4D4D4D}
+
+.bodybgcolor{background: #BDCAD4; padding-bottom: 0;}
+.myheader{width:100%; height: 45px; background: #3D9AD4; border-bottom:1px solid #227CCE; color: #fff; font-size: 20px;overflow:hidden;
+line-height: 45px;}
+/**基本信息**/
+.backlogTab{width: 100%; height: 45px; color: #959595; background: #F8F8F8; top: 46px;}
+.backlogTab ul li{width: 25%; border-bottom: 0 solid #F07F00; line-height: 43px; float: left; text-align: center;}
+.backlogTab ul li.current{border-bottom: 3px solid #F07F00; color: #4D4D4D;}
+.backlog_cont{width: 99.99%; border:1px solid #A8B1BA; background: #fff; overflow: hidden; margin-bottom: 10px;}
+.backlog_cont table{table-layout:fixed;}
+.backlog_cont table tr td{word-wrap:break-word;}
+.backlog_cont table.normalTable{padding: 5px 20px 15px 5px;}
+.backlog_cont table.normalTable tr td{ padding-top: 6px;}
+/**签报批示信息**/
+.rocessInfoTit{height: 40px; font-size: 18px; border-bottom: 1px solid #E8E8E8; line-height: 40px; background: #F8F8F8; text-indent: 15px;}
+.rocessInfo_cont{width: 100%; overflow: hidden; border-bottom: 1px dotted #B2B0B0;}
+.noBottomBorder{border-bottom: none;}
+.rocessInfoTable{border-left: 1px solid #E8E8E8;border-right: 1px solid #E8E8E8;}
+.rocessInfoTable colgroup{border: none;}
+.rocessInfoTable tr{height: 30px; color: #959595; width: 100%;}
+.backlog_cont table.normalTable tr td table tr td{padding: 0;}
+.backlog_cont table.normalTable tr td table tr td.p-l10{padding-left: 10px;}
+.rocessInfoTable tr.infoTitlt{background: #F8F8F8;}
+.rocessInfoTable tr.infoTitlt td{border-bottom: 1px solid #E8E8E8; border-top: 1px solid #E8E8E8;}
+
+/**签报审批**/
+.approvalCont{width: 100%; height: 80px; position: relative;}
+#approval_cont{ width: 100%; height: 80px; overflow:hidden; border: 1px solid #A8A9AA; border-radius: 0;text-shadow:none; color: #4D4D4D; margin: 0;}
+.approvalOption{width: 25%; min-width: 85px; padding:10px 0;/* height: 100px;*/ position: absolute; right: 0px; bottom: 0px; background: white /*#18a78b*/; border-radius: 5px; /*opacity:0.9;*/ border: 1px solid #ed8223;}
+.approvalOption ul li{ height: 30px; line-height: 30px; color: black/*#aaa*/; text-indent: 10px; }
+.triangle{position: absolute; left: -11px; bottom: 30px; width: 20px; height: 20px; 
+		background: white; border-left: 1px solid #ed8223; border-bottom: 1px solid #ed8223;
+		transform: rotate(45deg); -o-transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg);}
+/**提交审批**/
+.footBtnGroup{width: 100%; height: 45px; background: #D9E0E7; border-top: 1px solid #9FAAB3; margin-top: 10px;}
+/**.footBtnGroup ul li.btn{float: left; margin:6px 0 0 5.5%; border: 1px solid #b9b9b9; background: #b9b9b9; color: black; width: 25.416666%; height: 30px; 
+	border-radius: 30px; text-align: center; line-height: 30px;}**/
+	
+.btnGroup{width: 72.22222%; margin: 0 auto;}
+.footBtnGroup ul li.btn{
+margin-top:6px;border: 1px solid #ed8223; background: #ed8223; color: white; width: 44.230769%; height: 30px; border-radius: 30px; text-align: center; line-height: 30px;
+}
+.officialDocument{width:100%; background:#fff; overflow: hidden;}
+
+/**签报日志**/
+.signLogTable tr td{ border-right: 1px solid #D1DCE5;border-bottom: 1px solid #D1DCE5; height: 40px;font-size:14px;}
+.signLogTable tr.tHead{background: #F8F8F8; text-align: center;}
+.signLogTable tr td.noRightBorder{border-right: none;}
+.signLogTable tr td.noBottomBorder{border-bottom: none;}
+.detail{padding: 5px 5px 2px 0;}
+.detail textarea{width: 96%; border-radius: 4px; border:1px solid #E6E6E6; color: #959595; box-shadow:inset 0 -3px 0 #B4B4B4; -webkit-box-shadow:inset 0 -3px 0 #B4B4B4;  -o-box-shadow:inset 0 -3px 0 #B4B4B4;  -moz-box-shadow:inset 0 -3px 0 #B4B4B4; padding: 5px;}
+
+
+/*@media screen and(min-device-width: 480px) and (max-device-width: 720px){
+	.slide img{width: 100%; height: 295px;}
+}
+
+@media screen and(min-device-width: 320px) and (max-device-width: 480px){
+	.slide img{width: 100%; height: 170px;}
+}*/
+
+

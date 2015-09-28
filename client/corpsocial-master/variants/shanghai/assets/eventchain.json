@@ -1,0 +1,42 @@
+{
+  "data": [
+    {
+      "event": "GetSelfCorpListEvent",
+      "nextevents": [
+        {
+          "event":"com.aspirecn.corpsocial.bundle.addrbook.event.GetDepartListEvent"
+        }
+      ]
+    },
+    {
+      "event": "GetDepartListEvent",
+      "nextevents": [
+        {
+          "event":"com.aspirecn.corpsocial.bundle.addrbook.event.GetAddressListEvent"
+        }
+      ]
+    },
+    {
+      "event": "GetAddressListEvent",
+      "nextevents": [
+        {
+          "event":"com.aspirecn.corpsocial.bundle.addrbook.event.DownloadFrequentlyContactEvent"
+        }
+      ]
+    },
+    {
+      "event": "LoginEvent",
+      "nextevents": [
+        {
+          "event":"com.aspirecn.corpsocial.bundle.common.event.GetConfigListEvent"
+        },
+        {
+          "event":"com.aspirecn.corpsocial.bundle.addrbook.event.FindMyEvent"
+        },
+        {
+          "event":"com.aspirecn.corpsocial.bundle.common.event.GetSelfCorpListEvent"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/message_list_item_background"
+              android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/layout_voice_rcd_hint"
+        android:layout_width="180.0dip"
+        android:layout_height="180.0dip"
+        android:background="@drawable/voice_rcd_hint_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/layout_voice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal|bottom"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4.0dip"
+                    android:background="@drawable/voice_rcd_hint"
+                    android:gravity="bottom"/>
+
+                <ImageView
+                    android:id="@+id/image_volume"
+                    android:layout_width="43dip"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/amp1"
+                    android:gravity="bottom"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image_record_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rcd_cancel_icon"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_record_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dip"
+            android:text="手指上画，取消发送"
+            android:textColor="#ffffff"
+            android:textSize="13.0dip"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_voice_rcd_hint_tooshort"
+        android:layout_width="140.0dip"
+        android:layout_height="140.0dip"
+        android:background="@drawable/voice_rcd_hint_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/voice_to_short"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="时间太短"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+</LinearLayout>

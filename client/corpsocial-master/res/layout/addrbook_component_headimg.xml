@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/addrbook_component_headimg_rl"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:background="@null">
+    <!-- 头像控件 -->
+    <ImageView
+        android:id="@+id/addrbook_component_headimg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/app_name"
+        />
+
+    <TextView
+        android:id="@+id/addrbook_component_headimg_text"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
+        android:background="@null"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        />
+</RelativeLayout>

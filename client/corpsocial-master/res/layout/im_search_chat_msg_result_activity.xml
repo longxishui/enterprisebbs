@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <!-- 标题栏:高度48dp -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/actionbar_bg">
+
+        <!-- 返回按钮与标题文字 -->
+
+        <TextView
+            android:id="@+id/im_search_chat_msg_result_back_tv"
+            style="@style/actionbar_back_btn_style"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="80dp"/>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/im_search_chat_msg_result_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:divider="@null"
+        android:visibility="visible"/>
+
+</LinearLayout>

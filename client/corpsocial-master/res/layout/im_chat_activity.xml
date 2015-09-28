@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/im_chat_ll"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#fcfcfc"
+              android:orientation="vertical">
+
+    <!-- 标题栏:高度48dp -->
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/bg_color3">
+
+        <!-- 无消息列表提示 -->
+
+        <TextView
+            android:id="@+id/im_chat_no_chat_msg_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="245dp"
+            android:layout_centerInParent="true"
+            android:drawablePadding="15dp"
+            android:drawableTop="@drawable/no_chat_msg_tips"
+            android:text="@string/im_chat_no_msg_tips"
+            android:textColor="#ff999999"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+
+        <!-- 消息列表 -->
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/im_chat_item"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:transcriptMode="normal"/>
+    </RelativeLayout>
+
+    <include layout="@layout/public_line_horizontal_gray"/>
+    <!-- 发消息模块 -->
+
+    <RelativeLayout
+        android:id="@+id/im_chat_send_msg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fffdfdfd"
+        android:visibility="visible">
+
+        <!-- 文字、语音转换按钮 -->
+
+        <ImageView
+            android:id="@+id/im_chat_voice_keybord_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/app_name"
+            android:padding="15dp"
+            android:src="@drawable/im_chat_voice_icon"/>
+
+        <!-- 更多按钮 -->
+
+        <ImageView
+            android:id="@+id/im_chat_more_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/app_name"
+            android:padding="15dp"
+            android:src="@drawable/im_chat_more_bg_selector"
+            android:visibility="visible"/>
+
+        <!-- 发送按钮 -->
+
+        <Button
+            android:id="@+id/im_chat_send_message_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/im_chat_more_btn"
+            android:layout_alignLeft="@id/im_chat_more_btn"
+            android:layout_alignParentRight="true"
+            android:layout_alignRight="@id/im_chat_more_btn"
+            android:layout_alignTop="@id/im_chat_more_btn"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/common_btn_bg_blue_selector"
+            android:contentDescription="@string/app_name"
+            android:text="@string/im_chat_send_msg"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:visibility="visible"/>
+        <!-- 输入框布局 -->
+
+        <LinearLayout
+            android:id="@+id/im_chat_input_text_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@id/im_chat_more_btn"
+            android:layout_toRightOf="@id/im_chat_voice_keybord_btn"
+            android:background="@drawable/common_input_border"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <!-- 输入框 -->
+
+            <EditText
+                android:id="@+id/im_chat_input_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:inputType="textMultiLine"
+                android:maxLines="5"
+                android:paddingBottom="6dp"
+                android:paddingLeft="6dp"
+                android:paddingTop="6dp"
+                android:text=""
+                android:textSize="15sp"/>
+            <!-- 表情按钮 -->
+
+            <ImageView
+                android:id="@+id/im_chat_brow_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"
+                android:padding="6dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/im_chat_brow_bg_selector"/>
+        </LinearLayout>
+        <!-- 语音发送按钮 -->
+
+        <Button
+            android:id="@+id/im_chat_send_voice_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/im_chat_send_message_btn"
+            android:layout_alignTop="@id/im_chat_send_message_btn"
+            android:layout_toLeftOf="@id/im_chat_more_btn"
+            android:layout_toRightOf="@id/im_chat_voice_keybord_btn"
+            android:background="@drawable/common_input_border"
+            android:text="@string/im_chat_pressed_to_say"
+            android:textColor="@color/level_1"
+            android:visibility="gone"/>
+        <!--android:background="@drawable/im_chat_send_message_btn_bg_selector"-->
+
+        <!-- 点击向管理员申请发言权限 -->
+
+        <Button
+            android:id="@+id/im_chat_speak_power_tips_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/im_chat_send_message_btn"
+            android:layout_alignTop="@id/im_chat_send_message_btn"
+            android:layout_toLeftOf="@id/im_chat_more_btn"
+            android:layout_toRightOf="@id/im_chat_voice_keybord_btn"
+            android:background="@null"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <include layout="@layout/public_line_horizontal_gray"/>
+
+    <LinearLayout
+        android:id="@+id/im_chat_more_select_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:visibility="gone">
+
+        <!-- 图片 -->
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/im_chat_video_select"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/im_chat_location_bg_selector"
+            android:gravity="center_horizontal"
+            android:text="@string/im_chat_image"
+            android:textColor="@color/text_color5"
+            android:textSize="@dimen/text_size_0"/>
+
+        <!-- 图片 -->
+        <TextView
+            android:id="@+id/im_chat_picture_select"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/im_chat_picture_bg_selector"
+            android:gravity="center_horizontal"
+            android:text="@string/im_chat_image"
+            android:textColor="@color/text_color5"
+            android:textSize="@dimen/text_size_0"/>
+        <!-- 拍照 -->
+
+        <TextView
+            android:id="@+id/im_chat_photograph_select"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/im_chat_photograph_bg_selector"
+            android:gravity="center_horizontal"
+            android:text="@string/im_chat_take_photo"
+            android:textColor="@color/text_color5"
+            android:textSize="@dimen/text_size_0"/>
+        <!-- 位置 -->
+
+        <TextView
+            android:id="@+id/im_chat_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/im_chat_location_bg_selector"
+            android:gravity="center_horizontal"
+            android:text="@string/im_chat_location"
+            android:textColor="@color/text_color5"
+            android:textSize="@dimen/text_size_0"
+            android:visibility="visible"/>
+
+        <!-- 语音输入 -->
+        <TextView
+            android:id="@+id/im_chat_voice_input_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/im_chat_voiceinput_bg_selector"
+            android:gravity="center_horizontal"
+            android:text="@string/im_chat_voice_input"
+            android:textColor="@color/text_color5"
+            android:textSize="@dimen/text_size_0"
+            android:visibility="visible"/>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/im_chat_face"
+        layout="@layout/im_chat_face_ll"
+        android:visibility="gone"/>
+
+</LinearLayout>

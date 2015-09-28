@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#eee"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/workgrp_reply_headid"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/component_initial_headimg"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/workgrp_reply_usernameid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/workgrp_reply_headid"
+            android:gravity="top"
+            android:text="张三"
+            android:textColor="#666666"
+            android:textSize="14sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/workgrp_reply_headid"
+            android:layout_below="@id/workgrp_reply_usernameid"
+            android:layout_toRightOf="@id/workgrp_reply_headid"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp">
+
+            <TextView
+                android:id="@+id/workgrp_reply_storeyid"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:text="lalala"
+                android:textColor="#999999"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/workgrp_reply_timeid"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:paddingLeft="8dp"
+                android:text="jjjjj"
+                android:textColor="#999999"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/workgrp_reply_edit"
+            android:layout_width="35dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/workgrp_detail_operation_btn"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="56dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/workgrp_reply_contentid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:textColor="#333333"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:id="@+id/workgrp_reply_pictureid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/component_noimg_small"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+
+    <!-- Needed to mark a contact as contacted -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="org.thialfihar.android.apg.permission.READ_KEY_DETAILS" />
+
+    <!-- 读取日志权限，闪退时读取日志 -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <!-- map -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- <uses-permission android:name="android.permission.INSTALL_PACKAGES"/> -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+
+    <application
+        android:name="com.aspirecn.corpsocial.common.AspirecnCorpSocial"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/app_logo_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        tools:replace="android:theme">
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.common.ui.StartupActivity_"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 监听器 -->
+        <receiver
+            android:name="com.aspirecn.corpsocial.common.service.ConnectionChangeReceiver"
+            android:label="ConnectionChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+                <action android:name="android.net.conn.BACKGROUND_DATA_SETTING_CHANGED" />
+                <action android:name="android.net.nsd.STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 网络服务 -->
+        <service
+            android:name="com.aspirecn.corpsocial.common.service.NetworkService"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS">
+            <intent-filter>
+                <action android:name="com.aspiren.corpsocial.common.NETWORK_SERVICE" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </service>
+        <service android:name="com.aspirecn.corpsocial.bundle.common.service.GotyeService"/>
+
+        <!-- 公共模块 -->
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.common.ui.LoginSelectorActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.common.ui.LoginActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.common.ui.ViewPagerActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.common.ui.RegisterActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.common.ui.RegisterActiveActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.common.ui.ResetPasswordActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.common.ui.ResetPasswordActiveActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.common.ui.MainTabActivity_"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.common.ui.JumpActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="image/*" />
+                <data android:mimeType="text/*" />
+            </intent-filter>
+        </activity>
+
+        <!-- IM 相关设置 -->
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.ImMainTabFragmentActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.ChatActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.ShareChatActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.CreateGroupActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.P2PChatSettingActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.GroupChatSettingActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.GroupMemberActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.GroupAdminActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.SearchChatActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.SearchChatMsgActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.SearchChatMsgResultActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.SearchGroupMemberActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.im.ui.GroupPictureWallActivity_"
+            android:screenOrientation="portrait" />
+
+        <!-- 通讯录 相关设置 -->
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookMainTabActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.ShareAddrbookMainTabActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookPersonalParticularsActivity_"
+            android:screenOrientation="portrait" />
+        <!--<activity-->
+        <!--android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.selection.AddrbookSelect_"-->
+        <!--android:screenOrientation="portrait" />-->
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookSearchActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.ShareAddrbookSearchActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.AddrBookShowPictureActivity_"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.company.AddrbookSelectSearchActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.company.CompanyActivty_"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookGroupActivity_" />
+        <activity android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookGroupChoose_" />
+
+        <!-- 个人  相关设置 -->
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingNewCompanyActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingAboutActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingPersonalInfoActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingMessageActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingUpdateActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.UploadHeadPortraitActivity_"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingAdcolumnActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingAdcolumnDetailActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingSignatureActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkBenchSettingUpdateTypeActivity_"
+            android:screenOrientation="portrait" />
+
+        <!-- 新闻资讯 -->
+        <uses-library android:name="android.test.runner" />
+
+        <!-- 同事圈 相关设置 -->
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpMainActivity_"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpBBSDetailActivity_"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.workgrp.ui.ConcernMeBBSListActivity_"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpNewBBSActivity_"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.workgrp.ui.WorkgrpBBSPraiseListActivity_"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.FindContactActivity_"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.ContactDetailActivity_"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.bundle.addrbook.ui.NewFriendsActivity_"
+            android:screenOrientation="portrait" />
+        <!-- 公用 -->
+        <activity android:name="com.aspirecn.corpsocial.common.ui.component.CommonWebActivity_" />
+        <activity
+            android:name="com.aspirecn.corpsocial.common.ui.component.imageloader.ImagePagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.common.ui.component.CustomBrowserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aspirecn.corpsocial.common.ui.component.imagegallery.ImageGalleryActivity_"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.aspirecn.corpsocial.common.ui.component.safewebviewbridge.WebActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 消息分发服务-->
+        <service android:name="com.aspirecn.corpsocial.bundle.common.service.NotifyService" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="54817c62fd98c5625d00029c" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="common" />
+    </application>
+
+</manifest>

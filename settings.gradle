@@ -1,0 +1,13 @@
+//include ':im-proto:im-protocol-all'
+//project(':im-proto:im-protocol-all').projectDir = new File(settingsDir, '../im-proto/im-protocol-all')
+//include ':im-proto:im-protocol-android'
+//project(':im-proto:im-protocol-android').projectDir = new File(settingsDir, '../im-proto/im-protocol-android')
+//include ':im-proto:im-protocol-common'
+//project(':im-proto:im-protocol-common').projectDir = new File(settingsDir, '../im-proto/im-protocol-common')
+//include ':client:corpsocial-lib-net'
+//include ':client:corpsocial-lib-camera'
+//include ':client:corpsocial-camera'
+include ':client:corpsocial-lib-common'
+include ':client:corpsocial-lib-pulltorefreshutils'
+include ':client:corpsocial-master'
+

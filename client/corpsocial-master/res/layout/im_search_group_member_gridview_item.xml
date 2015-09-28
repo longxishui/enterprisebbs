@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:paddingBottom="10dp"
+              android:paddingTop="10dp">
+
+    <ImageView
+        android:id="@+id/im_search_group_member_item_head_iv"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/im_chat_setting_head_selector"
+        android:contentDescription="@string/app_name"/>
+
+    <TextView
+        android:id="@+id/im_search_group_member_item_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/text_color5"
+        android:textSize="12sp"/>
+
+</LinearLayout>

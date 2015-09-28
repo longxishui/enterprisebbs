@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:orientation="vertical">
+
+    <!-- 标题栏:高度48dp -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/actionbar_bg"
+        android:visibility="gone">
+
+        <!-- logo与标题 -->
+
+        <TextView
+            android:id="@+id/tv_sliding_panel"
+            style="@style/actionbar_logo_title_text_style"
+            android:text="@string/common_main_tab_work_group"/>
+        <!-- 建群按钮 -->
+
+        <ImageButton
+            android:id="@+id/im_main_tab_add_ib"
+            style="@style/actionbar_btn_style"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/app_name"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/actionbar_add_btn_bg_selector"/>
+        <!-- 搜索按钮 -->
+
+        <ImageButton
+            android:id="@+id/im_main_tab_search_ib"
+            style="@style/actionbar_btn_style"
+            android:layout_toLeftOf="@id/im_main_tab_add_ib"
+            android:contentDescription="@string/app_name"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/actionbar_search_btn_bg_selector"/>
+        <!-- 登陆状态提示 -->
+
+        <TextView
+            android:id="@+id/im_main_tab_login_status_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/login_status_tips"
+            android:textColor="@color/level_3_1"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <!-- 网络状态提示条 -->
+
+    <TextView
+        android:id="@+id/im_main_tab_net_status_tv"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#ffffdc7f"
+        android:drawableLeft="@drawable/im_main_tab_net_status_ico"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:text="@string/im_chat_net_status"
+        android:textColor="#666666"
+        android:textSize="15sp"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 无消息列表提示 -->
+
+        <TextView
+            android:id="@+id/im_main_tab_no_msg_tips_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="245dp"
+            android:layout_centerInParent="true"
+            android:drawablePadding="15dp"
+            android:drawableTop="@drawable/no_chat_msg_tips"
+            android:text="@string/im_main_tab_no_chat_msg_tips"
+            android:textColor="#ff999999"
+            android:textSize="15sp"
+            android:visibility="visible"/>
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/im_main_tab_item"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"/>
+    </RelativeLayout>
+
+</LinearLayout>

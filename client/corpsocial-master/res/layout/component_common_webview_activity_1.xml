@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/im_chat_ll"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#fcfcfc"
+              android:orientation="vertical">
+
+    <!-- 标题栏:高度48dp -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/actionbar_bg">
+
+        <!-- 返回按钮与标题文字 -->
+
+        <TextView
+            android:id="@+id/common_webview_back_tv"
+            style="@style/actionbar_back_btn_style"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="80dp"/>
+        <!-- 进度 -->
+
+        <ProgressBar
+            android:id="@+id/common_webview_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignBottom="@id/common_webview_back_tv"
+            android:progressDrawable="@drawable/progressbar_horizontal_color"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/common_webview_wv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/actionbar_bg">
+
+        <ImageView
+            android:id="@+id/common_webview_go_back_iv"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/common_webview_go_back_button_selector"/>
+
+        <ImageView
+            android:id="@+id/common_webview_go_forward_iv"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/common_webview_go_back_iv"
+            android:scaleType="centerInside"
+            android:src="@drawable/common_webview_go_forward_button_selector"/>
+
+        <ImageView
+            android:id="@+id/common_webview_refresh_iv"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/common_webview_refresh_button_selector"/>
+    </RelativeLayout>
+
+</LinearLayout>

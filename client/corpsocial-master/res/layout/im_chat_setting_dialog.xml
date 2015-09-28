@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="300dp"
+              android:layout_height="172dp"
+              android:background="@drawable/im_chat_setting_dialog"
+              android:gravity="center_vertical|center_horizontal"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/im_chat_setting_dialog_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dp"
+        android:text="@string/P2Pchat_setting_emptychat_dialog_hint"
+        android:textColor="@color/level_1"
+        android:textSize="20sp"/>
+
+    <View
+        android:id="@+id/im_chat_setting_dialog_line1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/level_2_2"/>
+
+    <TextView
+        android:id="@+id/setting_dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"
+        android:layout_marginTop="20dip"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/im_group_setting_groupname"
+        android:layout_width="fill_parent"
+        android:layout_height="65dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/im_chat_setting_dialog"
+        android:textSize="20sp"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/progressbardownload"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/progressbartext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"
+        android:layout_marginTop="20dip"
+        android:text="0%"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:visibility="gone"/>
+
+    <include
+        android:id="@+id/public_line_horizontal_blue"
+        layout="@layout/public_line_horizontal_blue"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialog_button_cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/im_setting_dialog_selector2"
+            android:text="@string/cancel_str"
+            android:textColor="@color/level_2_1"
+            android:textSize="20sp"/>
+
+        <include
+            android:id="@+id/dialog_line_vertical_blue"
+            layout="@layout/public_line_vertical_blue"/>
+
+        <Button
+            android:id="@+id/dialog_button_ok"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/im_setting_dialog_selector2"
+            android:text="@string/ok_str"
+            android:textColor="@color/level_1"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+</LinearLayout>

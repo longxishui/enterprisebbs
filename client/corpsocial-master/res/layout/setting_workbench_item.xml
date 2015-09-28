@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/setting_workbench_view"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:background="@drawable/setting_ui_workbench_item_bg_selector">
+
+        <ImageView
+            android:id="@+id/settings_workbench_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="9dp"
+            android:src="@drawable/settings_exit_head" />
+
+        <TextView
+            android:id="@+id/settings_workbench_tv"
+            style="@style/setting_ui_workbench_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/workbench_setting_about_mobile" />
+
+        <TextView
+            android:id="@+id/settings_workbench_label_tv"
+            style="@style/setting_ui_workbench_dynamictext_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:text="11"
+            android:textColor="@color/level_2"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/settings_workbench_label_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:src="@drawable/settings_newversion"
+            android:visibility="visible" />
+        <ImageView
+            android:id="@+id/settings_workbench_jump_img"
+            android:layout_marginRight="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerInside"
+            android:src="@drawable/settings_ui_workbench_arrow_right" />
+    </RelativeLayout>
+
+    <ImageView style="@style/HorizontalGaryLine" />
+</LinearLayout>

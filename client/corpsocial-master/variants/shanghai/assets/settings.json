@@ -1,0 +1,88 @@
+{
+  "settingItems": [
+    {
+      "code": "1",
+      "number": "1",
+      "name": "修改密码",
+      "imgSrc": "7f020234",
+      "cls": "com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingUpdateActivity_",
+      "label": "",
+      "labelImage": "",
+      "iconPath":"PASSWORD",
+      "jumpImg": true,
+      "hide":false
+    },
+    {
+      "code": "2",
+      "number": "2",
+      "name": "新的企业",
+      "imgSrc": "7f02022a",
+      "cls": "com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingNewCompanyActivity_",
+      "label": "",
+      "labelImage": "",
+      "iconPath":"NEW_GROUP",
+      "jumpImg": true,
+      "hide":true
+    },
+    {
+      "code": "3",
+      "number": "3",
+      "name": "新消息提醒",
+      "imgSrc": "7f02022b",
+      "cls": "com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingMessageActivity_",
+      "label": "",
+      "labelImage": "",
+      "iconPath":"NEW_MESSAGE",
+      "jumpImg": true,
+      "hide":false
+    },
+    {
+      "code": "4",
+      "number": "5",
+      "name": "关于工作圈",
+      "imgSrc": "7f020226",
+      "cls": "com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingAboutActivity_",
+      "label": "",
+      "labelImage": "",
+      "iconPath":"ABOUT_US",
+      "jumpImg": true,
+      "hide":false
+    },
+    {
+      "code": "5",
+      "number": "6",
+      "name": "检查版本",
+      "imgSrc": "7f020227",
+      "cls": "",
+      "label": "",
+      "labelImage": "settings_newversion",
+      "iconPath":"CHECK_VERSION",
+      "jumpImg": false,
+      "hide":false
+    },
+    {
+      "code": "6",
+      "number": "4",
+      "name": "工作台九宫格切换",
+      "imgSrc": "7f020221",
+      "cls": "com.aspirecn.corpsocial.bundle.settings.ui.WorkBenchSettingUpdateTypeActivity_",
+      "label": "",
+      "labelImage": "",
+      "iconPath":"NINE_GRIDS",
+      "jumpImg": true,
+      "hide":false
+    },
+    {
+      "code": "7",
+      "number": "7",
+      "name": "关于移动",
+      "imgSrc": "7f020221",
+      "cls": "com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingAdcolumnActivity_",
+      "label": "",
+      "labelImage": "",
+      "iconPath":"ABOUT_MOBILE",
+      "jumpImg": true,
+      "hide":false
+    }
+  ]
+}

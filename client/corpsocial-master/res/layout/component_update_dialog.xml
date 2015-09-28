@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="300dp"
+              android:layout_height="wrap_content"
+              android:background="#fff"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/update_dialog_title_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="12dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/level_1"
+        android:textSize="20sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/level_1"/>
+    <!-- 更新提示模块 -->
+
+    <LinearLayout
+        android:id="@+id/update_dialog_update_tips_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <EditText
+            android:id="@+id/update_dialog_content_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:editable="false"
+            android:lineSpacingExtra="14dp"
+            android:maxLines="4"
+            android:minHeight="80dp"
+            android:padding="10dp"
+            android:textColor="#666"
+            android:textSize="18sp"/>
+
+        <include layout="@layout/public_line_horizontal_blue"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/update_dialog_negative_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/im_group_chat_setting_item_bg_selector"
+                android:textColor="@color/level_1"/>
+
+            <include layout="@layout/public_line_vertical_blue"/>
+
+            <Button
+                android:id="@+id/update_dialog_positive_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/im_group_chat_setting_item_bg_selector"
+                android:textColor="@color/level_1"/>
+        </LinearLayout>
+    </LinearLayout>
+    <!-- 下载进度模块 -->
+
+    <LinearLayout
+        android:id="@+id/update_dialog_update_progress_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/update_dialog_update_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/update_dialog_update_progress_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="0%"
+            android:textColor="#666"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+</LinearLayout>

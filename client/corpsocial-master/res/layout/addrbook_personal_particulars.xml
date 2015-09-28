@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff">
+
+    <LinearLayout
+        android:id="@+id/addrbook_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/public_line_horizontal_gray"/>
+        <!-- 联系人底部按钮 -->
+
+        <LinearLayout
+            android:id="@+id/addrbook_contact_information"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <!-- 打电话 -->
+
+            <RelativeLayout
+                android:id="@+id/personal_phone"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1">
+
+
+                <com.shamanland.fonticon.FontIconView
+                    android:id="@+id/personal_phone_imgview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/icon_telephone"
+                    android:textSize="@dimen/text_size_9"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/addrbook_dailog_phone"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"/>
+
+
+            </RelativeLayout>
+            <!-- 发短信 -->
+
+            <RelativeLayout
+                android:id="@+id/personal_sms"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1">
+
+                <com.shamanland.fonticon.FontIconView
+                    android:id="@+id/personal_sms_imgview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/icon_sms"
+                    android:textSize="@dimen/text_size_9"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/addrbook_dailog_sms"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"/>
+
+
+            </RelativeLayout>
+            <!-- 发微信 -->
+
+            <RelativeLayout
+                android:id="@+id/personal_wxsms"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1">
+
+                <com.shamanland.fonticon.FontIconView
+                    android:id="@+id/personal_message_imgview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/icon_chat"
+                    android:textSize="@dimen/text_size_9"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/addrbook_dailog_wxsms"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"/>
+            </RelativeLayout>
+            <!-- 发送邮件 -->
+            <RelativeLayout
+                android:id="@+id/personal_sendeamil"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:visibility="visible">
+
+                <com.shamanland.fonticon.FontIconView
+                    android:id="@+id/personal_sendeamil_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/icon_email"
+                    android:textSize="@dimen/text_size_9"/>
+
+                <TextView
+                    android:id="@+id/personal_sendeamil_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/addrbook_email"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"/>
+            </RelativeLayout>
+            <!-- 任务分派 -->
+            <RelativeLayout
+                android:id="@+id/addrbook_task"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:visibility="gone">
+
+                <com.shamanland.fonticon.FontIconView
+                    android:id="@+id/addrbook_task_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/icon_schedule"
+                    android:textSize="@dimen/text_size_9"/>
+
+                <TextView
+                    android:id="@+id/addrbook_task_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/addrbook_task"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"/>
+            </RelativeLayout>
+
+            <!-- 加为常用 -->
+
+            <RelativeLayout
+                android:id="@+id/personal_common"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:visibility="visible">
+
+                <com.shamanland.fonticon.FontIconView
+                    android:id="@+id/addrbook_frequencontact_img_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/icon_contactadd"
+                    android:textSize="@dimen/text_size_9"
+                    android:visibility="gone"/>
+
+                <com.shamanland.fonticon.FontIconView
+                    android:id="@+id/addrbook_frequencontact_img_del"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/icon_contactremove"
+                    android:textSize="@dimen/text_size_9"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/addrbook_personal_add_remove"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/addrbook_add_personal"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 联系人中间详情 -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/addrbook_end"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 头像 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/addrbook_contact_bg"/>
+
+                <ImageView
+                    android:id="@+id/addrbook_personal_headimg"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="-45dp"
+                    android:src="@drawable/addrbook_contact_big"/>
+            </LinearLayout>
+            <!-- 姓名 -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/addrbook_contact_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/addrbook_contact_null"
+                    android:textSize="20sp"/>
+
+                <ImageView
+                    style="@style/HorizontalGaryLine"
+                    android:layout_width="130dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"/>
+            </RelativeLayout>
+            <!-- 职位 -->
+
+            <RelativeLayout
+                android:id="@+id/addrbook_contact_position_view"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/addrbook_contact_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_vertical"/>
+
+                <ImageView
+                    style="@style/HorizontalGaryLine"
+                    android:layout_width="130dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"/>
+            </RelativeLayout>
+
+            <!-- 电话 -->
+
+            <RelativeLayout
+                android:id="@+id/addrbook_personal_phone_view"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp">
+
+                <TextView
+                    android:id="@+id/addrbook_personal_phonename"
+                    style="@style/FrequenContactLeft"
+                    android:text="@string/addrbook_personal_phone"/>
+
+                <TextView
+                    android:id="@+id/addrbook_personal_phone"
+                    style="@style/FrequenContactRight"
+                    android:layout_toRightOf="@id/addrbook_personal_phonename"/>
+
+                <ImageView
+                    style="@style/HorizontalGaryLine"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <!-- 短号 -->
+
+            <RelativeLayout
+                android:id="@+id/addrbook_personal_short_view"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/addrbook_personal_short"
+                    style="@style/FrequenContactLeft"
+                    android:text="@string/addrbook_personal_short"/>
+
+                <TextView
+                    android:id="@+id/addrbook_personal_shortphone"
+                    style="@style/FrequenContactRight"
+                    android:layout_toRightOf="@id/addrbook_personal_short"/>
+
+                <ImageView
+                    style="@style/HorizontalGaryLine"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <!-- 所属部门 -->
+
+            <RelativeLayout
+                android:id="@+id/addrbook_personal_department_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp">
+
+                <TextView
+                    android:id="@+id/addrbook_personal_depatname"
+                    style="@style/FrequenContactLeft"
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/addrbook_personal_deptment"/>
+
+                <TextView
+                    android:id="@+id/addrbook_personal_department"
+                    style="@style/FrequenContactRight"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toRightOf="@id/addrbook_personal_depatname"
+                    android:singleLine="false"/>
+
+                <ImageView
+                    style="@style/HorizontalGaryLine"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <!-- 子部门 -->
+
+            <LinearLayout
+                android:id="@+id/addrbook_deptname_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+            <!-- 工作群 -->
+
+            <RelativeLayout
+                android:id="@+id/addrbook_personal_group_view"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/addrbook_personal_group_left"
+                    style="@style/FrequenContactLeft"
+                    android:gravity="center_vertical"
+                    android:text="@string/addrbook_personal_group"/>
+
+                <TextView
+                    android:id="@+id/addrbook_personal_group"
+                    style="@style/FrequenContactRight"
+                    android:layout_toRightOf="@id/addrbook_personal_group_left"
+                    android:gravity="center_vertical"
+                    android:text="@string/addrbook_personal_group"/>
+
+                <ImageView
+                    style="@style/HorizontalGaryLine"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <!-- Email -->
+
+            <RelativeLayout
+                android:id="@+id/addrbook_personal_email_ll"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/addrbook_personal_email_left"
+                    style="@style/FrequenContactLeft"
+                    android:gravity="center_vertical"
+                    android:text="@string/addrbook_personal_email"/>
+
+                <TextView
+                    android:id="@+id/addrbook_personal_email"
+                    style="@style/FrequenContactRight"
+                    android:layout_toRightOf="@id/addrbook_personal_email_left"
+                    android:gravity="center_vertical"/>
+
+                <ImageView
+                    style="@style/HorizontalGaryLine"
+                    android:layout_alignParentBottom="true"/>
+            </RelativeLayout>
+
+            <!-- 个性签名 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:minHeight="45dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/addrbook_personal_signature_left"
+                    style="@style/FrequenContactLeft"
+                    android:text="@string/addrbook_signature"/>
+
+                <TextView
+                    android:id="@+id/addrbook_personal_signature"
+                    style="@style/FrequenContactRight"/>
+
+            </LinearLayout>
+
+            <ImageView
+                style="@style/HorizontalGaryLine"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

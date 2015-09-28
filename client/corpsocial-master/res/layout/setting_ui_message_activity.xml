@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ffeeeeee"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#ffeeeeee"
+        android:orientation="vertical">
+
+        <include layout="@layout/public_line_horizontal_gray2_bottom"/>
+        <!-- 消息通知 -->
+
+        <RelativeLayout
+            android:id="@+id/settings_ui_workbench_remind_rl"
+            style="@style/setting_ui_list_style"
+            android:background="@drawable/setting_ui_workbench_item_bg_selector">
+
+            <TextView
+                style="@style/setting_ui_workbench_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:text="@string/workbench_setting_newmessage_inform"/>
+
+            <CheckBox
+                android:id="@+id/setting_ui_workbench_remind_switch"
+                android:layout_width="60dp"
+                android:layout_height="26dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/common_checkbox_select"
+                android:button="@null"/>
+        </RelativeLayout>
+
+        <include layout="@layout/public_line_horizontal_gray"/>
+
+        <LinearLayout
+            android:id="@+id/setting_sound_shake_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 声音 -->
+
+            <RelativeLayout
+                android:id="@+id/settings_ui_workbench_sound_rl"
+                style="@style/setting_ui_list_style"
+                android:background="@drawable/setting_ui_workbench_item_bg_selector">
+
+                <TextView
+                    style="@style/setting_ui_workbench_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/workbench_setting_newmessage_sound"/>
+
+                <CheckBox
+                    android:id="@+id/setting_ui_workbench_sound_switch"
+                    android:layout_width="60dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/common_checkbox_select"
+                    android:button="@null"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="#ffffff"
+                android:paddingLeft="12dp">
+
+                <include layout="@layout/public_line_horizontal_gray2"/>
+
+
+            </RelativeLayout>
+            <!-- 震动 -->
+
+            <RelativeLayout
+                android:id="@+id/settings_ui_workbench_shake_rl"
+                style="@style/setting_ui_list_style"
+                android:background="@drawable/setting_ui_workbench_item_bg_selector">
+
+                <TextView
+                    style="@style/setting_ui_workbench_text_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/workbench_setting_newmessage_shake"/>
+
+                <CheckBox
+                    android:id="@+id/setting_ui_workbench_shake_switch"
+                    android:layout_width="60dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/common_checkbox_select"
+                    android:button="@null"/>
+            </RelativeLayout>
+
+            <include layout="@layout/public_line_horizontal_gray2"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

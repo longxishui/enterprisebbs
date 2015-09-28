@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#eee">
+    <!-- <include 
+        android:id="@+id/workgrp_detail_titiebarid" 
+        layout="@layout/component_activity_tittle" /> -->
+
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.aspirecn.corpsocial.bundle.workgrp.ui.widget.BottomInputView
+        android:id="@+id/workgrp_detail_bivid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible"/>
+    <ListView
+        android:id="@+id/workgrp_detail_reply_listid"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/layout_actionbar"
+        android:layout_above="@id/workgrp_detail_bivid"
+        android:transcriptMode="normal"
+        />
+</RelativeLayout>

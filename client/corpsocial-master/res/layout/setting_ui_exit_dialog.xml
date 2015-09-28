@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="280dp"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/setting_close_layout_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_btn_bg_gray_selector"
+        android:padding="12dp">
+
+        <ImageButton
+            android:id="@+id/setting_close_icon_ib"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:padding="3dp"
+            android:src="@drawable/setting_close_icon"/>
+
+        <TextView
+            android:id="@+id/setting_close_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/setting_close_icon_ib"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/setting_close_icon_ib"
+            android:text="@string/setting_exit"
+            android:textColor="#ff333333"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/setting_close_describes_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/setting_close_icon_ib"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/setting_close_icon_ib"
+            android:text="关闭后您将不会收到新的消息"
+            android:textColor="#ff999999"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ffcccccc"/>
+
+    <RelativeLayout
+        android:id="@+id/setting_exit_layout_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_btn_bg_gray_selector"
+        android:padding="12dp">
+
+        <ImageButton
+            android:id="@+id/setting_exit_icon_ib"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:padding="3dp"
+            android:src="@drawable/setting_exit_icon"/>
+
+        <TextView
+            android:id="@+id/setting_exit_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/setting_exit_icon_ib"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/setting_exit_icon_ib"
+            android:text="退出登录"
+            android:textColor="#ff333333"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/setting_exit_describes_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/setting_exit_icon_ib"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/setting_exit_icon_ib"
+            android:text="注销或切换到其他账号登录"
+            android:textColor="#ff999999"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+
+</LinearLayout>

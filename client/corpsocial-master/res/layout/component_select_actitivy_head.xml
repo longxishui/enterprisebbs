@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="40dip"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relative_lay_select"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="7dip"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_search_contact_addressbook"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/search_bar_edit_bg"
+            android:drawableLeft="@drawable/search_bar_icon_normal"
+            android:gravity="center_vertical"
+            android:textSize="13sp">
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/iv_delete_addressbook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/et_search_contact_addressbook"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/search_clear_pressed"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+</LinearLayout>

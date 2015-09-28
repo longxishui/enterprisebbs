@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/common_chat_item_time_tv"
+              android:background="@drawable/common_border_bg_selector"
+              android:orientation="vertical"
+              android:paddingTop="@dimen/pub_account_main_list_item_padding">
+
+    <RelativeLayout
+        android:id="@+id/common_chat_item_title_layout_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/pub_account_main_list_item_padding"
+        android:layout_marginLeft="@dimen/pub_account_main_list_item_padding"
+        android:layout_marginRight="@dimen/pub_account_main_list_item_padding"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/common_chat_item_title_icon_iv"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="@dimen/pub_account_main_list_item_padding"
+            android:scaleType="centerCrop"
+            android:src="@drawable/common_no_img_small"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/common_chat_item_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/common_chat_item_title_icon_iv"
+            android:text="共同推动中非关系向前发展"
+            android:textColor="@color/common_color_01"
+            android:textSize="@dimen/pub_account_text_size_07"
+            android:visibility="visible"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/common_chat_item_sub_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/pub_account_main_list_item_padding"
+        android:layout_marginLeft="@dimen/pub_account_main_list_item_padding"
+        android:layout_marginRight="@dimen/pub_account_main_list_item_padding"
+        android:text="4月28日"
+        android:textColor="@color/common_color_03"
+        android:textSize="@dimen/pub_account_text_size_02"
+        android:visibility="visible"/>
+
+    <RelativeLayout
+        android:id="@+id/common_chat_item_pic_layout_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/pub_account_main_list_item_padding"
+        android:layout_marginLeft="@dimen/pub_account_main_list_item_padding"
+        android:layout_marginRight="@dimen/pub_account_main_list_item_padding"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/common_chat_item_pic_icon_iv"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/common_no_img_small"/>
+
+        <TextView
+            android:id="@+id/common_chat_item_pic_descr_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/common_chat_item_pic_icon_iv"
+            android:background="#33000000"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="5dp"
+            android:text="0-共同推动中非关系向前发展。"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/pub_account_text_size_04"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/common_chat_item_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/pub_account_main_list_item_padding"
+        android:layout_marginLeft="@dimen/pub_account_main_list_item_padding"
+        android:layout_marginRight="@dimen/pub_account_main_list_item_padding"
+        android:text="经中央军委主席习近平批准，2015年将开展全军对外有偿服务清理整顿，集中解决存在的违纪违法问题，维护军队形象。全军对外有偿服务管理工作领导小组日前印发《全面开展军队对外有偿服务清理摸底工作实施方案》，部署先期清理摸底工作。"
+        android:textColor="@color/common_color_04"
+        android:textSize="@dimen/pub_account_text_size_04"
+        android:visibility="visible"/>
+
+    <!-- action0 -->
+    <RelativeLayout
+        android:id="@+id/common_chat_item_action_layout0_rl"
+        style="@style/item_action_layout_style"
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/common_chat_item_action_btn0_bt"
+            style="@style/item_action_button_style"
+            android:text="动作一"/>
+
+        <TextView
+            android:id="@+id/common_chat_item_action_descr0_tv"
+            style="@style/item_action_descr_style"
+            android:layout_toLeftOf="@id/common_chat_item_action_btn0_bt"
+            android:text="动作一的描述内容"/>
+    </RelativeLayout>
+
+    <!-- action1 -->
+    <RelativeLayout
+        android:id="@+id/common_chat_item_action_layout1_rl"
+        style="@style/item_action_layout_style"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/common_chat_item_action_btn1_bt"
+            style="@style/item_action_button_style"
+            android:text="动作二"/>
+
+        <TextView
+            android:id="@+id/common_chat_item_action_descr1_tv"
+            style="@style/item_action_descr_style"
+            android:layout_toLeftOf="@id/common_chat_item_action_btn1_bt"
+            android:text="动作二的描述内容"/>
+    </RelativeLayout>
+
+    <!-- action2 -->
+    <RelativeLayout
+        android:id="@+id/common_chat_item_action_layout2_rl"
+        style="@style/item_action_layout_style"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/common_chat_item_action_btn2_bt"
+            style="@style/item_action_button_style"
+            android:text="动作三"/>
+
+        <TextView
+            android:id="@+id/common_chat_item_action_descr2_tv"
+            style="@style/item_action_descr_style"
+            android:layout_toLeftOf="@id/common_chat_item_action_btn2_bt"
+            android:text="动作三的描述内容"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/common_chat_item_state_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_top_line_bg_normal"
+        android:paddingBottom="12dp"
+        android:paddingLeft="@dimen/pub_account_main_list_item_padding"
+        android:paddingRight="@dimen/pub_account_main_list_item_padding"
+        android:paddingTop="12dp"
+        android:text="正在处理中..."
+        android:textColor="@color/common_color_01"
+        android:textSize="@dimen/pub_account_text_size_04"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/common_chat_item_read_all_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_top_line_bg_normal"
+        android:drawableRight="@drawable/common_go_next_icon_gray"
+        android:paddingBottom="12dp"
+        android:paddingLeft="@dimen/pub_account_main_list_item_padding"
+        android:paddingRight="@dimen/pub_account_main_list_item_padding"
+        android:paddingTop="12dp"
+        android:text="查看详情"
+        android:textColor="@color/common_color_01"
+        android:textSize="@dimen/pub_account_text_size_04"
+        android:visibility="visible"/>
+
+</LinearLayout>

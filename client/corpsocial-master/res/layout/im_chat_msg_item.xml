@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp">
+
+    <!-- 时间 -->
+
+    <TextView
+        android:id="@+id/im_chat_msg_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/im_chat_msg_time_bg"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textColor="@color/text_color1"
+        android:textSize="@dimen/text_size_0"
+        android:visibility="invisible"/>
+    <!-- ///////////////////////////////// 收到的消息 ///////////////////////////////// -->
+
+    <RelativeLayout
+        android:id="@+id/im_chat_msg_left_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/im_chat_msg_time_tv"
+        android:layout_marginRight="45dp"
+        android:visibility="visible">
+
+        <!-- 头像 -->
+
+        <ImageView
+            android:id="@+id/im_chat_msg_head_portrait_left_iv"
+            style="@style/im_chat_msg_head_portrait_style"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/component_initial_headimg"
+            android:contentDescription="@string/app_name"/>
+        <!-- 名称 -->
+
+        <TextView
+            android:id="@+id/im_chat_msg_username_left_tv"
+            style="@style/im_chat_msg_username_style"
+            android:layout_alignTop="@id/im_chat_msg_head_portrait_left_iv"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/im_chat_msg_head_portrait_left_iv"/>
+
+        <!-- 图片消息 -->
+
+        <ImageView
+            android:id="@+id/im_chat_msg_picture_left_iv"
+            style="@style/im_chat_msg_picture_style"
+            android:layout_below="@id/im_chat_msg_username_left_tv"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/im_chat_msg_head_portrait_left_iv"
+            android:contentDescription="@string/app_name"
+            android:visibility="gone"/>
+        <!-- 图片进度 -->
+
+        <TextView
+            android:id="@+id/im_chat_msg_picture_progress_left_tv"
+            style="@style/im_chat_msg_picture_progress_style"
+            android:layout_alignBottom="@id/im_chat_msg_picture_left_iv"
+            android:layout_alignLeft="@id/im_chat_msg_picture_left_iv"
+            android:layout_alignRight="@id/im_chat_msg_picture_left_iv"
+            android:layout_alignTop="@id/im_chat_msg_picture_left_iv"
+            android:background="@drawable/im_chat_img_border_from_selector"
+            android:visibility="gone"/>
+        <!-- 语音消息 -->
+
+        <LinearLayout
+            android:id="@+id/im_chat_msg_voice_left_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/im_chat_msg_username_left_tv"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/im_chat_msg_head_portrait_left_iv"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/im_chat_msg_voice_left_iv"
+                style="@style/im_chat_msg_voice_style"
+                android:background="@drawable/im_chat_from_bg"
+                android:paddingLeft="18dp"
+                android:paddingRight="10dp"/>
+
+            <TextView
+                android:id="@+id/im_chat_msg_voice_left_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="5秒"
+                android:textColor="@color/text_color3"/>
+        </LinearLayout>
+        <!-- 文本消息 -->
+
+        <TextView
+            android:id="@+id/im_chat_msg_text_left_tv"
+            style="@style/im_chat_msg_text_style"
+            android:layout_below="@id/im_chat_msg_username_left_tv"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/im_chat_msg_head_portrait_left_iv"
+            android:autoLink="web|phone"
+            android:background="@drawable/im_chat_from_bg"
+            android:paddingLeft="15dp"
+            android:paddingRight="6dp"
+            android:textColor="@color/text_color3"
+            android:textColorLink="@color/blue"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <!-- ///////////////////////////////// 发出的消息 ///////////////////////////////// -->
+
+    <RelativeLayout
+        android:id="@+id/im_chat_msg_right_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/im_chat_msg_time_tv"
+        android:visibility="gone">
+
+        <!-- 头像 -->
+
+        <ImageView
+            android:id="@+id/im_chat_msg_head_portrait_right_iv"
+            style="@style/im_chat_msg_head_portrait_style"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/component_initial_headimg"
+            android:contentDescription="@string/app_name"/>
+        <!-- 名称 -->
+
+        <TextView
+            android:id="@+id/im_chat_msg_username_right_tv"
+            style="@style/im_chat_msg_username_style"
+            android:layout_alignTop="@id/im_chat_msg_head_portrait_right_iv"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/im_chat_msg_head_portrait_right_iv"/>
+        <!-- ////////////消息//////////// -->
+
+        <RelativeLayout
+            android:id="@+id/im_chat_msg_content_right_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/im_chat_msg_username_right_tv"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/im_chat_msg_head_portrait_right_iv"
+            android:gravity="center_vertical"
+            android:visibility="visible">
+
+            <!-- 图片消息 -->
+
+            <ImageView
+                android:id="@+id/im_chat_msg_picture_right_iv"
+                style="@style/im_chat_msg_picture_style"
+                android:contentDescription="@string/app_name"
+                android:minHeight="20dp"
+                android:visibility="gone"/>
+            <!-- 图片进度 -->
+
+            <TextView
+                android:id="@+id/im_chat_msg_picture_progress_right_tv"
+                style="@style/im_chat_msg_picture_progress_style"
+                android:layout_alignBottom="@id/im_chat_msg_picture_right_iv"
+                android:layout_alignLeft="@id/im_chat_msg_picture_right_iv"
+                android:layout_alignRight="@id/im_chat_msg_picture_right_iv"
+                android:layout_alignTop="@id/im_chat_msg_picture_right_iv"
+                android:background="@drawable/im_chat_img_border_to_selector"
+                android:visibility="gone"/>
+
+            <!-- 语音消息 -->
+
+            <LinearLayout
+                android:id="@+id/im_chat_msg_voice_right_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/im_chat_msg_voice_right_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:text="5秒"
+                    android:textColor="@color/text_color3"/>
+
+                <ImageView
+                    android:id="@+id/im_chat_msg_voice_right_iv"
+                    style="@style/im_chat_msg_voice_style"
+                    android:background="@drawable/im_chat_to_bg"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="18dp"/>
+            </LinearLayout>
+            <!-- 文本消息 -->
+
+            <TextView
+                android:id="@+id/im_chat_msg_text_right_tv"
+                style="@style/im_chat_msg_text_style"
+                android:autoLink="web|phone"
+                android:background="@drawable/im_chat_to_bg"
+                android:paddingLeft="6dp"
+                android:paddingRight="15dp"
+                android:textColor="@color/text_color1"
+                android:textColorLink="@color/blue"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/im_chat_msg_content_right_layout"
+            android:layout_alignLeft="@id/im_chat_msg_content_right_layout"
+            android:layout_alignTop="@id/im_chat_msg_content_right_layout"
+            android:layout_marginLeft="-32dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <!-- 重发按钮 -->
+
+            <Button
+                android:id="@+id/im_chat_msg_send_again_right_btn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/im_chat_msg_send_again_btn_bg_selector"
+                android:textColor="#ffff0000"
+                android:visibility="gone"/>
+            <!-- 正在发送状态 -->
+
+            <ProgressBar
+                android:id="@+id/im_chat_msg_sending_right_pb"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

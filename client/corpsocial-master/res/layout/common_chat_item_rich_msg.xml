@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:paddingBottom="@dimen/pub_account_main_list_item_margin"
+                android:paddingLeft="@dimen/pub_account_main_list_item_margin"
+                android:paddingRight="@dimen/pub_account_main_list_item_margin"
+                android:paddingTop="12dp">
+
+    <TextView
+        android:id="@+id/common_chat_item_time_tv"
+        style="@style/item_time_style"/>
+
+    <include
+        android:id="@+id/common_chat_item_single_layout"
+        layout="@layout/common_chat_item_rich_msg_single"
+        android:visibility="gone"/>
+
+    <include
+        android:id="@+id/common_chat_item_mult_layout"
+        layout="@layout/common_chat_item_rich_msg_mult"
+        android:visibility="visible"/>
+
+</RelativeLayout>

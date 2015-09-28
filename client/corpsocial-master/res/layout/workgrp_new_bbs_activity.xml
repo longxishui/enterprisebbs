@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff">
+
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:id="@+id/workgrp_newbbs_title_deviderid"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/layout_actionbar"
+        android:background="#ff0079ff"/>
+
+    <EditText
+        android:id="@+id/workgrp_newbbs_title_etid"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/workgrp_newbbs_title_deviderid"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#ffffff"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="@string/workgrp_newbbs_title"
+        android:maxLength="20"
+        android:maxLines="2"
+        android:paddingRight="15dp"
+        android:textColor="#000000"
+        android:textColorHint="#999999"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/workgrp_new_bbs_title_lenglimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/workgrp_newbbs_title_etid"
+        android:layout_alignRight="@id/workgrp_newbbs_title_etid"
+        android:layout_alignTop="@id/workgrp_newbbs_title_etid"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:textColor="@color/gray"/>
+
+    <View
+        android:id="@+id/workgrp_newbbs_divider_id1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/workgrp_newbbs_title_etid"
+        android:background="#cccccc"/>
+
+    <EditText
+        android:id="@+id/workgrp_newbbs_content_etid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/workgrp_newbbs_divider_id1"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffffff"
+        android:gravity="left|top"
+        android:hint="@string/workgrp_newbbs_content"
+        android:maxLength="250"
+        android:textColor="#000000"
+        android:textColorHint="#999999"
+        android:textSize="15sp"/>
+
+
+    <LinearLayout
+        android:id="@+id/workgrp_newbbs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/public_line_horizontal_gray"/>
+
+        <RelativeLayout
+            android:id="@+id/workgrp_newbbs_moreid"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#F5F5F5">
+
+            <ImageButton
+                android:id="@+id/workgrp_newbbs_selectbar_browid"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="90dp"
+                android:background="@drawable/common_brow_bg"
+                android:scaleType="fitXY"/>
+            <!-- <ImageButton
+                android:id="@+id/workgrp_newbbs_selectbar_voiceid"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/common_voice_bg"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:layout_toLeftOf="@id/workgrp_newbbs_selectbar_browid"
+                android:layout_marginRight="80dp"
+                android:visibility="gone"
+                /> -->
+            <ImageButton
+                android:id="@+id/workgrp_newbbs_selectbar_pictureid"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="90dp"
+                android:background="@drawable/common_picture_bg"
+                android:scaleType="fitXY"/>
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/newbbs_brow_viewid"
+            layout="@layout/im_chat_face_ll"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/newbbs_picture_layoutid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/newbbs_picture_showlayoutid"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_margin="20dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/newbbs_picture_resultid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
+
+                <ImageView
+                    android:id="@+id/newbbs_picture_deleteid"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/workgrp_biv_deletebg"
+                    android:scaleType="fitXY"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/newbbs_picture_addid"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/workgrp_biv_addbg"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/workgrp_new_bbs_content_lenglimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/workgrp_newbbs"
+        android:layout_alignRight="@id/workgrp_newbbs_content_etid"
+        android:layout_marginBottom="6dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/gray"/>
+
+</RelativeLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <include layout="@layout/public_line_horizontal_gray"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:id="@+id/mycompay_group_item_ll"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/mycompay_group_develop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/addrbook_btn_open"/>
+
+            <TextView
+                android:id="@+id/mycompay_group_department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="test"
+                android:textColor="@color/grayblack"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/addrbook_group_check"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:background="@null"
+            android:button="@drawable/login_checkbox"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
+
+    <include layout="@layout/public_line_horizontal_gray"/>
+
+    <!-- 联系人 -->
+    <LinearLayout
+        android:id="@+id/addrbook_tree_item_Container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+    <!-- 子部门 -->
+    <LinearLayout
+        android:id="@+id/addrbook_tree_group_Container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+</LinearLayout>

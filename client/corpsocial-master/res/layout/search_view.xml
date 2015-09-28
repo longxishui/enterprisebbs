@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="30dp"
+              android:background="@drawable/actionbar_search_border"
+              android:orientation="horizontal">
+
+    <!-- 关键字输入框 -->
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@null"
+        android:drawableLeft="@drawable/common_search"
+        android:drawablePadding="6dp"
+        android:hint="@string/search_search_text"
+        android:inputType="text"
+        android:paddingLeft="6dp"
+        android:paddingRight="0dp"
+        android:textSize="@dimen/text_size_3"/>
+    <!-- 删除关键字按钮 -->
+
+    <ImageButton
+        android:id="@+id/img_btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:contentDescription="@string/app_name"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/delete_btn_bg_normal"
+        android:visibility="gone"/>
+</LinearLayout>

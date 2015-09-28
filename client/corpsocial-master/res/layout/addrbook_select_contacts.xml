@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+    <!-- 标题栏:高度48dp -->
+
+    <RelativeLayout
+        android:id="@+id/addrbook_tittle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/actionbar_bg">
+
+        <!-- 返回按钮与标题文字 -->
+
+        <TextView
+            android:id="@+id/addrbook_select_contacts_back_tv"
+            style="@style/actionbar_back_btn_style"
+            android:text="@string/addrbook_choose_contacts"/>
+
+        <!-- 搜索按钮 -->
+
+        <ImageButton
+            android:id="@+id/addrbook_select_search_ib"
+            style="@style/actionbar_btn_style"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/app_name"
+            android:paddingLeft="12dp"
+            android:paddingRight="25dp"
+            android:src="@drawable/actionbar_search_btn_bg_selector"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/addrbook_end"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <include layout="@layout/public_line_horizontal_blue"/>
+
+        <Button
+            android:id="@+id/addrbook_select_contacts_btn"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/ok_str"
+            android:textColor="@color/white"
+            android:textSize="12sp"/>
+
+        <HorizontalScrollView
+            android:id="@+id/select_contacts"
+            android:layout_width="fill_parent"
+            android:layout_height="64dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_toLeftOf="@id/addrbook_select_contacts_btn">
+
+            <LinearLayout
+                android:id="@+id/addrbook_select_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/addrbook_end"
+        android:layout_below="@id/addrbook_tittle">
+
+        <LinearLayout
+            android:id="@+id/addrbook_select_contacts_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+    <!--
+        <TextViews
+            android:id="@+id/addrbook_contact_nodata"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/addrbook_tittle"
+            android:gravity="center"
+            android:text="@string/addrbook_nodata"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:visibility="gone" />
+     -->
+</RelativeLayout>

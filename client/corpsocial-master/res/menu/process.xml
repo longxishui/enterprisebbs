@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_out"
+        android:icon="@null"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/process_pop_out"/>
+
+    <item
+        android:id="@+id/action_leave"
+        android:icon="@null"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/process_pop_leave"/>
+
+    <item
+        android:id="@+id/action_sick_leave"
+        android:icon="@null"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/process_pop_sick_leave"/>
+
+    <item
+        android:id="@+id/action_days_off"
+        android:icon="@null"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/process_pop_days_off"/>
+
+    <item
+        android:id="@+id/action_marriage"
+        android:icon="@null"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/process_pop_marriage"/>
+
+    <item
+        android:id="@+id/action_maternity_leave"
+        android:icon="@null"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/process_pop_maternity_leave"/>
+
+</menu>

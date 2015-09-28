@@ -1,0 +1,297 @@
+  /*字体icon*/
+@font-face {
+                  font-family: "globalFont";
+                  src:url("fonts/untitled-font-3.eot");
+                  src:url("fonts/untitled-font-3.eot?#iefix") format("embedded-opentype"),
+                    url("fonts/untitled-font-3.woff") format("woff"),
+                    url("fonts/untitled-font-3.ttf") format("truetype"),
+                    url("fonts/untitled-font-3.svg#untitled-font-3") format("svg");
+                  font-weight: normal;
+                  font-style: normal;
+                }
+  /*      [data-icon]:before {
+          font-family: "globalFont" !important;
+          content: attr(data-icon);
+          font-style: normal !important;
+          font-weight: normal !important;
+          font-variant: normal !important;
+          text-transform: none !important;
+          speak: none;
+          line-height: 1;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+*/
+        [class^="icon-"]:before,
+        [class*=" icon-"]:before {
+          font-family: "globalFont" !important;
+          font-style: normal !important;
+          font-weight: normal !important;
+          font-variant: normal !important;
+          text-transform: none !important;
+          speak: none;
+          line-height: 1;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+        
+ .icon--1:before {
+  content: "b";
+}
+.icon--2:before {
+  content: "c";
+}
+.icon--3:before {
+  content: "d";
+}
+.icon--4:before {
+  content: "e";
+}
+.icon--5:before {
+  content: "f";
+}
+.icon--6:before {
+  content: "g";
+}
+.icon--7:before {
+  content: "h";
+}
+.icon--8:before {
+  content: "i";
+}
+.icon--9:before {
+  content: "j";
+}
+.icon--10:before {
+  content: "k";
+}
+.icon--12:before {
+  content: "m";
+}
+.icon--13:before {
+  content: "n";
+}
+.icon--14:before {
+  content: "o";
+}
+.icon--15:before {
+  content: "q";
+}
+.icon--16:before {
+  content: "r";
+}
+.icon--17:before {
+  content: "p";
+}
+.icon--18:before {
+  content: "s";
+}
+.icon-logo:before {
+  content: "t";
+}
+.icon--19:before {
+  content: "u";
+}
+.icon--20:before {
+  content: "v";
+}
+.icon-:before {
+  content: "a";
+}
+.icon--11:before {
+  content: "l";
+}
+
+
+ul.homeul {margin-top:15px; border-top: 1px solid #c8c8c8;
+border-bottom: #c8c8c8 1px solid;}
+table.layout {width:100%; height:45px; margin:0; background-color: transparent;border-collapse: collapse; }
+table.notlast {border-bottom: #c8c8c8 1px solid;}
+table.layoutwithmargintop {margin-top: 2em;}
+
+td.label {width: 6em; text-align: left; background-color:transparent;white-space: nowrap; font-size: 15px; color:#999999;font-weight: normal;}
+td.textvalue {width: auto; text-align:right; font-weight: normal; background-color:transparent;font-size: 15px; color:#333333;word-break:break-all;}
+td.icon {width: 20px;  background-size:20px 20px;padding-left: 10px;font-size: 25px;}
+td.space {width: 10px; }
+td.icon-input {
+background: transparent url("images/newflow-appitem.png") no-repeat right center;
+background-size:20px 20px;
+}
+td.icon-select {
+background: transparent url("images/newflow-select.png") no-repeat center;
+background-size:20px 20px;
+}
+td.icon-edit {
+background: transparent url("images/newflow-edit.png") no-repeat center;
+background-size:20px 20px;
+}
+td.icon-calendar {
+background: transparent url("images/newflow-calendar.png") no-repeat center;
+background-size:20px 20px;
+}
+td.icon-contact {
+background: transparent url("images/newflow-contact.png") no-repeat center;
+background-size:20px 20px;
+}
+td.icon-attachment {
+background: transparent url("images/newflow-attachment.png") no-repeat center;
+background-size:20px 20px;
+}
+td.icon-readonly {
+background: transparent url("images/newflow-contact.png") no-repeat center;
+background-size:20px 20px;
+}
+
+#textInput {background: #fff;}
+#textAreaInput {background: #fff; width: 100%;}
+#textInputCharCount {background-color: white;
+position: absolute;
+right: 10px;
+top: 17px;
+color: #999999;}
+#textAreaInputCharCount {
+background-color: white;
+position: absolute;
+right: 10px;
+bottom: 15px;
+color: #999999;
+}
+
+#_approve_note {
+height: 5em;
+width: 100%;
+background-color: white;
+}
+
+.approvenote {
+}
+
+.ui-btn-up-approve, .ui-btn-hover-approve {
+background-color: #9cca43;
+text-shadow: 0 0px 0px rgba(0,0,0,.2);
+color: white;
+border-radius: 0.2em;
+}
+
+.ui-btn-up-e { text-align: center; color: #47ace0; text-shadow: 0 0 0 #fff; border-color:#f5f5f5; border-bottom: 2px solid #47ace0; border-left-width:0px; border-right-width: 0px;}
+
+.ui-shadow {box-shadow: 0 0px 0px rgba(0,0,0,.2);}
+.ui-overlay-shadow {box-shadow: 0 0 0px rgba(0,0,0,.6);}
+.ui-corner-all {border-radius: 0;}
+.ui-page{background: #f5f5f5;}
+.ui-body-d, .ui-overlay-d {border: 0px}
+.ui-li-static {background-color: #fff;}
+.ui-btn-up-d {background-image:none; }
+.ui-input-text.ui-focus {box-shadow: 0 0 0 transparent;}
+.ui-shadow-inset {box-shadow: 0 0px 0px transparent;}
+.ui-li:active {background-color: #c8c8c8; /* #686868;*/ text-shadow: 0 0px 0 #fff;}
+.ui-li:active td{/* color: white;*/}
+
+ul.homeul  .ui-li {border: 0px }
+ul.homeul {}
+
+li.homeul {padding-left: 15px;}
+ul.homeul .ui-li-static.ui-li {padding: 0 0 0 15px;}
+
+
+/*日历弹窗背景*/
+.dwo {opacity: .6;}
+
+/*弹窗Mask*/
+.ui-popup-screen {background: #000;}
+.ui-popup-screen.in {
+opacity: .6;
+}
+
+/*弹出菜单样式*/
+.ui-listview-inset .ui-li {
+border-right-width: 0px;
+border-left-width: 0px;
+}
+
+.ui-li, .ui-li.ui-field-contain {
+/*
+display: block;
+margin: 0;
+position: relative;
+overflow: visible;
+text-align: left;*/
+border-width: 0;
+
+border-bottom-width: 1px;
+}
+
+.ui-btn-up-e {
+text-align: center;
+color: #47ace0;
+text-shadow: 0 0 0 #fff;
+/*
+border-color: #f5f5f5;
+border-left-width: 0px;
+border-right-width: 0px;
+*/
+border-bottom: 1px solid #47ace0;
+}
+
+.tabContainer{padding: 6px 5px;}
+.oa-table{table-layout: fixed;border-collapse:collapse;border: 1px solid #ccc;width: 100%;}
+.oa-table td{border: 1px solid #ccc; height: 80px; text-align: center; vertical-align: middle; padding: 0 5px;}
+
+/************************abin***************审批日志样式****************************************/
+.infoItem{height: 20px; line-height: 40px; font-size: 16px;}
+.process_cont {border: 1px solid #CCC;overflow: hidden;padding: 7px 15px; border-radius: 5px; margin-bottom: 10px; background: #EBF3F1;}
+.process_cont ul li {line-height: 25px;}
+.topTitle{height: 30px; line-height: 30px; color: #333; text-align: left;font-family:Arial,"微软雅黑";}
+
+/************************abin***************附件样式****************************************/
+.content{margin-top: 1.0em; height: 100%;}
+.attachmentsList{border-top: 1px solid #ccc}
+.attachmentsList ul li{height: 50px; line-height: 50px; padding: 0 1em;border-bottom: 1px solid #bbb;overflow: hidden}
+/*.attachmentsList ul li div{height: 50px; line-height: 50px;}*/
+.attachmentsList ul li .title{margin-right: 5em; text-align: left}
+.attachmentsList ul li .size{width: 4em; float: right; text-align: right}
+
+/*************************************** 公用样式 *****************************************/
+*{margin: 0; padding: 0;}
+ul,ul li{list-style: none;}
+body{background:#fff;text-align:center; font-family:Arial,"微软雅黑"; font-size: 16px;}
+
+
+/********************************* 重写jquerymobile样式 *************************************/
+.ui-bar-a{border: none; background: none; text-shadow:none;}
+.ui-body-a{background: #fff;}
+.ui-page-footer-fixed{padding-bottom: 0;}
+.ui-body-c .ui-link:visited,.ui-body-c .ui-link{color:#4D4D4D;text-decoration: none; font-weight: normal}
+
+.backlogTab {
+width: 100%;
+height: 45px;
+color: #333333;
+background: #F8F8F8;
+top: 46px;
+}
+
+ul, ul li {
+list-style: none;
+}
+
+.backlogTab ul li.current {
+border-bottom: 2px solid #47ace0;
+color: #1587cd;
+}
+
+.attendanceTab ul li {
+width: 33.333333333333333333333%;
+}
+
+.backlogTab ul li {
+width: 33.33333%;
+border-bottom: 0 solid #47ace0;
+line-height: 45px;
+float: left;
+text-align: center;
+}
+
+.hide {
+display:none;
+}

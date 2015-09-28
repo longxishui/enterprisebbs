@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="12dp">
+
+    <TextView
+        android:id="@+id/common_chat_item_time_tv"
+        style="@style/item_time_style"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/common_chat_item_time_tv">
+
+        <!-- 接收到的消息 -->
+
+        <RelativeLayout
+            android:id="@+id/common_chat_item_text_receive_layout_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/common_chat_item_text_receive_head_iv"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/addrbook_contact"/>
+
+            <TextView
+                android:id="@+id/common_chat_item_text_receive_name_tv"
+                style="@style/item_text_msg_name_style"
+                android:layout_toRightOf="@id/common_chat_item_text_receive_head_iv"
+                android:text="名称"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/common_chat_item_receive_relation_icon_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_toRightOf="@id/common_chat_item_text_receive_name_tv"
+                android:src="@drawable/common_stranger_icon"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/common_chat_item_text_receive_content_tv"
+                style="@style/item_text_msg_text_style"
+                android:layout_below="@id/common_chat_item_text_receive_name_tv"
+                android:layout_toRightOf="@+id/common_chat_item_text_receive_head_iv"
+                android:background="@drawable/im_chat_from_bg"
+                android:paddingLeft="13dp"
+                android:paddingRight="6dp"
+                android:text="接收到的消息\n接收到的消息\n接收到的消息"/>
+        </RelativeLayout>
+        <!-- 发送出的消息 -->
+
+        <RelativeLayout
+            android:id="@+id/common_chat_item_text_send_layout_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/common_chat_item_text_send_head_iv"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:clickable="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/addrbook_contact"/>
+
+            <TextView
+                android:id="@+id/common_chat_item_text_send_name_tv"
+                style="@style/item_text_msg_name_style"
+                android:layout_toLeftOf="@id/common_chat_item_text_send_head_iv"
+                android:text="名称"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/common_chat_item_text_send_content_tv"
+                style="@style/item_text_msg_text_style"
+                android:layout_below="@id/common_chat_item_text_send_name_tv"
+                android:layout_marginLeft="60dp"
+                android:layout_toLeftOf="@+id/common_chat_item_text_send_head_iv"
+                android:background="@drawable/im_chat_to_bg"
+                android:paddingLeft="6dp"
+                android:paddingRight="13dp"
+                android:text="发送出的消息"
+                android:textColor="#ffffffff"
+                android:textColorLink="#ff80e9ff"/>
+
+            <Button
+                android:id="@+id/common_chat_item_text_send_again_bt"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignTop="@id/common_chat_item_text_send_content_tv"
+                android:layout_marginRight="-55dp"
+                android:layout_marginTop="9dp"
+                android:layout_toLeftOf="@id/common_chat_item_text_send_content_tv"
+                android:background="@drawable/im_chat_msg_send_again_btn_bg_selector"
+                android:visibility="visible"/>
+
+            <ProgressBar
+                android:id="@+id/common_chat_item_text_sending_pb"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignTop="@id/common_chat_item_text_send_content_tv"
+                android:layout_marginRight="-55dp"
+                android:layout_marginTop="9dp"
+                android:layout_toLeftOf="@id/common_chat_item_text_send_content_tv"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout android:id="@+id/ regulation_group_item"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/document_listview_item_bg_selector"
+    >
+
+    <View
+        android:id="@+id/regulation_white"
+        android:layout_width="5dp"
+        android:layout_height="10dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/regulation_download_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <ImageView
+            android:id="@+id/regulation_download_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/document_download"
+            android:visibility="visible"/>
+
+        <ProgressBar
+            android:id="@+id/regulation_download_progressBar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:visibility="visible"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/regulation_filesize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/regulation_download_rl"
+        android:text="fileSize"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/regulation_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toLeftOf="@id/regulation_filesize"
+        android:layout_toRightOf="@id/regulation_white"
+        android:singleLine="true"
+        android:text="test"
+        android:textColor="@color/grayblack"
+        android:textSize="15sp"/>
+
+    <ImageView
+        style="@style/HorizontalGaryLine"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

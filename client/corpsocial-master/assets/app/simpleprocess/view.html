@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>审批</title>
+
+    <link rel="stylesheet" href="../commons/jquery.mobile/jquery.mobile-1.3.2.min.css">
+    <link href="lib/mobiscroll-2.6.2/css/mobiscroll.custom-2.6.2.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="lib/mobiscroll-2.6.2/css/mobiscroll.android-ics-2.6.2.css" rel="stylesheet"
+          type="text/css"/>
+    <link rel="stylesheet" href="flow.css">
+    <script src="../commons/jquery.mobile/jquery.js"></script>
+    <script src="../commons/jquery.mobile/jquery.mobile-1.3.2.min.js"></script>
+
+</head>
+<body>
+
+<div data-role="page" class="bodybgcolor" id="home">
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
+        <!--<div class="myheader">
+            <div class="content" onClick='window.js2java.back()'>
+                <img src="../../commons/images/back.png" class="FL back"/><span class="FL pageTitle">印章申请</span>
+            </div>
+        </div>--><!--end header -->
+        <div class="backlogTab attendanceTab">
+            <ul>
+                <li id="tabBaseInfo">工单信息</li>
+                <li id="tabLogs">审批日志</li>
+                <li id="tabAttachments">附件</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="baseInfo">
+        <div id="ulContainer">
+            <div id="flowContainer">
+            </div>
+        </div>
+
+        <span id="debugtext"></span>
+    </div>
+
+    <div id="approvelog" class="hide">
+    </div>
+
+    <div id="attachments" class="hide">
+        <p>暂无附件</p>
+        <!--<div class="attachmentsList">
+            <ul id="attachList">
+                <li>
+                    <div class="size">2.1M</div>
+                    <div class="title">这是第一条附件信息</div>
+                </li>
+                <li>
+                    <div class="size">2.1M</div>
+                    <div class="title">这是第一条附件信息</div>
+                </li>
+                <li>
+                    <div class="size">2.1M</div>
+                    <div class="title">这是第一条附件信息</div>
+                </li>
+                <li>
+                    <div class="size">2.1M</div>
+                    <div class="title">这是第一条附件信息</div>
+                </li>
+            </ul>
+        </div>-->
+    </div>
+</div>
+
+
+<script>
+	var dynApp = {};
+	dynApp.app = {};
+
+	dynApp.result = {};
+	dynApp.currentPage = "home"; //当前页
+	dynApp.dataModified = false;
+	dynApp.maxInputLength = 0;  //当前输入最大允许长度
+	dynApp.status = 'view';
+	dynApp.pid = "";
+
+
+</script>
+<script src="flow.js"></script>
+<script>
+    setTimeout(function(){
+        dynApp.fontColor="#0085d0";
+	    HostApp.getFontColor(function(fontColor) {
+            if (fontColor) {
+                dynApp.fontColor = fontColor;
+            }
+             $("#tabBaseInfo").css({"color":dynApp.fontColor,"border-bottom":"1px solid "+dynApp.fontColor});
+        });
+
+	}, 350);
+/* 事件处理
+
+/*$("#tabBaseInfo").css({"color":dynApp.fontColor,"border-bottom":"1px solid "+dynApp.fontColor})
+    .css({"color":dynApp.fontColor,"border-bottom":"1px solid "+dynApp.fontColor})
+    ;*/
+
+	$("#tabBaseInfo").on("click", function() {
+		$("#baseInfo").show();
+		$("#attachments,#approvelog").hide();
+
+		$("#tabBaseInfo").css({"color":dynApp.fontColor,"border-bottom":"1px solid "+dynApp.fontColor});
+		$("#tabAttachments,#tabLogs").removeAttr("style");
+	});
+
+	$("#tabAttachments").on("click",function() {
+		$("#attachments").show();
+        $("#baseInfo,#approvelog").hide();
+
+		$("#tabAttachments").css({"color":dynApp.fontColor,"border-bottom":"1px solid "+dynApp.fontColor});
+		$("#tabLogs,#tabBaseInfo").removeAttr("style");
+	});
+
+	$("#tabLogs").on("click",function() {
+		$("#approvelog").show();
+		$("#attachments,#baseInfo").hide();
+
+		$("#tabAttachments,#tabBaseInfo").removeAttr("style");
+		$("#tabLogs").css({"color":dynApp.fontColor,"border-bottom":"1px solid "+dynApp.fontColor});
+	});
+
+
+	$(document).on("pageinit", "#home", function () {
+		setTimeout(initApproveFlowPage,200);
+	});
+
+
+</script>
+</body>
+</html>

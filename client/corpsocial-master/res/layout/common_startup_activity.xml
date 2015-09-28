@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/layout_startup"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/login_logo"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/app_icon"/>
+
+        <com.shamanland.fonticon.FontIconView
+            android:id="@+id/startup_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:gravity="center"
+            android:scaleType="centerCrop"
+            android:text="@string/icon_logo"
+            android:textColor="@color/blue"
+            android:textSize="70sp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/startup_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/app_name"
+            android:textColor="@color/text_color7"
+            android:textSize="18sp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/startup_slogan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:text=""
+        android:textColor="@color/gray"
+        android:textSize="16sp"/>
+</RelativeLayout>

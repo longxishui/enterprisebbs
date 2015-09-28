@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff3f3f3"
+              android:orientation="vertical">
+    <!-- 标题栏:高度48dp -->
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/addrbook_input_phone_number_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <include layout="@layout/public_line_horizontal_gray"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/white"
+            android:drawableLeft="@drawable/common_search"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="输入好友手机号码"
+            android:paddingLeft="12dp"
+            android:textSize="16sp"/>
+
+        <include layout="@layout/public_line_horizontal_gray"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addrbook_new_friends_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/public_line_horizontal_gray"/>
+
+        <ListView
+            android:id="@+id/addrbook_new_friends_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:divider="@null"/>
+    </LinearLayout>
+</LinearLayout>

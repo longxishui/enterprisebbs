@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="35dp">
+
+            <!-- 头像 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="215dp"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/addrbook_contact_bg"/>
+
+                <ImageView
+                    android:id="@+id/addrbook_contact_person_info_head_iv"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/addrbook_contact_big"/>
+            </RelativeLayout>
+
+            <!-- 姓名 -->
+            <TextView
+                android:id="@+id/ddrbook_contact_person_info_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="10dp"
+                android:text="姓名"
+                android:textColor="#ff333333"
+                android:textSize="18sp"/>
+
+            <!-- 电话 -->
+            <RelativeLayout
+                android:id="@+id/ddrbook_contact_person_info_phone_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:background="@drawable/listview_item_bg_normal"
+                android:paddingBottom="12dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/ddrbook_contact_person_info_phone_title_tv"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="手机号码"
+                    android:textColor="#ff999999"/>
+
+                <TextView
+                    android:id="@+id/ddrbook_contact_person_info_phone_number_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/ddrbook_contact_person_info_phone_title_tv"
+                    android:text="13312345678"
+                    android:textColor="#ff666666"/>
+            </RelativeLayout>
+
+            <!-- 所属公司 -->
+            <RelativeLayout
+                android:id="@+id/ddrbook_contact_person_info_company_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:background="@drawable/listview_item_bg_normal"
+                android:paddingBottom="12dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/ddrbook_contact_person_info_company_title_tv"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="所属公司"
+                    android:textColor="#ff999999"/>
+
+                <TextView
+                    android:id="@+id/ddrbook_contact_person_info_company_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/ddrbook_contact_person_info_company_title_tv"
+                    android:text="卓望互联网信息技术（广东）股份有限公司\n卓望互联网信息技术有限公司"
+                    android:textColor="#ff666666"/>
+            </RelativeLayout>
+
+            <!-- 签名 -->
+            <RelativeLayout
+                android:id="@+id/ddrbook_contact_person_info_signature_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:background="@drawable/listview_item_bg_normal"
+                android:paddingBottom="12dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/ddrbook_contact_person_info_signature_title_tv"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="签        名"
+                    android:textColor="#ff999999"/>
+
+                <TextView
+                    android:id="@+id/ddrbook_contact_person_info_signature_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/ddrbook_contact_person_info_signature_title_tv"
+                    android:text="我的签名是不是很有创意呢，欢迎多多评价！"
+                    android:textColor="#ff666666"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/ddrbook_contact_person_info_add_friend_btn_bt"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="45dp"
+                android:text="添加好友"
+                android:textColor="#ffffffff"
+                android:textSize="16sp"/>
+
+            <Button
+                android:id="@+id/ddrbook_contact_person_info_send_msg_btn_bt"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="45dp"
+                android:text="发消息"
+                android:textColor="#ffffffff"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

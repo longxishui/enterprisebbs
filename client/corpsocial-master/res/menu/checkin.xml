@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.aspirecn.corpsocial.bundle.checkin.ui.CheckInMainActivity">
+    <item
+        android:id="@+id/action_myself"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/checkin_myself"/>
+
+    <item
+        android:id="@+id/action_others"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/checkin_others"/>
+</menu>

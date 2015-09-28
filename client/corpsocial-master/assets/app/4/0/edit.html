@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>印章申请</title>
+    <link rel="stylesheet" href="../../commons/jquery.mobile/jquery.mobile-1.3.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/seal.css">
+    <script src="../../commons/jquery.mobile/jquery.js"></script>
+    <script src="../../commons/jquery.mobile/jquery.mobile-1.3.2.min.js"></script>
+    <script src="../../commons/jquery.mobile/baiduTemplate.js"></script>
+    <script src="../../commons/DataHelper.js"></script>
+    <script src="../../commons/common.js"></script>
+    <script src="js/process.js"></script>
+    <script type="text/javascript">
+	function initCurrentPage(){
+		processData = DataHelper.getData();
+		if(typeof(processData.fullData)=="string"){processData.fullData=JSON.parse(processData.fullData);}
+		if(typeof(processData.attachList)=="string"){processData.attachList=JSON.parse(processData.attachList);}
+		curUser =  DataHelper.getCurUser();
+		initPageTemplate();
+		initEvent();
+	}
+	$(function() {
+		if(typeof(HostApp)!='undefined'){
+			initCurrentPage();
+		}else{
+			var intervalId =  window.setInterval(function(){
+				console.log("HostApp未定义,出现定时任务执行的情况"+intervalId);
+				if(typeof(HostApp)!='undefined'){
+					initCurrentPage();
+					clearInterval(intervalId);
+				}
+			},50);
+		}
+	})
+	function initEvent(){
+		$("#content").height(($(document).height()-$("#headerDev").height()-$("#approvalCont").height()));//初始化高度
+		$.event.special.swipe.horizontalDistanceThreshold=40;
+		/*弹出操作面板*/
+		$("#approval_cont").click(function(){
+			//$("#approvalCont").css("bottom",$(window).height()-300+"px");
+			if($(this).val()==""){
+				$(".approvalOption").show();
+			}
+		});
+		/*选择面板上的项给审批意见赋值*/
+		$(".approvalOption ul li").click(function(){
+			$("#approval_cont").val($(this).text());
+			$(".approvalOption").hide();
+		});
+		$(".phone").click(function(){
+			var phoneNumber = $(this).attr("number");
+			if(phoneNumber){
+				DataHelper.call(phoneNumber);
+			}
+		});
+		/*点击页面其它地方隐藏操作面板*/
+        $(document).click(function(e){
+		    var thisGroup = $(".approvalOption");
+		    var checkText = $("#approval_cont");
+		    var parents = $(e.target).parents(".approvalOption");
+		    var isGroup = $(e.target);
+		    if(parents[0] == thisGroup[0] || isGroup[0] == thisGroup[0] || isGroup[0] == checkText[0]){
+		        return;
+		    }else{
+		    	thisGroup.hide();
+		    	$("#approvalCont").css("bottom","-1px");
+		    }
+		});
+
+		/*tab*/
+		$(".backlogTab ul li").click(function(){
+			var index = $(this).index();
+			$(this).addClass("current").siblings().removeClass("current");
+			$(".backlogTabCont>div").eq(index).show().siblings().hide();
+		});
+		//滑动效果
+		$("body").on("swipeleft",function(){
+			var next = $(".backlogTab ul li.current").next().click();
+		}).on("swiperight",function(){
+			var next = $(".backlogTab ul li.current").prev().click();
+		});
+		/*意见详情*/
+		var opinionHtml = '<tr id="opinionTr">'+
+							'<td class="noRightBorder t-aC">意见详情</td>'+
+							'<td colspan="2" class="noRightBorder detail">'+
+								'<textarea></textarea>'+
+							'</td>'+
+						'</tr>';
+		$("table tr td.opinion").click(function(){
+			$("#opinionTr").remove();
+			$(this).parent().after(opinionHtml);
+			$("#opinionTr textarea").val($(this).attr("thisText"));
+		});
+	  	function change(fileSize){
+			var size = fileSize + "BYTE";
+			if (fileSize > 1024 * 1024) {
+				size = (Math.round((fileSize / (1024 * 1024)) * 100) / 100)
+						+ 'MB';
+			} else if (fileSize > 1024) {
+				size = (Math.round((fileSize / 1024) * 100) / 100) + 'KB';
+			}
+			return size;
+		};
+		$(".fileSize").each(function(){
+			$(this).html(change($(this).attr("thisText")));
+		});
+		var status = $("#appStatus").attr("thisText");
+		var isVis = window.js2java.getIsVisibleDiv();
+		if(status =='已审批' || isVis == '0'){
+			hideApprovalCont();
+		}
+	}
+	function hideApprovalCont(){
+		$("#approvalCont").hide();
+		var winHeight = $(window).height();
+		var contHeight = $("#content").height();
+		if(contHeight+93+10 < winHeight){
+			$("#contInfo").height(winHeight-93-10-20);	// 93-header高度,10-content外边距(top),20-content外边距(bottom)
+		}
+	}
+
+
+    </script>
+    <script type="text/javascript">
+	function onClike(url,filename,index){
+		var loadingImg="../../commons/images/loading.gif";
+		var imgSrc="../../commons/images/icon_download.png";
+		if($("#attachDownImg"+index).hasClass("loadingClass")){//正在加载中的话不下载
+			return;
+		}
+		$("#attachDownImg"+index).attr("src",loadingImg).addClass("loadingClass");
+	 	DataHelper.openAttach(filename,url,function(){
+	 		$("#attachDownImg"+index).attr('src',imgSrc).removeClass("loadingClass");
+	 	});
+	}
+	function onReceiverMsg(msg) {
+			//alert('onOPenFile msg success : ' + msg.success);
+			//alert('onOPenFile msg data : ' + msg.data);
+	}
+	function onError(error) {
+			// do something...
+			//alert('System is error.');
+	}
+	function doSubmit(serialNumber,circuitNode,type){
+		var memo = document.getElementById("approval_cont").value;
+		if(type=='2' && memo ==''){
+			window.js2java.showErrorMsg('请填写驳回理由!');
+			return;
+		}else if(type == '5'){
+			DataHelper.selectContacts('','',ReceiverMsg);
+			return;
+		}
+		var submit = {
+			"circuitNode":circuitNode,	
+			"action":type,	
+			"memo" : memo
+		};
+		DataHelper.httpRequest(onReceiverMsg,onError,common.getSubmitJsonToStr(submit));
+		//DataHelper.httpRequest(onReceiverMsg,onError,'serialNumber='+serialNumber+';circuitNode='+circuitNode+';action='+type+';memo='+memo);
+	}
+	function donwnFail(){
+		window.js2java.showErrorMsg('附件转换失败!');
+	}
+	function ReceiverMsg(msg){
+		var userId = '';
+		if(msg.length > 0){
+			userId = msg[0].loginName;
+	    	var memo = document.getElementById("approval_cont").value;
+		    var serialNumber = $("#billNo").attr("thisText");
+		    var circuitNode = $("#taksId").attr("thisText");
+		 	var submit = {
+				"circuitNode":circuitNode,	
+				"action":'5',	
+				"memo" : memo,
+				"transmitUser":userId
+			};
+		    DataHelper.httpRequest(onReceiverMsg,onError,common.getSubmitJsonToStr(submit));
+		}
+	}
+
+
+    </script>
+    <style type="text/css">
+        .content{margin: 0 16px;}
+        .bodybgcolor{background: #dce1e4; padding-bottom: 0;}
+        .backlog_cont{
+        width: 99.99%; border:1px solid #c3c4c5; background: #fff; overflow: hidden; margin-bottom:
+        10px;
+        border-radius: 6px;
+        box-shadow: -2px 0 4px #ccc,0 -2px 4px #ccc,0 2px 4px #ccc,2px 0 4px #ccc;
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" class="bodybgcolor">
+    <!--<div class="myheader">
+        <div class="content" onClick='window.js2java.back()'>
+            <img src="../../commons/images/back.png" class="FL back"/><span class="FL pageTitle">印章申请</span>
+        </div>
+    </div>--><!--end header -->
+    <div id="headerDev" class="backlogTab attendanceTab">
+        <ul>
+            <li class="current">基本信息</li>
+            <li>用章附件</li>
+            <li>审批日志</li>
+        </ul>
+    </div>
+    <div class="backlogTabCont m-t10">
+        <!--basicInfo-->
+		<span templateId="hiddenTmpl">
+			<script type="text/html" id="hiddenTmpl">
+                <input type="hidden" id="appStatus" thisText=<%=fullData.status%> />
+                <input type="hidden" id="billNo" thisText=<%=fullData.billNo%> />
+                <input type="hidden" id="taksId" thisText=<%=fullData.taskId%> />
+            </script>
+		</span>
+
+        <div class="basicInfo">
+            <div class="content" style="overflow: auto;" id="content">
+                <!--基本信息-->
+                <div class="backlog_cont" id="contInfo">
+                    <table class="m-l10 normalTable" width="100%" border="0" cellspacing="0"
+                           cellpadding="0">
+                        <colgroup>
+                            <col width="83"></col>
+                            <col width="50%"></col>
+                            <col width="80"></col>
+                            <col width="50%"></col>
+                        </colgroup>
+                        <tr height="16">
+                            <td width="83" class="color95" valign="top">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</td>
+                            <td width="100%" class="color4D" valign="top" colspan="3">
+                                <span rendname="fullData.billNo"></span><img
+                                    src="../../commons/images/icon_secClass1.png"/>
+                            </td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">申&nbsp;&nbsp;请&nbsp;人：</td>
+                            <td class="color4D" valign="top" colspan="3"
+                                rendname="fullData.billEmpName"></td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="midden">联系方式：</td>
+                            <td class="color4D" templateId="phoneTmpl" valign="top" colspan="3"
+                                style="line-height:37px;">
+                                <script type="text/html" id="phoneTmpl">
+                                    <%if(typeof(fullData.phone)!='undefined'&&fullData.phone){%>
+                                    <span class="FL"><%=fullData.phone%></span>
+                                    <a class="phone" number="<%=fullData.phone%>"><img
+                                            src="../../commons/images/icon_phone.png"
+                                            class="FL m-l10"/></a>
+                                    <%}%>
+                                </script>
+                            </td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">申请部门：</td>
+                            <td class="color4D" valign="top" rendname="fullData.billDept"
+                                colspan="3"></td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">申请主题：</td>
+                            <td class="color4D" valign="top" rendname="fullData.billTitle"
+                                colspan="3"></td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">用章性质：</td>
+                            <td class="color4D" valign="top"
+                                rendname="fullData.processData.sealType" colspan="3"></td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">印章种类：</td>
+                            <td class="color4D" valign="top"
+                                rendname="fullData.processData.sealClass" colspan="3"></td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">印章公司：</td>
+                            <td class="color4D" valign="top" colspan="3">
+                                <div rendname="fullData.processData.sealCompany"></div>
+                            </td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">所需资质：</td>
+                            <td class="color4D" valign="top" colspan="3">
+                                <div rendname="fullData.processData.qualificatiom"></div>
+                            </td>
+                        </tr>
+                        <tr height="16">
+                            <td width="80" class="color95" valign="top">用印份数：</td>
+                            <td width="50%" class="color4D" valign="top">
+                                <span rendname="fullData.processData.count"></span>份
+                            </td>
+                            <td width="80" class="color95" valign="top">涉及金额：</td>
+                            <td width="50%" class="colorF08200" valign="top">
+                                <span rendname="fullData.processData.amount"></span>元
+                            </td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">用章说明：</td>
+                            <td class="color4D" valign="top" colspan="3"
+                                rendname="fullData.processData.remark">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--end 基本信息-->
+            </div>
+            <div style="position: absolute;bottom: 0px;width: 100%" id="approvalCont">
+                <div class="footBtnGroup">
+                    <div class="content">
+                        <div class="approvalCont">
+                            <textarea id="approval_cont" placeholder="请输入审批意见"></textarea>
+
+                            <div class="approvalOption hide">
+                                <ul>
+                                    <li>已阅</li>
+                                    <li>审批通过</li>
+                                    <li>同意</li>
+                                    <li>通过</li>
+                                    <li>退回稽查</li>
+                                </ul>
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                        <ul templateId="shenpiTmpl">
+                            <script type="text/html" id="shenpiTmpl">
+                                <li class="btn"
+                                    onClick="doSubmit('<%=fullData.billNo%>','<%=fullData.taskId%>','1')">
+                                    同意
+                                </li>
+                                <li class="btn"
+                                    onClick="doSubmit('<%=fullData.billNo%>','<%=fullData.taskId%>','2')">
+                                    驳回
+                                </li>
+                                <li class="btn"
+                                    onClick="doSubmit('<%=fullData.billNo%>','<%=fullData.taskId%>','5')">
+                                    转办
+                                </li>
+                            </script>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end basicInfo-->
+        <!--用章附件-->
+        <div class="officialDocument hide">
+            <div class="content">
+                <div class="backlog_cont">
+                    <div class="attachmentsList">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                               class="attachmentsTable color95" templateId="attachmentsListTmpl">
+                            <script type="text/html" id="attachmentsListTmpl">
+                                <%if(typeof(attachList)!="undefined" && attachList!=null&&attachList.length>0){%>
+                                <%for(var i=0;i
+                                <attachList.length;i++){ var files=attachList[i];%>
+                                <tr onclick="onClike('<%=files.url%>','<%=files.filename%>','<%=i%>')">
+                                    <%if(files.url.toLowerCase().endsWith("xls") ||
+                                    files.url.toLowerCase().endsWith("xlsx")){%>
+                                    <td style="overflow:hidden" class="p-l60 icon_xls">
+                                        <%}else if(files.url.toLowerCase().endsWith("doc") ||
+                                        files.url.toLowerCase().endsWith("docx")){%>
+                                    <td style="overflow:hidden" class="p-l60 icon_doc">
+                                        <%}else if(files.url.toLowerCase().endsWith("pdf")){%>
+                                    <td style="overflow:hidden" class="p-l60 icon_pdf">
+                                        <%}else if(files.url.toLowerCase().endsWith("ppt")){%>
+                                    <td style="overflow:hidden" class="p-l60 icon_ppt">
+                                        <%}else if(files.url.toLowerCase().endsWith("png") ||
+                                        files.url.toLowerCase().endsWith("jpg") ||
+                                        files.url.toLowerCase().endsWith("bmp") ||
+                                        files.url.toLowerCase().endsWith("gif") ||
+                                        files.url.toLowerCase().endsWith("jpeg") ||
+                                        files.url.toLowerCase().endsWith("pcx")){%>
+                                    <td style="overflow:hidden" class="p-l60 icon_img">
+                                        <%}else{%>
+                                    <td style="overflow:hidden" class="p-l60 icon_office">
+                                        <%}%>
+									<span class="FL fileName">
+									<%if(files.url){%>
+										<a href="javascript:void(0)" class="attachmentsLink">
+                                            <%if(files.filename.length>8){%><%=files.filename.substring(0,8)%>...<%}else{%><%=files.filename%><%}%>
+                                        </a>
+									<%}else{%>
+										<a href="javascript:donwnFail()" class="attachmentsLink">
+                                            <%if(files.filename.length>8){%><%=files.filename.substring(0,8)%>...<%}else{%><%=files.fileName%><%}%>
+                                        </a>
+									<%}%>
+									</span>
+                                        <span style="float:right;"><img
+                                                style="vertical-align:middle;"
+                                                id="attachDownImg<%=i%>" height="20px"
+                                                src="../../commons/images/icon_download.png"/></span>
+                                    </td>
+                                    <td width="25%" style="white-space:nowrap">
+                                        <span class="fileSize" thisText="<%=files[" filesize"]%>"><%=files["filesize"]%></span>
+                                    </td>
+                                </tr>
+                                <%}%>
+                                <%}%>
+                            </script>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end 用章附件-->
+        <!--审批日志-->
+        <div class="signLog hide">
+            <div class="content">
+                <div class="backlog_cont">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                           class="signLogTable color95">
+                        <tr class="color4D tHead" templateId="approveLogTmpl"
+                            templatePosition="after">
+                            <td width="20%">审批人</td>
+                            <td width="37%">审批时间</td>
+                            <td width="43%" class="noRightBorder">审批意见</td>
+                        </tr>
+                        <script type="text/html" id="approveLogTmpl">
+                            <%if(typeof(fullData.approveLog)!='undefined'&&fullData.approveLog!=null){%>
+                            <%for(var i=0;i
+                            <fullData.approveLog.length;i++){var logObj=fullData.approveLog[i];%>
+                            <tr>
+                                <%if(typeof(logObj.content)!='undefined'&&logObj.content!=null){%>
+                                <td class="t-aC">
+                                    <%=logObj.content.substring(logObj.content.indexOf('
+                                    ',logObj.content.indexOf(' ')+1),logObj.content.indexOf('
+                                    ',logObj.content.indexOf(' ',logObj.content.indexOf('
+                                    ')+1)+1))%>
+                                </td>
+                                <td class="t-aC">
+                                    <%=logObj.content.substring(0,logObj.content.indexOf('
+                                    ',logObj.content.indexOf(' ')+1))%>
+                                </td>
+                                <%var index=logObj.content.indexOf(' ',logObj.content.indexOf('
+                                ',logObj.content.indexOf(' ',logObj.content.indexOf(' ')+1)+1)+1)%>
+                                <%if(index != -1){%>
+                                <td class="t-i10 noRightBorder opinion"
+                                    thisText=<%=logObj.content.substring(logObj.content.indexOf('
+                                ',logObj.content.indexOf(' ',logObj.content.indexOf('
+                                ',logObj.content.indexOf('
+                                ')+1)+1)+1))%>><%=logObj.content.substring(logObj.content.indexOf('
+                                ',logObj.content.indexOf(' ',logObj.content.indexOf('
+                                ')+1)+1),logObj.content.indexOf(' ',logObj.content.indexOf('
+                                ',logObj.content.indexOf(' ',logObj.content.indexOf('
+                                ')+1)+1)+1))%>></td>
+                                <%}else{%>
+                                <td class="t-i10">
+                                    <%=logObj.content.substring(logObj.content.indexOf('
+                                    ',logObj.content.indexOf(' ',logObj.content.indexOf('
+                                    ')+1)+1))%>
+                                </td>
+                                <%}%>
+                                <%}%>
+                            </tr>
+                            <%}%>
+                            <%}%>
+                        </script>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--end 审批日志-->
+    </div>
+</div>
+
+</body>
+</html>

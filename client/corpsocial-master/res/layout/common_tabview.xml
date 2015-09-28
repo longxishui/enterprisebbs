@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="@drawable/actionbar_newscenter_bg2"
+    >
+
+    <TextView
+        android:id="@+id/common_tabview_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/common_tabview_tv_count"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/common_tabview_notify"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/common_tabview_iv_select"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/common_tabview_tv_name"
+        android:visibility="gone"
+        />
+</RelativeLayout>

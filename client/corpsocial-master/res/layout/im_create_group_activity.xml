@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#eee"
+              android:orientation="vertical">
+
+    <!-- 标题栏:高度48dp -->
+
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <!-- 输入群名称EditText -->
+
+    <EditText
+        android:id="@+id/im_create_group_name"
+        style="@style/im_create_group_input_border_style"
+        android:hint="@string/im_create_group_hint_name"/>
+
+    <!-- 输入群备注EditText -->
+
+    <EditText
+        android:id="@+id/im_create_group_comment"
+        style="@style/im_create_group_input_border_style"
+        android:hint="@string/im_create_group_hint_remark"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/im_create_group_input_border"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/im_create_group_member"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="@string/im_create_group_hint_people"
+            android:paddingLeft="12dp"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size_2"/>
+
+        <com.shamanland.fonticon.FontIconView
+            android:id="@+id/im_create_group_add_member_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="@string/icon_contactadd"
+            android:textSize="@dimen/text_size_6"/>
+
+        <!--<ImageButton-->
+        <!--android:id="@+id/im_create_group_add_member_btn"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@null"-->
+        <!--android:contentDescription="@string/app_name"-->
+        <!--android:paddingLeft="12dp"-->
+        <!--android:paddingRight="12dp"-->
+        <!--android:src="@drawable/im_create_group_add_member_bg_selector" />-->
+    </LinearLayout>
+
+</LinearLayout>

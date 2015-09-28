@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="240dp"
+              android:layout_height="130dp"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone">
+
+        <!-- 标题 -->
+
+        <TextView
+            android:id="@+id/workgrp_copy_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="@string/workgrp_copy"
+            android:textColor="@color/level_1"
+            android:textSize="21sp"/>
+        <!-- 一把叉 -->
+
+        <ImageButton
+            android:id="@+id/workgrp_copy_dialog_close_ib"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/workgrp_copy_dialog_close"/>
+    </RelativeLayout>
+
+    <include layout="@layout/public_line_horizontal_blue"/>
+    <!-- 复制评论 -->
+
+    <RelativeLayout
+        android:id="@+id/workgrp_copy_dialog_close_copy_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/listview_item_bg_selector">
+
+        <TextView
+            android:id="@+id/workgrp_copy_dialog_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/workgrp_copy_operation2"
+            android:textColor="@color/grayblack"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+    <!--删除评论-->
+    <RelativeLayout
+        android:id="@+id/workgrp_copy_dialog_delete_quit_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/listview_item_bg_selector">
+
+        <TextView
+            android:id="@+id/workgrp_delete_dialog_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/workgrp_delete_operation"
+            android:textColor="@color/grayblack"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/workgrp_copy_dialog_close_quit_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/listview_item_bg_selector">
+
+        <TextView
+            android:id="@+id/workgrp_close_dialog_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/workgrp_quit_operation"
+            android:textColor="@color/grayblack"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

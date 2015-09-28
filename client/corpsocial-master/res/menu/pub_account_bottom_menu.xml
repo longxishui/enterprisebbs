@@ -1,0 +1,19 @@
+<menu
+    >
+
+    <!--
+    <item
+        android:id="@+id/action_settings"
+        android:title="学习"
+       />
+    <item
+        android:id="@+id/action_settings"
+        android:title="英语学习"
+        android:titleCondensed="hello"/>
+    <item
+        android:id="@+id/action_settings"
+        android:title="头条"/>
+
+    -->
+
+</menu>

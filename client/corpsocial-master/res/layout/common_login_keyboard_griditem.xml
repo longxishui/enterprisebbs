@@ -1,0 +1,14 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+    <ImageView
+        android:id="@+id/login_numkeyboard"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="1dp"
+        android:background="@drawable/numkeyboard_selector"
+        android:padding="15dp"/>
+
+</RelativeLayout>

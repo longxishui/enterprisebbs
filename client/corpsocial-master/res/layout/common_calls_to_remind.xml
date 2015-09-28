@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/rl_remove"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="387dip"
+                android:background="@drawable/common_call_remind">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:padding="10dip"
+        android:src="@drawable/workgrp_copy_dialog_close"/>
+
+    <ImageView
+        android:id="@+id/iv_call_remind_photo"
+        android:layout_width="120dip"
+        android:layout_height="120dip"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dip"
+        android:src="@drawable/addrbook_contact"/>
+
+    <TextView
+        android:id="@+id/tv_remind_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_call_remind_photo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dip"
+        android:text="刘小平"
+        android:textColor="@color/white"
+        android:textSize="35sp"/>
+
+    <TextView
+        android:id="@+id/tv_remind_dept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_remind_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dip"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="系统事业部-用户体验部        产品经理"
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tv_remind_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_remind_dept"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="138 0013 8000"
+        android:textColor="@color/white"
+        android:textSize="28sp"/>
+
+</RelativeLayout>

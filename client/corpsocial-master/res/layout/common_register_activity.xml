@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#f5f5f5">
+
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_actionbar">
+
+        <!-- 企业微信logo和文字 -->
+        <ImageView
+            android:id="@+id/login_logo"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/app_icon"/>
+
+        <com.shamanland.fonticon.FontIconView
+            android:id="@+id/register_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:text="@string/icon_logo"
+            android:textColor="@color/blue"
+            android:textSize="70sp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/register_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/app_name"
+            android:textColor="@color/text_color7"
+            android:textSize="22sp"/>
+        <!-- 手机号码输入框 -->
+
+        <EditText
+            android:id="@+id/register_phone"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/register_name"
+            android:layout_margin="10dp"
+            android:background="@drawable/common_input_border"
+            android:hint="@string/register_phone_write"
+            android:inputType="phone"
+            android:paddingLeft="6dp"
+            android:singleLine="true"
+            android:textSize="16sp"/>
+
+        <!-- 下一步点击按钮 -->
+
+        <Button
+            android:id="@+id/register_next_action"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/register_phone"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/common_btn_bg_blue_selector"
+            android:text="@string/next_action"
+            android:textColor="@color/level_3"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

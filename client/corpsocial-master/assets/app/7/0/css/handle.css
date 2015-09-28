@@ -1,0 +1,135 @@
+﻿@charset "utf-8";
+/*
+ * @Auther lyy
+*/
+
+/*************************************** 公用样式 *****************************************/
+*{margin: 0; padding: 0;}
+ul,ul li{list-style: none;}
+body{background:#fff;text-align:center; font-family:Arial,"微软雅黑"; font-size: 16px;}
+div{text-align: left;}
+a,a:hover{ color:#4D4D4D;text-decoration: none;}
+.FL{float: left;}
+.FR{float: right;}
+.hide{display: none;}
+.p_fixed{position: fixed; left: 0px; top: 0px;}
+.color95{color: #959595;}
+.color4D{color: #4D4D4D;}
+.bgfff{background: #fff;}
+.H30{height: 30px; line-height: 30px;}
+.H40{height: 40px; line-height: 40px; overflow: hidden;}
+.H40_v{height: 40px; line-height: 40px;}
+.H40_min{min-height: 40px; line-height: 40px; overflow: hidden;}
+.m-t55{margin-top:55px;}
+.m-t13{margin-top:13px;}
+.m-t10{margin-top:10px;}
+.m-t8{margin-top:8px;}
+.m-l10{margin-left: 9px;}
+.m-l15{margin-left: 15px;}
+.m-r15{margin-right: 15px;}
+.p-l10{padding-left: 10px;}
+.p-l15{padding-left: 15px;}
+.p-l60{padding-left: 60px;}
+.p-r5{padding-right: 5px;}
+.f-s12{font-size: 12px;}
+.f-s14{font-size: 14px;}
+.t-aC{text-align: center;}
+.t-i10{text-indent: 10px;}
+.m-w55{min-width: 55px; background: red;}
+.dottedBorder{border-bottom: 1px dotted #ccc;}
+.solidBottomBorder{border-bottom: 1px solid #E8E8E8;}
+
+/********************************* 重写jquerymobile样式 *************************************/
+.ui-bar-a{border: none; background: none; text-shadow:none;}
+.ui-body-a{background: #fff;}
+.ui-page-footer-fixed{padding-bottom: 0;}
+.ui-body-c .ui-link:visited,.ui-body-c .ui-link{color:#4D4D4D;text-decoration: none; font-weight: normal}
+.ui-input-search, div.ui-input-text{margin:0;}
+
+.ui-corner-all{border-radius: 5px;}
+
+/*switch
+.ui-btn-down-a{border: none; background:#FFF; color: #C1C2C3;}
+.ui-btn-up-a{background: linear-gradient(#FFFFFF, #F1F1F1) repeat scroll 0 0 #EEEEEE; border: 1px solid #CCCCCC;}
+.ui-btn-hover-a{
+	background: linear-gradient(#FFFFFF, #F1F1F1) repeat scroll 0 0 #EEEEEE; 
+	border: 1px solid #CCCCCC;
+	font-weight:700;
+	color:#fff;
+	text-shadow:0 1px 0 #111;
+	background-image:none;
+}*/
+/*.ui-slider-switch.ui-mini .ui-slider-label{font-size: 20px;}*/
+
+/*************************************** backlog *****************************************/
+.backBtn{width: 45px; height: 45px; border-right: 1px solid #0255A0;}
+.backBtn:active{background: #0255A0;}
+.back{width: 13px;height: 20px;margin: 12px 0 0 18px;}
+.pageTitle{margin-left: 8px;}
+
+.content{margin: 0 16px;}
+.selectType{position: relative;}
+
+.bodybgcolor{background: #dce1e4; padding-bottom: 0;}
+.myheader{width:100%; height: 45px; background: #3D9AD4; border-bottom:1px solid #227CCE; color: #fff; font-size: 20px;overflow:hidden;
+line-height: 45px;}
+
+.backlog_cont{width: 99.99%; overflow: hidden;}
+.clyj_cont{width: 99.99%;}
+
+/**选择方式**/
+#sType{min-width: 30px; background: url(../../../commons/images/arrow_show.png) right center no-repeat; padding-right: 19px;}
+
+.typeOption{width: 120px; padding-top:15px;/* height: 100px;*/z-index: 2; position: absolute; left: 20px; top: 42px; background: #4D91CD; border-radius: 5px; opacity:0.9;}
+.typeOption ul li{ width: 100px;margin-bottom: 10px; line-height: 20px; color: #fff; padding:0 10px;}
+.typeOption ul li:active{background:#3C66AC;}
+.type_triangle{position: absolute; left: 55px; top: -10px; width: 20px; height: 20px; background: #4D91CD; transform: rotate(45deg); -o-transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg);}
+
+.sh_name ul li{
+	min-width: 40px; height: 27px; padding: 0 10px; line-height: 27px; text-align: center; 
+	overflow: hidden; border:1px solid #c3c4c5; border-radius: 5px; margin:6px 0 5px 7px; float: left;
+	background:#fff;
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#F2F4F5), to(#D6DBDF));
+}
+.shrList{background: #fff; border-left: 1px solid #c3c4c5; border-top: 1px solid #c3c4c5; border-right: 1px solid #c3c4c5;}
+.shrList ul li{ height: 35px; line-height: 35px; text-indent: 20px; border-bottom:1px solid #c3c4c5;}
+.shrList ul li .shrIcon{margin:8px 20px 0 0;}
+
+/**签报审批**/
+.approvalCont{width: 100%; height: 110px; position: relative;}
+#approval_cont{ width: 100%; height: 110px; border: 1px solid #A8A9AA; border-radius: 0;text-shadow:none; color: #4D4D4D; margin: 0;}
+.approvalOption{width: 25%; min-width: 85px; padding:10px 0;/* height: 100px;*/ position: absolute; right: 0px; bottom: 0px; background: white /*#18a78b*/; border-radius: 5px; /*opacity:0.9;*/ border: 1px solid #ed8223;}
+.approvalOption ul li{ height: 30px; line-height: 30px; color: black/*#aaa*/; text-indent: 10px; }
+.triangle{position: absolute; left: -11px; bottom: 30px; width: 20px; height: 20px; 
+		background: white; border-left: 1px solid #ed8223; border-bottom: 1px solid #ed8223;
+		transform: rotate(45deg); -o-transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg);}
+/**提交审批**/
+.footBtnGroup{width: 100%; height: 45px; background: #D9E0E7;box-shadow: 0 -2px 4px #9FAAB3; /*border-top: 3px solid #9FAAB3;*/ margin-top: 10px;}
+.btnGroup{width: 72.22222%; margin: 0 auto;}
+.footBtnGroup ul li.btn{
+	margin-top:6px; border: 1px solid #ed8223; background: #ed8223; color: white; width: 44.230769%; height: 30px; border-radius: 30px; text-align: center; line-height: 30px;
+}
+
+.officialDocument{width:100%; background:#fff; overflow: hidden;}
+
+.csrSelect{position: relative;}
+textarea.csrInput{height: 46px; margin: 0; /*padding:10px;*/}
+.browse{position: absolute; width: 40px; height: 40px; overflow: hidden; top: 3px; right: 7px; background: url(../../../commons/images/banli_chooseman.png) no-repeat;}
+.browse:active{background: url(../../../commons/images/banli_chooseman_press.png) no-repeat;}
+
+.csrNameList{position: absolute; top: 0; left: 0; margin-right: 60px;}
+.foucsNames li{
+	min-width: 70px; height: 32px; line-height: 32px; color: #fff; padding: 0 5px; border-radius: 10px; 
+	background: #7CABD4; text-align: center; float: left; margin: 7px 0 0 7px;
+}
+.foucsNames li.cz{background: #1767B0}
+
+/*@media screen and(min-device-width: 480px) and (max-device-width: 720px){
+	.slide img{width: 100%; height: 295px;}
+}
+
+@media screen and(min-device-width: 320px) and (max-device-width: 480px){
+	.slide img{width: 100%; height: 170px;}
+}*/
+
+

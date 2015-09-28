@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/im_record_voice_volume_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/speech_voice_icon_0"/>
+
+    <RelativeLayout
+        android:id="@+id/speech_input_dialog_progressId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/speech_recognizing_icon"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/speech_recognizing_iv"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/speech_loading_icon"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

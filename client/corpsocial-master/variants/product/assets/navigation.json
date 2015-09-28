@@ -1,0 +1,33 @@
+{
+  "configurable": true,
+  "menus": [
+    {
+      "startPath": "WORK_GROUP",
+      "sortNo": "1",
+      "fontResId": "f",
+      "appName": "消息",
+      "cls": "com.aspirecn.corpsocial.bundle.im.ui.ImMainTabFragmentActivity_"
+    },
+    {
+      "startPath": "CORP_ADDRESS",
+      "sortNo": "2",
+      "fontResId": "p",
+      "appName": "通讯录",
+      "cls": "com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookMainTabActivity_"
+    },
+    {
+      "startPath": "WORK_AREA",
+      "sortNo": "3",
+      "fontResId": "o",
+      "appName": "圈",
+      "cls": "com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpMainActivity_"
+    },
+    {
+      "startPath": "SETTING",
+      "sortNo": "4",
+      "fontResId": "e",
+      "appName": "我",
+      "cls": "com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingActivity_"
+    }
+  ]
+}

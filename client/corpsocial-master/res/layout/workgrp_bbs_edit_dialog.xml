@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/workgrp_replyinfo_abid"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="110dp"
+              android:layout_height="30dp"
+              android:layout_margin="0dp"
+              android:orientation="horizontal"
+              android:padding="0dp">
+    <!--<TextView-->
+    <!--android:id="@+id/workgrp_bbs_dialog_edit"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:layout_width="55dp"-->
+    <!--android:text="编辑"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="#ffffffff"-->
+    <!--android:textSize="13sp"-->
+    <!--android:background="@drawable/workgrp_bbs_edit_btn"-->
+    <!--/>-->
+    <TextView
+        android:id="@+id/workgrp_bbs_dialog_delete"
+        android:layout_width="55dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/workgrp_bbs_delete_btn"
+        android:gravity="center"
+        android:text="删除"
+        android:textColor="#ffffffff"
+        android:textSize="13sp"
+        />
+
+</LinearLayout>

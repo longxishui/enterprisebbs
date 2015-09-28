@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">工作•圈</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="ok_str">确定</string>
+    <string name="cancel_str">取消</string>
+    <string name="title_activity_dialogue_compose">DialogueComposeActivity</string>
+    <string name="title_activity_dialogue_info">DialogueInfoActivity</string>
+    <string name="title_activity_contact_info">ContactInfoActivity</string>
+    <string name="title_activity_main_tab">MainTabActivity</string>
+    <string name="title_activity_xiao_xi__main_tab">XiaoXi_MainTabActivity</string>
+    <string name="title_activity_tong_xun_lu__main_tab">TongXunLu_MainTabActivity</string>
+    <string name="title_activity_you_jizan__main_tab">YouJian_MainTabActivity</string>
+    <string name="title_activity_xie_tong__main_tab">XieTong_MainTabActivity</string>
+    <string name="title_activity_wo__main_tab">Wo_MainTabActivity</string>
+    <string name="login_title">登录</string>
+    <string name="login_button_title">登录</string>
+    <string name="login_forget_password_title">忘记密码?</string>
+    <string name="login_edit_hint_title">QQ号/微信号/手机号</string>
+    <string name="login_password_edit_title">密码</string>
+    <string name="login_back_button_title">返回</string>
+    <string name="contact_count">联系人搜索  | 共有%1d个联系人</string>
+    <string name="bad_net">网络不通，请查看</string>
+    <string name="next_action">下一步</string>
+    <string name="search_no_data_tips">未找到匹配的数据</string>
+    <string name="search_cancel_text">取消</string>
+    <string name="search_search_text">搜索</string>
+    <string name="setting_exit">关闭 ‘工作•圈’</string>
+
+    <string name="common_startup_slogan">连接工作，连接你我</string>
+    <string name="login_status_tips">登录中…</string>
+    <string name="workbench_setting_updatepwd_ok">确定</string>
+
+    <!-- 物流上报 -->
+    <string name="logistics_apptitle">物流上报</string>
+    <string name="logistics_title">物流业景气指数上报</string>
+    <string name="logistics_main_title">指数上报</string>
+    <string name="logistics_history_title">历史上报数据</string>
+    <string name="logistics_title_history">上报历史</string>
+    <string name="logistics_info1">温馨提示</string>
+    <string name="logistics_btn_preview_info">预览</string>
+    <string name="logistics_btn_commit_info">提交</string>
+    <string name="logistics_info2">2015年1季度物流业景气指数上报已截止\n2015年2季度物流业景气指数上报即将启动\n（上报时间2015.04.01-2015.04.05）敬请关注</string>
+    <string name="logistics_item_title"><u>sdakfasd</u></string>
+    <string name="logistics_edit_title">业务总量指标</string>
+    <string name="logistics_neterror">网络连接失败</string>
+    <string name="logistics_customedit_et_hint">输入您的具体数值</string>
+    <string name="logistics_customedit_title">详细输入</string>
+    <string name="logistics_customedit_ok">确定</string>
+    <string name="logistics_history_noinfo">暂无历史记录</string>
+
+    <!-- 登录页面的string -->
+    <string name="login_phoneno_edit_hint_title">请输入手机号码</string>
+    <string name="login_password_edit_hint_title">请输入密码</string>
+    <string name="login_rememberpassword_title">记住密码</string>
+    <string name="login_visit">游客登录</string>
+    <string name="login_button_titles">登录</string>
+    <string name="login_button_register">注册</string>
+
+    <!-- 密码重置页面string -->
+    <string name="reset_password_title1">找回密码</string>
+    <string name="reset_password_title2">设置新密码</string>
+    <string name="reset_password_new_password">请输入新密码</string>
+    <string name="reset_password_new_password_agin">请再次输入新密码</string>
+    <string name="reset_password_phone_number_empty_tips">请输入手机号码！</string>
+    <string name="reset_password_phone_number_error_tips">手机号码不正确，请重新输入！</string>
+
+    <!-- 注册激活String -->
+    <string name="register_phone">填写手机号码</string>
+    <string name="register_phone_write">请输入手机号码</string>
+    <string name="bad_phone">手机号码长度不正确</string>
+    <string name="common_register_tittle">填写激活码</string>
+    <string name="common_register_key">请输入激活码</string>
+    <string name="common_register_password">请设置初始密码</string>
+    <string name="common_register_password_repeat">请再次输入初始密码</string>
+    <string name="common_register_yourphone">您的手机号码：</string>
+    <string name="common_register_messgae">我们给您发了一条短信，请将短信中的数字作为验证码填写在下面</string>
+    <string name="common_register_remind">提示：如果您在60秒内未收到验证码，请重新发送验证码。</string>
+    <string name="common_register_retime">重新发送</string>
+    <string name="common_register_nullkey">请输入验证码</string>
+    <string name="common_register_nullpassword">请输入密码</string>
+    <string name="common_register_badpassword">两次密码输入不一致,请重新输入密码</string>
+    <string name="common_register_wait">请稍等</string>
+
+    <!-- MainTab -->
+    <string name="common_main_title_working">移动工作圈</string>
+    <string name="common_main_tab_working">工作台</string>
+    <string name="common_main_tab_work_group">工作群</string>
+    <string name="common_main_tab_colleagues">同事圈</string>
+    <string name="common_main_tab_linkman">通讯录</string>
+    <string name="common_main_tab_more">我</string>
+    <string name="common_main_tab_msg">消息</string>
+
+    <!-- 工作群(im) -->
+    <string name="im_main_tab_no_chat_msg_tips">暂无聊天信息！</string>
+    <string name="im_main_tab_no_group_msg_tips">暂无群组信息！</string>
+    <string name="im_chat_send_again">重发</string>
+    <string name="im_chat_send_msg">发送</string>
+    <string name="im_chat_pressed_to_say">按住说话</string>
+    <string name="im_chat_image">图片</string>
+    <string name="im_chat_take_photo">拍照</string>
+    <string name="im_chat_location">位置</string>
+    <string name="im_chat_voice_input">语音输入</string>
+    <string name="im_chat_no_msg_tips">暂无聊天信息！</string>
+    <string name="im_chat_net_status">网络连接不可用</string>
+    <string name="im_create_group_title_txt">发起群聊</string>
+    <string name="im_create_group_btn_txt">确定</string>
+    <string name="im_create_group_hint_name">请输入群名称</string>
+    <string name="im_create_group_hint_remark">请输入群备注</string>
+    <string name="im_create_group_hint_people">请选择群成员</string>
+
+    <!-- 点对点聊天设置string -->
+    <string name="P2Pchat_setting">聊天设置</string>
+    <string name="P2Pchat_setting_name">姓名</string>
+    <string name="P2Pchat_setting_news">新消息通知</string>
+    <string name="P2Pchat_setting_chat">直接聊天</string>
+    <string name="P2Pchat_setting_background">设置当前聊天背景</string>
+    <string name="P2Pchat_setting_findchat">查找聊天记录</string>
+    <string name="P2Pchat_setting_emptychat">清空聊天记录</string>
+    <string name="P2Pchat_setting_emptychat_dialog_hint">提 示</string>
+
+    <!-- 同事圈String -->
+    <string name="workgrp_list_pull_refresh">下拉刷新</string>
+    <string name="workgrp_list_release_to_refresh">松开刷新</string>
+    <string name="workgrp_list_refreshing">正在刷新中</string>
+    <string name="workgrp_list_update_time">更新于</string>
+    <string name="workgrp_list_reply">评论 0</string>
+    <string name="workgrp_list_nopraise">赞</string>
+    <string name="workgrp_list_praised">已赞</string>
+    <string name="workgrp_newbbs_title">标题</string>
+    <string name="workgrp_newbbs_content">内容</string>
+    <string name="workgrp_newbbs_publish">发贴</string>
+    <string name="workgrp_newbbs_backtitle">发表主题</string>
+    <string name="workgrp_noitem">本频道暂无消息！</string>
+    <string name="workgrp_nogroup">暂无频道！</string>
+    <string name="workgrp_copy">关于帖子</string>
+    <string name="workgrp_copy_operation">复制</string>
+    <string name="workgrp_copy_operation2">复制内容</string>
+    <string name="workgrp_quit_operation">取消</string>
+    <string name="workgrp_delete_operation">删除评论</string>
+
+    <!-- 工作台设置String -->
+    <string name="workbench_setting_title">我</string>
+    <string name="workbench_setting_personalinfo">个人信息</string>
+    <string name="workbench_setting_updatepwd">修改密码</string>
+    <string name="workbench_setting_about">关于工作•圈</string>
+    <string name="workbench_setting_checkversion">检查版本</string>
+    <string name="workbench_setting_exit">退出</string>
+    <string name="workbench_setting_personalinfo_title">个人信息</string>
+    <string name="workbench_setting_personalinfo_head">头像</string>
+    <string name="workbench_setting_personalinfo_name">名字</string>
+    <string name="workbench_setting_personalinfo_position">职位</string>
+    <string name="workbench_setting_personalinfo_phone">电话</string>
+    <string name="workbench_setting_personalinfo_number">短号</string>
+    <string name="workbench_setting_personalinfo_department">公司部门</string>
+    <string name="workbench_setting_newmessage">新消息提醒</string>
+    <string name="workbench_setting_nine_grids">工作台九宫格切换</string>
+    <string name="workbench_setting_commingcall">来电弹窗</string>
+    <string name="workbench_setting_newmessage_title">新消息提醒</string>
+    <string name="workbench_setting_newmessage_inform">接收新消息通知</string>
+    <string name="workbench_setting_newmessage_sound">声音</string>
+    <string name="workbench_setting_newmessage_shake">震动</string>
+    <string name="workbench_setting_updatepwd_title">修改密码</string>
+    <string name="workbench_setting_updatepwd_explain">设置密码后,你可以使用手机号码+密码登录</string>
+    <string name="workbench_setting_updatepwd_phone">手机号:13800138000</string>
+    <string name="workbench_setting_updatepwd_oldpwd">旧密码:</string>
+    <string name="workbench_setting_updatepwd_newpwd">新密码:</string>
+    <string name="workbench_setting_updatepwd_newpwd2">确认密码:</string>
+    <string name="workbench_setting_personalinfo_signature">个性签名</string>
+    <string name="workbench_setting_about_mobile">关于移动</string>
+    <string name="workbench_setting_adcolum_detail_title">详情</string>
+    <string name="workbench_setting_newcompany">新的企业</string>
+    <string name="workbench_setting_newcompany_addcompany">添加企业</string>
+    <string name="workbench_setting_newcompany_retry">请检查网络后，点击重试</string>
+    <string name="workbench_setting_newcompany_loading">加载中</string>
+    <string name="workbench_setting_selectcompany">选择您的企业</string>
+    <string name="workbench_setting_select">选择</string>
+
+    <!-- 群设置string -->
+    <string name="gronp_chat_setting_title">群设置</string>
+    <string name="gronp_chat_setting_name">群聊名称</string>
+    <string name="gronp_chat_setting_manager">群管理员</string>
+    <string name="gronp_chat_setting_sign">群签名</string>
+    <string name="gronp_chat_setting_picture">群图片</string>
+    <string name="gronp_chat_setting_member">群成员</string>
+    <string name="gronp_chat_setting_message_switch">新消息通知开关</string>
+    <string name="gronp_chat_setting_manager_setting">群成员(-)</string>
+    <string name="gronp_chat_setting_search_chat_log">查找聊天记录</string>
+    <string name="gronp_chat_setting_clear_chat_log">清空聊天记录</string>
+    <string name="gronp_chat_setting_dismiss">解散群</string>
+    <string name="gronp_chat_setting_exit">退出此群</string>
+    <string name="gronp_chat_setting_active">未激活成员(-)</string>
+    <string name="gronp_chat_setting_admin">群管理员</string>
+    <string name="gronp_chat_setting_show_admin_master">管理员</string>
+    <string name="gronp_chat_setting_show_admin_employee">群管理员</string>
+    <string name="gronp_chat_setting_show_admin_department">部门</string>
+
+    <!-- 联系人string -->
+    <string name="addrbook_search">搜索</string>
+    <string name="addrbook_contacts">常用联系人</string>
+    <string name="addrbook_contact">联系人</string>
+    <string name="addrbook_new_friend">新的朋友</string>
+    <string name="addrbook_mycompany">我的群组</string>
+    <string name="addrbook_choose_contacts">选择联系人</string>
+    <string name="addrbook_group_contacts">集团通讯录</string>
+    <string name="addrbook_personal">联系人详情</string>
+    <string name="addrbook_personal_phone">电话</string>
+    <string name="addrbook_personal_short">短号</string>
+    <string name="addrbook_personal_email">Email</string>
+    <string name="addrbook_personal_group">工作群</string>
+    <string name="addrbook_personal_deptment">所属部门</string>
+    <string name="addrbook_personal_corp">所属公司</string>
+    <string name="addrbook_dailog_personal">查看详情</string>
+    <string name="addrbook_dailog_phone">打电话</string>
+    <string name="addrbook_dailog_wxsms">发消息</string>
+    <string name="addrbook_dailog_sms">发短信</string>
+    <string name="addrbook_add_personal">加为常用</string>
+    <string name="addrbook_remove_personal">移除常用</string>
+    <string name="addrbook_department">兼任</string>
+    <string name="addrbook_nodata">暂时没有数据，请等待联系人下载完成后，点击页面重新加载</string>
+    <string name="addrbook_nocontacts">暂无常用联系人，可从集团通讯录中添加。</string>
+    <string name="addrbook_nogroup">暂时没有群组，请添加群组或点击页面刷新</string>
+    <string name="addrbook_signature">个性签名</string>
+    <string name="addrbook_signature_null">让我们一起聊吧</string>
+    <string name="addrbook_contact_null">查无此人</string>
+    <string name="addrbook_addmore_personal">添加常用联系人</string>
+    <string name="addrbook_email">发邮件</string>
+    <string name="addrbook_task">派任务</string>
+    <string name="addrbook_personal_title">个人</string>
+    <string name="addrbook_company_tittle">企业</string>
+    <string name="addrbook_group_choose_tittle">部门选择</string>
+
+    <!-- 电子流string -->
+    <string name="process_main_tab_title">协同办公</string>
+    <string name="process_todo_tab_title">我的审批</string>
+    <string name="process_myself_tab_title">我发起的</string>
+    <string name="process_complete_tab_title">已完成</string>
+    <string name="process_pop_out">新增外出申请</string>
+    <string name="process_pop_leave">新增事假申请</string>
+    <string name="process_pop_sick_leave">新增病假申请</string>
+    <string name="process_pop_days_off">新增调休申请</string>
+    <string name="process_pop_marriage">新增婚假申请</string>
+    <string name="process_pop_maternity_leave">新增产假申请</string>
+
+    <!-- 任务分配string -->
+    <string name="task_main">任务分配</string>
+    <string name="task_list_item_title_receiver">我接收的</string>
+    <string name="task_list_item_title_send">的任务</string>
+    <string name="task_list_item_name_module_send">我发起的</string>
+    <string name="task_main_time_finish">任务完成时间：%s</string>
+    <string name="task_main_create">新增任务</string>
+    <string name="task_main_retry">重发</string>
+    <string name="task_main_alert_content">您确定要删除吗?</string>
+    <string name="task_main_delete_success">任务删除成功</string>
+    <string name="task_main_delete_fail">任务删除失败</string>
+    <string name="task_main_finish_success">操作成功</string>
+    <string name="task_finish">已办</string>
+    <string name="task_detail">任务详情</string>
+    <string name="task_detail_submit">完成</string>
+    <string name="task_detail_dispatcher">任务分派者</string>
+    <string name="task_detail_partner">任务参与人</string>
+    <string name="task_detail_time_dispatch">任务分派时间：</string>
+    <string name="task_detail_time_finish">任务完成时间：</string>
+    <string name="task_detail_remind_status">提醒状态：</string>
+    <string name="task_detail_remind_yes">提醒</string>
+    <string name="task_detail_remind_not">不提醒</string>
+    <string name="task_detail_reply">任务反馈</string>
+    <string name="task_detail_reply_count">%s个</string>
+    <string name="task_detail_reply_member">反馈人：%s</string>
+    <string name="task_detail_reply_hint">请填写反馈信息</string>
+    <string name="task_detail_reply_success">反馈成功</string>
+    <string name="task_detail_reply_fail">反馈失败</string>
+    <string name="task_detail_reply_delete_success">反馈删除成功</string>
+    <string name="task_detail_reply_delete_fail">反馈删除失败</string>
+    <string name="task_detail_finish">完成情况</string>
+    <string name="task_detail_finish_content">%s 已完成任务</string>
+    <string name="task_detail_un_finish_content">%s 未处理</string>
+    <string name="task_detail_finish_time">完成时间：%s</string>
+    <string name="task_create">新增任务</string>
+    <string name="task_create_submit">确定</string>
+    <string name="task_create_description">添加任务描述</string>
+    <string name="task_create_time_start">任务开始时间</string>
+    <string name="task_create_time_finish">任务完成时间</string>
+    <string name="task_create_partner">任务参与人</string>
+    <string name="task_create_partner_hint">添加任务参与人</string>
+    <string name="task_create_remind">在指定日期提醒</string>
+    <string name="task_create_remind_time">提醒时间</string>
+    <string name="task_create_repeat">重复</string>
+    <string name="task_create_repeat_set">重复设置</string>
+    <string name="task_create_stop_repeat">结束重复</string>
+    <string name="task_create_stop_repeat_time_hint">设置结束重复时间</string>
+    <string name="task_create_description_hint">请描述任务内容</string>
+    <string name="task_create_time_finish_hint">请选择任务完成时间</string>
+    <string name="task_create_fail">任务分派失败，请检查网络！</string>
+    <string name="task_create_success">任务分派成功</string>
+    <string name="task_update">任务编辑</string>
+    <string name="task_update_submit">确定</string>
+    <string name="task_alarm_title">任务提醒</string>
+    <string name="task_alarm_content">%s发布的任务即将到期</string>
+    <string name="task_alarm_content2">%s发布的任务已经到期</string>
+    <string name="task_alarm_delay">延时5分钟</string>
+    <string name="task_alarm_dismiss">取消</string>
+    <string name="task_no_task_tips">暂无日程记录</string>
+
+    <!-- 简易电子流 -->
+    <string name="task_create_process">新增电子流</string>
+    <string name="task_work_number">工单编号</string>
+    <string name="task_work_title">工单标题</string>
+    <string name="task_edit_title">输入工单标题</string>
+    <string name="task_edit_content">输入工单内容</string>
+    <string name="task_edit_content_hit">还可以输入%1$d个字</string>
+    <string name="task_next_contact">下一环节联系人</string>
+
+    <!-- 改签返程机票预订 -->
+    <string name="ticket_remark_title">改签返程机票预订</string>
+    <string name="ticket_starting">出发城市</string>
+    <string name="ticket_destination">到达城市</string>
+    <string name="ticket_flight_number">航班号</string>
+    <string name="ticket_date">选择日期</string>
+    <string name="ticket_commit">提交</string>
+    <string name="ticket_starting_hint">深圳</string>
+    <string name="ticket_destination_hint">北京</string>
+    <string name="ticket_info_error">请将信息填写完整</string>
+    <string name="ticket_detail_title">改签返程机票详情</string>
+    <string name="ticket_content">出发城市%1$s，到达城市%2$s，航班号%3$s，日期%4$s</string>
+
+    <!-- 工作台-->
+    <string name="workbench_menu_logistics">物流上报</string>
+    <string name="workbench_menu_news_center">新闻公告</string>
+    <string name="workbench_menu_extensivecall">多方通话</string>
+    <string name="workbench_menu_pub_account">服务号</string>
+    <string name="workbench_menu_work_group">同事圈</string>
+    <string name="workbench_menu_task">日程管理</string>
+    <string name="workbench_menu_attendance">考勤管理</string>
+    <string name="workbench_menu_process">协同办公</string>
+    <string name="workbench_menu_daily">日报管理</string>
+    <string name="workbench_menu_app_center">应用推荐</string>
+    <string name="workbench_menu_extensive_call">多方通话</string>
+
+    <!-- 工作台新闻 -->
+    <string name="workbench_news_tittle">新闻资讯</string>
+    <string name="workbench_news_content_tittle">新闻详情</string>
+
+    <!-- 工作台图片墙 -->
+    <string name="workbench_pirturewall_title">图片墙</string>
+    <string name="workbench_tab_approve">审批</string>
+    <string name="workbench_tab_process">待办OA</string>
+    <string name="workbench_tab_task_other">我接收的</string>
+    <string name="workbench_tab_task_myself">我发起的</string>
+    <string name="workbench_tab_complete">已完成</string>
+
+    <!-- 闪退时的提示 -->
+    <string name="crash_toast_text">我决定暂时性撤退。放心，我还会回来的！</string>
+    <!-- 主页侧边栏 -->
+    <string name="main_sliding_setting">设置</string>
+    <string name="main_sliding_exit">退出</string>
+
+    <!-- 文档中心 -->
+    <string name="documents_regulations">公司制度</string>
+    <string name="documents_Companies_Encyclopedia">公司百科</string>
+    <string name="documents_Industry_Research">行业研究</string>
+    <string name="documents_maintab">文档中心 </string>
+    <string name="documents_industry">行业动态</string>
+    <string name="documents_research">研究中心</string>
+    <string name="documents_findpeople">急事找人</string>
+    <string name="documents_more">更多</string>
+    <string name="documents_download">下载</string>
+    <string name="regulations_nodata">暂时没有数据</string>
+
+    <!-- 工作提醒 -->
+    <string name="workremind_detail_finish">提醒反馈:</string>
+    <string name="workremind_send">我发送的</string>
+    <string name="workremind_receive">我接收的</string>
+    <string name="workremind_title">工作提醒</string>
+    <string name="workremind_detail">提醒详情</string>
+    <string name="workremind_create">提醒新增</string>
+    <string name="workremind_add">新增</string>
+    <string name="workremind_create_description">添加提醒描述</string>
+    <string name="workremind_create_partner">提醒参与人:</string>
+    <string name="workremind_create_reminder">提醒人:</string>
+    <string name="workremind_create_time_finish">提醒时间:</string>
+    <string name="workremind_create_submit">确定</string>
+    <string name="workremind_reply_accept">马上处理</string>
+    <string name="workremind_reply_reject">忙,稍候</string>
+
+    <!-- 新闻中心 -->
+    <string name="newscenter_tittle">公司新闻</string>
+    <string name="newscenter_announcement_dedail">公告详情</string>
+    <string name="newscenter_news_dedail">新闻详情</string>
+    <string name="newscenter_document_dedail">公告详情</string>
+    <string name="newscenter_announcement">内部通知</string>
+    <string name="newscenter_news">新闻公告</string>
+    <string name="newscenter_document">公司公文</string>
+    <string name="newscenter_nodata">暂无新闻</string>
+
+    <!-- 应用中心 -->
+    <string name="appcenter_title">应用推荐</string>
+    <string name="appcenter_maintab">应用推荐</string>
+    <string name="appcenter_life_page">生活黄页</string>
+    <string name="appcenter_app">公司应用</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appcenter_download_hide">后台下载</string>
+
+    <!-- 电话会议 -->
+    <string name="conference_title_descript">会议主题：</string>
+    <string name="conference_time">会议时间：</string>
+    <string name="conference_participant">会议参与人：</string>
+    <string name="conference_otherinfo">会议接入号及参会密码：</string>
+    <string name="conference_accessnumber">接入号码：</string>
+    <string name="conference_conferencenumber">会议卡号：</string>
+    <string name="conference_password">会议密码：</string>
+    <string name="conference_join">加入会议</string>
+    <string name="teleconference_title">电话会议</string>
+    <string name="teleconference_mymeeting">我的会议</string>
+    <string name="teleconference_meetinghelp">会议帮助</string>
+    <string name="teleconference_messagehelp_autoinfo">自动接入方式</string>
+    <string name="teleconference_messagehelp_autocontent">点击工作圈会议电话中会议 接入按钮，自动进行会议接入，加入 会议</string>
+    <string name="teleconference_messagehelp_handinfo">手动接入方式</string>
+    <string name="teleconference_messagehelp_handcontent">在手机拨号盘上输入会议接入号4000302828按1使用普通话，然后输入会议卡号，和会议密码，加入会议</string>
+    <string name="teleconference_alert_dialog_title">会议电话马上开始</string>
+    <string name="teleconference_alert_dialog_btn_ok">一键拨号</string>
+    <string name="teleconference_alert_dialog_btn_quit">取消</string>
+
+
+    <!-- 考勤系统 -->
+    <string name="checkin_myself">我的考勤</string>
+    <string name="checkin_others">他人的考勤</string>
+    <string name="checkin_more">更多</string>
+    <string name="checkin_time">今天  %s</string>
+    <string name="checkin_exe">打卡</string>
+    <string name="checkin_record_myself">我的%s考勤记录</string>
+    <string name="checkin_mode_map">地图模式</string>
+    <string name="checkin_mode_list">列表模式</string>
+    <string name="checckin_exe_success">已打卡</string>
+    <string name="checkin_filter">筛选</string>
+    <string name="checkin_filter_confirm">确定</string>
+    <string name="checkin_filter_people">人员</string>
+    <string name="checkin_filter_all">全体</string>
+    <string name="checkin_filter_date">日期</string>
+    <string name="checkin_filter_date_from">开始日期</string>
+    <string name="checkin_filter_date_end">结束日期</string>
+    <string name="checkin_exe_title">请选择打卡位置</string>
+    <string name="checkin_exe_refresh">刷新</string>
+    <string name="checkin_exe_mode_map">地图</string>
+    <string name="checkin_exe_mode_list">列表</string>
+    <string name="checkin_more_record_myself">我的考勤记录</string>
+
+    <string name="checkin_title">我的考勤</string>
+    <string name="checkin_result">考勤结果</string>
+    <string name="checkin_record">打卡记录</string>
+    <string name="checkin_report_title">考勤结果查询</string>
+    <string name="checkin_record_title">考勤记录查询</string>
+    <string name="checkin_todayrecord">今日考勤</string>
+    <string name="checkin_record_btn">打卡</string>
+    <string name="checkin_notodayrecord">暂无记录</string>
+
+
+    <!-- 工作日报 -->
+    <string name="daily_title">日报</string>
+    <string name="daily_create_commit">提交</string>
+    <string name="daily_create_description">添加日报</string>
+    <string name="daily_create_title">新增日报</string>
+    <string name="daily_create_accessory">图片附件</string>
+    <string name="daily_create_commit_time">提交时间</string>
+    <string name="daily_create_approver">接收人</string>
+    <string name="daily_create_location">位置信息</string>
+    <string name="daily_list_item_name_module_send">我发给%s的日报</string>
+    <string name="daily_list_item_title_receiver">%s发给我的日报</string>
+    <string name="daily_detail_title">日报详情</string>
+    <string name="daily_reply">日报评论</string>
+    <string name="daily_reply_hit">请输入反馈</string>
+    <string name="daily_map_search_back">搜索</string>
+    <string name="daily_map_search_ok">确定</string>
+    <string name="daily_create_date">日报时间</string>
+    <string name="daily_create_approver2">接收人</string>
+
+    <!-- 多方通话 -->
+    <string name="title_activity_extensive_call">ExtensiveCallActivity</string>
+    <string name="extensive_call_title">多方通话</string>
+    <string name="extensivecall_btn_select_info">集团通讯录</string>
+    <string name="extensivecall_btn_inputnumber_info">输入电话号码</string>
+    <string name="extensivecall_btn_call_info">    拨打\n多方通话</string>
+    <string name="extensivecall_info1">使用场景：</string>
+    <string name="extensivecall_info2">团队内部讨论工作：可随时发起多方通话。\n组织活动：随时可以添加联系人进行讨论。\n替领导组织会议：使用手机多方通话（电话会议
+        ）后，可以轻松一键拨出参会人员的号码，随时了解电话连线情况，有人掉线后能再次重新拉入会议中，按照领导要求高效管理会议。\n问候家人：可以将多个家人聚在一起问候聊天。</string>
+    <string name="extensivecall_info3">提示:回拨电话一般在一分钟内发起，如未收到，请联系客服：400 1668 585</string><string name="extensivecall_list_foot_info">请输入手机号:</string>
+    <string name="extensivecall_item_info">向左滑动删除</string>
+    <!-- 邮件 -->
+    <string name="mail_username">请输入用户名</string>
+    <string name="mail_password">请输入密码</string>
+    <string name="mail_login">登录</string>
+    <string name="mail_title">邮件</string>
+
+
+</resources>

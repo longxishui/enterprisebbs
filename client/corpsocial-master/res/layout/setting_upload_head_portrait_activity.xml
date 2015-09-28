@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/setting_upload_head_portrait_rl"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#4d000000">
+
+    <ProgressBar
+        android:id="@+id/setting_upload_head_portrait_loading"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/setting_upload_head_portrait_menu_ll"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:orientation="vertical"
+        android:paddingTop="12dp">
+
+        <Button
+            android:id="@+id/setting_upload_head_portrait_location_bt"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="1px"
+            android:background="@drawable/setting_ui_workbench_item_bg_selector"
+            android:text="本地图片"
+            android:textColor="@color/grayblack"
+            android:textSize="17sp"/>
+
+
+        <Button
+            android:id="@+id/setting_upload_head_portrait_take_photo_bt"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/setting_ui_workbench_item_bg_selector"
+            android:text="拍照"
+            android:textColor="@color/grayblack"
+            android:textSize="17sp"/>
+
+        <Button
+            android:id="@+id/setting_upload_head_portrait_cancel_bt"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/setting_ui_workbench_item_bg_selector"
+            android:text="取消"
+            android:textColor="@color/level_1"
+            android:textSize="17sp"/>
+    </LinearLayout>
+
+</RelativeLayout>

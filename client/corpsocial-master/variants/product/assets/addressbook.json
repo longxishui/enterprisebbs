@@ -1,0 +1,12 @@
+{
+  "tabs": [
+    {
+      "name": "好友",
+      "cls": "com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookFriendFragment_"
+    },
+    {
+      "name": "企业",
+      "cls": "com.aspirecn.corpsocial.bundle.addrbook.ui.company.CompanyFragment_"
+    }
+  ]
+}

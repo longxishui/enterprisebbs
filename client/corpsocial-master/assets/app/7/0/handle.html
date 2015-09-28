@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>办理公文签报二级</title>
+    <link rel="stylesheet" href="../../commons/jquery.mobile/jquery.mobile-1.3.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/handle.css">
+    <script src="../../commons/jquery.mobile/jquery.js"></script>
+    <script src="../../commons/jquery.mobile/jquery.mobile-1.3.2.min.js"></script>
+    <script src="../../commons/jquery.mobile/baiduTemplate.js"></script>
+    <script src="../../commons/DataHelper.js"></script>
+    <script src="../../commons/common.js"></script>
+    <script src="js/process.js"></script>
+    <script type="text/javascript">
+	function initCurrentPage(){
+		processData = DataHelper.getData();
+		if(typeof(processData.fullData)=="string"){processData.fullData=JSON.parse(processData.fullData);}
+		if(typeof(processData.attachList)=="string"){processData.attachList=JSON.parse(processData.attachList);}
+		curUser =  DataHelper.getCurUser();
+		initPageTemplate();
+		initEvent();
+	}
+	$(function() {
+		if(typeof(HostApp)!='undefined'){
+			initCurrentPage();
+		}else{
+			var intervalId =  window.setInterval(function(){
+				console.log("HostApp未定义,出现定时任务执行的情况"+intervalId);
+				if(typeof(HostApp)!='undefined'){
+					initCurrentPage();
+					clearInterval(intervalId);
+				}
+			},50);
+		}
+	})
+	function initPage(){
+		var firstOpt = $(".selectType ul li").eq(0);
+		$("#sType").text(firstOpt.text());
+		$("#sType").attr("dealCode",firstOpt.attr("dealCode"));
+		$("#shrList ul").each(function(i){
+				if($("#sType").text() == $("#shrList ul").eq(i).attr("dealName")){
+					$("#shrList ul").eq(i).show().siblings().hide();
+				}
+		});
+	}
+	function initEvent(){
+		$("#backlogTabCont").height($(document).height()-$("#approvalCont").height())
+		//初始化界面，默认选择第一中提交方式
+		initPage();
+		/*审批意见*/
+		$("#approval_cont").click(function(){
+			if($(this).val()==""){
+				$(".approvalOption").show();
+			}
+		});
+
+		$("#approval_cont").keyup(function(e){
+			if ($(this).val()=="") {
+				$(".approvalOption").show();
+			}else{
+				$(".approvalOption").hide();
+			}
+		});
+
+		$(".approvalOption ul li").click(function(){
+			$("#approval_cont").val($(this).text());
+			$(".approvalOption").hide();
+		});
+
+		$(".approvalOption ul li").click(function(){
+			$("#approval_cont").val($(this).text());
+			$(".approvalOption").hide();
+		});
+
+		/*选择方式*/
+		$("#sType").click(function(){
+			$(".typeOption").show();
+		});
+
+		$(".selectType ul li").click(function(){
+			var _this = $(this);
+			$("#sType").text(_this.text());
+			$("#sType").attr("dealCode",_this.attr("dealCode"));
+			$(".typeOption").hide();
+			$("#nameList").empty();
+			nameListDefaultStyle();
+		});
+		$(".typeOption ul li").click(function(){
+			var type = $(this).text();
+			$("#shrList ul").each(function(i){
+				if(type == $("#shrList ul").eq(i).attr("dealName")){
+					$("#shrList ul").eq(i).show().siblings().hide();
+				}
+			});
+		});
+
+        $(document).click(function(e){
+		    var thisGroup = $(".approvalOption");
+		    var checkText = $("#approval_cont");
+		    var parents = $(e.target).parents(".approvalOption");
+		    var isGroup = $(e.target);
+
+		    var thisType = $(".typeOption");
+		    var thisType2 = $("#sType");
+		    var opinionTextarea = $("#opinionTr textarea");
+		    //处理意见
+		    if(isGroup[0] == thisType[0] || parents[0] == thisType[0] || isGroup[0] == thisType2[0]){
+		    	thisGroup.hide();
+		    	return;
+		    }else{
+		    	thisType.hide();
+		    }
+		    //选择方式
+		    if(parents[0] == thisGroup[0] || isGroup[0] == thisGroup[0] || isGroup[0] == checkText[0]){
+		    	thisType.hide();
+		        return;
+		    }else{
+		    	thisGroup.hide();
+		    }
+		});
+
+        /*选择审核人*/
+		var toggles = ["../../commons/images/banli_choose.png","../../commons/images/banli_unchoose.png"];
+		$("#shrList ul li").click(function(){
+			var currentImg = $(this).find("img").attr("src");
+			var name = $(this).find("span").text();
+			var loginName = $(this).find("span").attr("loginName");
+			if(currentImg == toggles[0]){
+				$(this).find("img").attr("src",toggles[1]);
+				$("#nameList").append("<li loginName='"+loginName+"'>"+name+"</li>");
+			}else{
+				$(this).find("img").attr("src",toggles[0]);
+				$("#nameList li").each(function(i){
+					if($("#nameList li").eq(i).text() == name){
+						$("#nameList li").eq(i).remove();
+					}
+				});
+			}
+		});
+	}
+	
+	//加载抄送人
+	function loadcsr(user){
+		var liName = "";
+		for(var i = 0,lens = user.length; i < lens; i++){
+			var times = new Date().getTime()+i;
+			if($("#csrNames").find("li[userid='"+user[i].loginName+"']").length==0){//判断是否已经选择了。如果选择了则
+				liName += '<li id="name'+times+'" userid="'+user[i].loginName+'" onclick=changeBg("#name'+times+'");><span onclick=changeBg("#name'+times+'");>'+user[i].name+'</span><img src="../../commons/images/deleteName.png" class="FR m-t8 hide" onclick=deleteName("#name'+times+'");></li>';
+			}
+		}
+		$("#csrTextarea").val("");
+		$("#csrNames").append(liName);
+		$(".csrNameList").show();
+		$("textarea.csrInput").height($(".csrNameList").height()-7);
+	}
+
+	function changeBg(the){
+		$(the).addClass("cz").siblings().addClass("cz");
+		$(the).find("img").show().parent().siblings().find("img").hide();
+	}
+	
+	//删除单个抄送人
+	function deleteName(the){
+		$(the).siblings().removeClass("cz");
+		$(the).remove();
+		var height = $(".csrNameList").height()-7
+		if(height < 1){
+			height = 32;
+		}
+		$("textarea.csrInput").height(height);
+	}
+
+	//获取抄送人
+	function getCsrList(){
+		var users = [];
+		$("#csrNames li").each(function(i){
+			var userObj = {};
+			userObj.userName = $("#csrNames li").eq(i).find("span").text();
+			userObj.userId = $("#csrNames li").eq(i).attr("userid");
+			users.push(userObj);
+		});
+		return users;
+	}
+	function nameListDefaultStyle(){
+		$("#shrList ul li").find("img").attr("src","../../commons/images/banli_choose.png");
+	}
+
+
+    </script>
+    <script type="text/javascript">
+	function onError(error) {
+			// do something...
+			//alert('System is error.');
+	}
+	function onReceiverMsg(msg) {
+			//alert('onOPenFile msg success : ' + msg.success);
+			//alert('onOPenFile msg data : ' + msg.data);
+	}
+	function doShoose(){
+		var len = $("#csrNames li").length;
+		var userIds = [];
+		$("#csrNames li").each(function(){
+			userIds.push($(this).attr("userid"));
+		})
+		//alert("前一个抄送人id:" + userId);
+		DataHelper.selectContacts(userIds.join(","),"",ReceiverMsg);
+	}
+	function ReceiverMsg(msg){
+		if(msg.length > 0){
+			loadcsr(msg);
+		}
+	}
+	function doSubmit(){
+		var memo = document.getElementById("approval_cont").value;
+	    var serialNumber = $("#billNo").attr("thisText");
+	    var circuitNode = $("#taksId").attr("thisText");
+	    var point = document.getElementById("flip-3").value;
+	    var notice = "";
+	    if(point == "on"){
+	    	notice = $("#approveEmpId").attr("thisText");
+	    }
+	    var users = getCsrList();
+	    var userId = "";
+	    for(var i = 0,lens = users.length; i < lens; i++){
+	    	userId = userId+users[i].userId + ",";
+	    	//alert("提交的抄送人:"+userId);
+	    }
+	    var dealCode = $("#sType").attr("dealCode");
+		if(dealCode == "null"){
+			window.js2java.showErrorMsg('请选择办理方式!');
+			return;
+		}
+		var showUl;
+		$("#shrList ul").each(function(i){
+			var thisDisplay = $("#shrList ul").eq(i).attr("style");
+			if(thisDisplay &&thisDisplay.indexOf("none")<0){
+				showUl = $("#shrList ul").eq(i);
+			}
+		});
+		var aa = $("#nameList li").length;
+		if(showUl&&showUl.children().length > 0 && aa == 0){
+			window.js2java.showErrorMsg('请选择审批人!');
+			return;
+		}
+	    var approve = $("#sType").text();
+	    approve = approve+"."+$("#sType").attr("dealCode")+"$";
+	    var len = $(".userList li").length;
+		for(var j = 0; j < len; j++){
+			approve = approve+$(".userList li").eq(j).attr("loginName")+".";
+			approve = approve+$(".userList li").eq(j).text()+",";
+		}
+		 var submit = {
+			"circuitNode":circuitNode,	
+			"action":"1",	
+			"memo" : memo,
+			"otherValue":'Root/CustomData/f_NoticeLoginName_MobilePhone^'+notice+'|Root/f_CCEmpIDList^'+userId,
+			"approveSelected":approve
+		};
+	    DataHelper.httpRequest(onReceiverMsg,onError,common.getSubmitJsonToStr(submit));
+		//DataHelper.httpRequest(onReceiverMsg,onError,'serialNumber='+serialNumber+';circuitNode='+circuitNode+';action=1;memo='+memo+';otherValue=Root/CustomData/f_NoticeLoginName_MobilePhone^'+notice+'|Root/f_CCEmpIDList^'+userId+';approveSelected='+approve);
+	}
+
+
+    </script>
+</head>
+<body>
+<div data-role="page" class="bodybgcolor">
+    <div style="overflow: auto;" class="backlogTabCont" id="backlogTabCont">
+        <!--basicInfo-->
+		<span templateId="hiddenValueTmpl">
+			<script id="hiddenValueTmpl" type="text/html">
+                <input type="hidden" id="appStatus" thisText=<%=fullData.status%> />
+                <input type="hidden" id="billNo" thisText=<%=fullData.billNo%> />
+                <input type="hidden" id="taksId" thisText=<%=fullData.taskId%> />
+            </script>
+		</span>
+
+        <div class="H40_v color4D p-l15 bgfff">
+            <div class="FL selectType">
+                <div class="FL">选择方式：</div>
+                <div templateId="dealModeListTmpl" templatePosition="after" class="FL p-r5"
+                     id="sType" dealCode="null">&nbsp;</div>
+                <script type="text/html" id="dealModeListTmpl">
+                    <%if(typeof(fullData.processData.dealModeList)!='undifined'&&fullData.processData.dealModeList!=null){%>
+                    <div class="typeOption hide">
+                        <ul>
+                            <%for(var i=0;i
+                            <fullData.processData.dealModeList.length
+                                    ;i++){
+                                    var dealMode=fullData.processData.dealModeList[i];
+                                    %>
+                                <li dealCode=<%=dealMode.dealCode%>><%=dealMode.dealName%></li>
+                                <%}%>
+                        </ul>
+                        <div class="type_triangle"></div>
+                    </div>
+                    <%}%>
+                </script>
+            </div>
+        </div>
+        <div class="basicInfo">
+            <div class="content" id="content">
+                <!--处理意见-->
+                <div class="clyj_cont">
+                    <div class="H40_v color4D">
+                        <span class="FL">处理意见</span>
+                    </div>
+                    <div class="approvalCont">
+                        <textarea id="approval_cont" placeholder="请输入审批意见"></textarea>
+
+                        <div class="approvalOption hide">
+                            <ul>
+                                <li>同意</li>
+                                <li>不同意</li>
+                            </ul>
+                            <div class="triangle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--end 处理意见-->
+                <!--审核人-->
+                <div class="backlog_cont">
+                    <div class="H40_min color4D">
+                        <span class="FL">请选择人员</span>
+
+                        <div class="FL sh_name f-s14">
+                            <ul id="nameList" class="userList">
+                                <!-- <li>李玲</li>
+                                <li>杨宇峰</li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="shrList f-s14" templateId="dealModeListEmpTmpl" id="shrList">
+                        <script type="text/html" id="dealModeListEmpTmpl">
+                            <%if(typeof(fullData.processData.dealModeList)!='undifined'&&fullData.processData.dealModeList!=null){%>
+                            <%for(var i=0;i
+                            <fullData.processData.dealModeList.length;i++){var dealMode=fullData.processData.dealModeList[i];%>
+                            <ul dealName=<%=dealMode.dealName%> class="hide">
+                                <%if(typeof(dealMode.dealEmplList)!='undifined'&&dealMode.dealEmplList!=null){%>
+                                <%for(var j=0;j
+                                <dealMode.dealEmplList.length
+                                        ;j++){var dealEmp=dealMode.dealEmplList[j];%>
+                                    <li>
+                                        <span class="FL approve" loginName=<%=dealEmp.loginName%>><%=dealEmp.name%></span>
+                                        <img src="../../commons/images/banli_choose.png"
+                                             class="FR shrIcon"/>
+                                    </li>
+                                    <%}%>
+                                    <%}%>
+                            </ul>
+                            <%}%>
+                            <%}%>
+                        </script>
+                    </div>
+                </div>
+                <!--end 审核人-->
+                <!--liliangchun 默认填第一个方式-->
+                <!--liliangchun end-->
+                <!--抄送人-->
+                <div class="backlog_cont">
+                    <div class="H40 color4D">抄送人</div>
+                    <div class="csrSelect">
+                        <textarea class="csrInput" id="csrTextarea"/></textarea>
+                        <div class="browse" onClick="doShoose()"></div>
+                        <div class="csrNameList">
+                            <ul id="csrNames" class="foucsNames">
+                                <!-- <li><span>李玲</span><img src="images/deleteName.png" class="FR m-t8 hide"></li>
+                                <li><span>杨宇峰</span><img src="images/deleteName.png" class="FR m-t8 hide"></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end 抄送人-->
+                <div class="H40 color4D m-t8">
+                    <span class="FL">关注此单</span>
+
+                    <div class="FL">
+                        <select name="flip-3" id="flip-3" data-role="slider" data-mini="true"
+                                class="FL">
+                            <option value="off">O</option>
+                            <option value="on">|</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end basicInfo-->
+    </div>
+    <div style="position: absolute;bottom: 0px;width: 100%" id="approvalCont">
+        <div class="footBtnGroup">
+            <div class="btnGroup">
+                <ul>
+                    <li class="btn FL" onClick="doSubmit()">提交</li>
+                    <li class="btn FR" onClick='window.js2java.back()'>返回</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "configurable": true,
+  "menus": [
+    {
+      "startPath": "WORK_AREA",
+      "sortNo": "1",
+      "fontResId": "o",
+      "appName": "工作台",
+      "cls": "com.aspirecn.corpsocial.bundle.workbench.ui.WorkbenchMainTabActivity_"
+    },
+    {
+      "startPath": "WORK_GROUP",
+      "sortNo": "2",
+      "fontResId": "f",
+      "appName": "工作群",
+      "cls": "com.aspirecn.corpsocial.bundle.im.ui.ImMainTabFragmentActivity_"
+    },
+    {
+      "startPath": "CORP_ADDRESS",
+      "sortNo": "3",
+      "fontResId": "p",
+      "appName": "通讯录",
+      "cls": "com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookMainTabActivity_"
+    },
+    {
+      "startPath": "CORP_BBS",
+      "sortNo": "4",
+      "fontResId": "w",
+      "appName": "同事圈",
+      "cls": "com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpMainActivity_"
+    },
+    {
+      "startPath": "SETTING",
+      "sortNo": "5",
+      "fontResId": "x",
+      "appName": "设置",
+      "cls": "com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingActivity_"
+    }
+  ]
+}

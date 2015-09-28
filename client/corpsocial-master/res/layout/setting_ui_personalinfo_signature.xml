@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/teleconference_message_list_bg"
+              android:orientation="vertical">
+    <!-- 标题栏:高度48dp -->
+
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        style="@style/HorizontalGaryLine"
+        android:layout_marginTop="20dp"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/personal_signature_etv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="start"
+            android:hint="请输入个性签名"
+            android:lines="4"
+            android:minHeight="80dp"
+            android:paddingEnd="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/grayblack"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/personal_signature_number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/personal_signature_etv"
+            android:layout_alignRight="@+id/personal_signature_etv"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:text="30"
+            android:textColor="@color/gray"
+            android:textSize="10sp"/>
+    </RelativeLayout>
+
+    <ImageView
+        style="@style/HorizontalGaryLine"
+        android:layout_marginBottom="20dp"/>
+</LinearLayout>

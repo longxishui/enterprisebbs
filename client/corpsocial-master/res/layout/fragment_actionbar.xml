@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/layout_background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_layout_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <!-- 左区域 -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent">
+
+                <LinearLayout
+                    android:id="@+id/layout_logo_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="11dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/iv_logo"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginRight="11dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/level_3"
+                        android:textSize="@dimen/text_size6"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_back"
+                    style="@style/actionbar_back_btn_style"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <!-- 中间区域 -->
+            <LinearLayout
+                android:id="@+id/layout_custom"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minWidth="60dp">
+
+                <TextView
+                    android:id="@+id/tv_login_status"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_status_tips"
+                    android:textSize="12sp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 右区域 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <ImageButton
+                    android:id="@+id/img_btn_third"
+                    style="@style/actionbar_btn_style"
+                    android:contentDescription="@string/app_name"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:src="@drawable/actionbar_search_btn_bg_selector"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/btn_third"
+                    style="@style/actionbar_btn_style"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="@string/workbench_setting_updatepwd_ok"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <ImageButton
+                    android:id="@+id/img_btn_second"
+                    style="@style/actionbar_btn_style"
+                    android:contentDescription="@string/app_name"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:src="@drawable/actionbar_search_btn_bg_selector"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/btn_second"
+                    style="@style/actionbar_btn_style"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="@string/workbench_setting_updatepwd_ok"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/img_btn_first"
+                    style="@style/actionbar_btn_style"
+                    android:contentDescription="@string/app_name"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:src="@drawable/actionbar_add_btn_bg_selector"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/btn_first"
+                    style="@style/actionbar_btn_style"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="@string/workbench_setting_updatepwd_ok"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

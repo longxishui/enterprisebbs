@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>退回公文签报</title>
+    <link rel="stylesheet" href="../../commons/jquery.mobile/jquery.mobile-1.3.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/handle.css">
+    <script src="../../commons/jquery.mobile/jquery.js"></script>
+    <script src="../../commons/jquery.mobile/jquery.mobile-1.3.2.min.js"></script>
+    <script type="text/javascript" src="../../commons/jquery.mobile/baiduTemplate.js"></script>
+    <script src="../../commons/DataHelper.js"></script>
+    <script src="../../commons/common.js"></script>
+    <script src="js/process.js"></script>
+    <script type="text/javascript">
+	function initCurrentPage(){
+		processData = DataHelper.getData();
+		if(typeof(processData.fullData)=="string"){processData.fullData=JSON.parse(processData.fullData);}
+		if(typeof(processData.attachList)=="string"){processData.attachList=JSON.parse(processData.attachList);}
+		curUser =  DataHelper.getCurUser();
+		initPageTemplate();
+		initEvent();
+	}
+	$(function() {
+		if(typeof(HostApp)!='undefined'){
+			initCurrentPage();
+		}else{
+			var intervalId =  window.setInterval(function(){
+				console.log("HostApp未定义,出现定时任务执行的情况"+intervalId);
+				if(typeof(HostApp)!='undefined'){
+					initCurrentPage();
+					clearInterval(intervalId);
+				}
+			},50);
+		}
+	})
+	function initPage(){
+		var firstOpt = $(".selectType ul li").eq(0);
+		$("#sType").text(firstOpt.text());
+		$("#sType").attr("dealCode",firstOpt.attr("dealCode"));
+		$("#shrList ul").each(function(i){
+				if($("#sType").text() == $("#shrList ul").eq(i).attr("dealName")){
+					$("#shrList ul").eq(i).show().siblings().hide();
+				}
+		});
+	}
+	function initEvent(){
+		$("#backlogTabCont").height($(document).height()-$("#approvalCont").height())
+		initPage();
+		/*选择方式*/
+		$("#sType").click(function(){
+			$(".typeOption").show();
+		});
+
+		$(".selectType ul li").click(function(){
+			var _this = $(this);
+			var type = _this.text();
+			$("#sType").text(type);
+			$("#sType").attr("dealCode",_this.attr("dealCode"));
+			$(".typeOption").hide();
+			$("#shrList ul").each(function(i){
+				if(type == $("#shrList ul").eq(i).attr("dealName")){
+					$("#shrList ul").eq(i).show().siblings().hide();
+				}
+			});
+			$("#nameList").empty();
+			nameListDefaultStyle();
+		});
+
+        $(document).click(function(e){
+		    var thisGroup = $(".approvalOption");
+		    var checkText = $("#approval_cont");
+		    var parents = $(e.target).parents(".approvalOption");
+		    var isGroup = $(e.target);
+
+		    var thisType = $(".typeOption");
+		    var thisType2 = $("#sType");
+		    var opinionTextarea = $("#opinionTr textarea");
+		    //选择方式
+		    if(isGroup[0] == thisType[0] || parents[0] == thisType[0] || isGroup[0] == thisType2[0]){
+		    	return;
+		    }else{
+		    	thisType.hide();
+		    }
+		});
+
+        /*选择审核人*/
+		var toggles = ["../../commons/images/banli_choose.png","../../commons/images/banli_unchoose.png"];
+		$("#shrList ul li").click(function(){
+			var currentImg = $(this).find("img").attr("src");
+			var name = $(this).find("span").text();
+			var loginName = $(this).find("span").attr("loginName");
+			if(currentImg == toggles[0]){
+				$(this).find("img").attr("src",toggles[1]);
+				$("#nameList").append("<li loginName='"+loginName+"'>"+name+"</li>");
+			}else{
+				$(this).find("img").attr("src",toggles[0]);
+				$("#nameList li").each(function(i){
+					if($("#nameList li").eq(i).text() == name){
+						$("#nameList li").eq(i).remove();
+					}
+				});
+			}
+		});
+	}
+	
+	function nameListDefaultStyle(){
+		$("#shrList ul li").find("img").attr("src","../../commons/images/banli_choose.png");
+	}
+
+
+    </script>
+    <script type="text/javascript">
+	function onError(error) {
+			// do something...
+			//alert('System is error.');
+	}
+	function onReceiverMsg(msg) {
+			//alert('onOPenFile msg success : ' + msg.success);
+			//alert('onOPenFile msg data : ' + msg.data);
+	}
+	function doShoose(){
+		DataHelper.selectContacts('','',ReceiverMsg);
+	}
+	function ReceiverMsg(msg){
+		if(msg.length > 0){
+			loadcsr(msg);
+		}
+	}
+	function doSubmit(){
+		var memo = document.getElementById("approval_cont").value;
+	    var serialNumber = $("#billNo").attr("thisText");
+	    var circuitNode = $("#taksId").attr("thisText");
+	    //var point = document.getElementById("flip-3").value;
+	    var notice = "";
+	    //if(point == "on"){
+	    //	notice = $("#approveEmpId").attr("thisText");
+	    //}
+	    //var users = getCsrList();
+	    var userId = "";
+	    //for(var i = 0,lens = users.length; i < lens; i++){
+	    //	userId = users[i].userId + ",";
+	    //	alert("提交的抄送人:"+userId);
+	    //}
+	    var dealCode = $("#sType").attr("dealCode");
+		if(dealCode == "null"){
+			window.js2java.showErrorMsg('请选择办理方式!');
+			return;
+		}
+		var showUl;
+		$("#shrList ul").each(function(i){
+			var thisDisplay = $("#shrList ul").eq(i).attr("style");
+			if(thisDisplay &&thisDisplay.indexOf("none")<0){
+				showUl = $("#shrList ul").eq(i);
+			}
+		});
+		var aa = $("#nameList li").length;
+		if(showUl&&showUl.children().length > 0 && aa == 0){
+			window.js2java.showErrorMsg('请选择审批人!');
+			return;
+		}
+	    var approve = $("#sType").text();
+	    approve = approve+"."+$("#sType").attr("dealCode")+"$";
+	    var len = $(".userList li").length;
+		for(var j = 0; j < len; j++){
+			approve = approve+$(".userList li").eq(j).attr("loginName")+".";
+			approve = approve+$(".userList li").eq(j).text()+",";
+		}
+		var submit = {
+				"circuitNode":circuitNode,	
+				"action":"1",	
+				"memo" : memo,
+				"transmitUser" : "",
+				"countersignUserList" : "",
+				"otherValue" : 'Root/CustomData/f_NoticeLoginName_MobilePhone^'+notice+'|Root/f_CCEmpIDList^'+userId,
+				"approveSelected" : approve,
+			};
+	    //alert("提交的参数: "+'serialNumber='+serialNumber+';circuitNode='+circuitNode+';action=1;memo='+memo+';otherValue=Root/CustomData/f_NoticeLoginName_MobilePhone^'+notice+'|Root/f_CCEmpIDList^'+userId+';approveSelected='+approve);
+		DataHelper.httpRequest(onReceiverMsg,onError,common.getSubmitJsonToStr(submit));
+	}
+
+
+    </script>
+</head>
+<body>
+<div data-role="page" class="bodybgcolor">
+    <div style="overflow: auto;" class="backlogTabCont" id="backlogTabCont">
+        <!--basicInfo-->
+		<span templateId="hiddenValueTmpl">
+			<script id="hiddenValueTmpl" type="text/html">
+                <input type="hidden" id="appStatus" thisText=<%=fullData.approveEmpId%> />
+                <input type="hidden" id="billNo" thisText=<%=fullData.billNo%> />
+                <input type="hidden" id="taksId" thisText=<%=fullData.taskId%> />
+            </script>
+		</span>
+
+        <div class="H40_v color4D p-l15 bgfff">
+            <div class="FL selectType">
+                <div class="FL">选择方式：</div>
+                <div class="FL p-r5" templateId="returnModeListTmpl" templatePosition="after"
+                     id="sType" dealCode="null">&nbsp;</div>
+                <script type="text/html" id="returnModeListTmpl">
+                    <%if(typeof(fullData.processData.returnModeList)!='undefined'&&fullData.processData.returnModeList!=null){%>
+                    <div class="typeOption hide">
+                        <ul>
+                            <%for(var i=0;i
+                            <fullData.processData.returnModeList.length
+                                    ;i++){var dealMode=fullData.processData.returnModeList[i];%>
+                                <li dealCode=<%=dealMode.returnCode%>><%=dealMode.returnName%></li>
+                                <%}%>
+                        </ul>
+                        <div class="type_triangle"></div>
+                        <%}%>
+                </script>
+            </div>
+        </div>
+        <div class="basicInfo">
+            <div class="content" id="content">
+                <!--处理意见-->
+                <div class="clyj_cont">
+                    <div class="H40_v color4D">
+                        <span class="FL">处理意见</span>
+                    </div>
+                    <div class="approvalCont">
+                        <textarea id="approval_cont" placeholder="请输入审批意见"></textarea>
+                    </div>
+                </div>
+                <!--end 处理意见-->
+                <!--审核人-->
+                <div class="backlog_cont">
+                    <div class="H40_min color4D">
+                        <span class="FL">请选择人员</span>
+
+                        <div class="FL sh_name f-s14">
+                            <ul id="nameList" class="userList">
+                                <!-- <li>李玲</li>
+                                <li>杨宇峰</li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="shrList f-s14" templateId="returnModeListQTmpl" id="shrList">
+                        <script type="text/html" id="returnModeListQTmpl">
+                            <%if(typeof(fullData.processData.returnModeList)!='undefined'&&fullData.processData.returnModeList!=null){%>
+                            <%for(var i=0;i
+                            <fullData.processData.returnModeList.length;i++){var dealMode=fullData.processData.returnModeList[i];%>
+                            <ul dealName=<%=dealMode.returnName%> class="hide">
+                                <%if(typeof(dealMode.returnEmplList)!='undefined'&&dealMode.returnEmplList!=null){%>
+                                <%for(var j=0;j
+                                <dealMode.returnEmplList.length
+                                        ;j++){var dealEmp=dealMode.returnEmplList[j];%>
+                                    <li>
+                                        <span class="FL approve" loginName=<%=dealEmp.loginName%>><%=dealEmp.name%></span>
+                                        <img src="../../commons/images/banli_choose.png"
+                                             class="FR shrIcon"/>
+                                    </li>
+                                    <%}%>
+                                    <%}%>
+                            </ul>
+                            <%}%>
+                            <%}%>
+                        </script>
+                    </div>
+                </div>
+                <!--end 审核人-->
+                <!--liliangchun 默认填第一个方式-->
+                <!--liliangchun end-->
+            </div>
+        </div>
+        <!--end basicInfo-->
+    </div>
+    <div style="position: absolute;bottom: 0px;width: 100%" id="approvalCont">
+        <div class="footBtnGroup">
+            <div class="btnGroup">
+                <ul>
+                    <li class="btn FL" onClick="doSubmit()">提交</li>
+                    <li class="btn FR" onClick='window.js2java.back()'>返回</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

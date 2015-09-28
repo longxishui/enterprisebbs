@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true">
+
+    <!-- 底部菜单 -->
+    <LinearLayout
+        android:id="@+id/common_main_tabs_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <!-- 消息 -->
+        <RelativeLayout
+            android:id="@+id/common_main_tab_1_layout_rl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.shamanland.fonticon.FontIconButton
+                android:id="@+id/common_main_tab_btn1_bt"
+                style="@style/common_main_tab_btn_style"
+                android:tag="0"/>
+
+            <TextView
+                android:id="@+id/common_main_tab_tips1_tv"
+                style="@style/common_main_tab_tips_style"
+                android:layout_alignEnd="@id/common_main_tab_btn1_bt"
+                android:layout_alignRight="@id/common_main_tab_btn1_bt"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <!-- 通讯录 -->
+        <RelativeLayout
+            android:id="@+id/common_main_tab_2_layout_rl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.shamanland.fonticon.FontIconButton
+                android:id="@+id/common_main_tab_btn2_bt"
+                style="@style/common_main_tab_btn_style"
+                android:tag="1"/>
+
+            <TextView
+                android:id="@+id/common_main_tab_tips2_tv"
+                style="@style/common_main_tab_tips_style"
+                android:layout_alignEnd="@id/common_main_tab_btn2_bt"
+                android:layout_alignRight="@id/common_main_tab_btn2_bt"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <!-- 工作台 -->
+        <RelativeLayout
+            android:id="@+id/common_main_tab_3_layout_rl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.shamanland.fonticon.FontIconButton
+                android:id="@+id/common_main_tab_btn3_bt"
+                style="@style/common_main_tab_btn_style"
+                android:tag="2"/>
+
+            <TextView
+                android:id="@+id/common_main_tab_tips3_tv"
+                style="@style/common_main_tab_tips_style"
+                android:layout_alignEnd="@id/common_main_tab_btn3_bt"
+                android:layout_alignRight="@id/common_main_tab_btn3_bt"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <!-- 我 -->
+        <RelativeLayout
+            android:id="@+id/common_main_tab_4_layout_rl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.shamanland.fonticon.FontIconButton
+                android:id="@+id/common_main_tab_btn4_bt"
+                style="@style/common_main_tab_btn_style"
+                android:tag="3"/>
+
+            <TextView
+                android:id="@+id/common_main_tab_tips4_tv"
+                style="@style/common_main_tab_tips_style"
+                android:layout_alignEnd="@id/common_main_tab_btn4_bt"
+                android:layout_alignRight="@id/common_main_tab_btn4_bt"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/common_main_tab_5_layout_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <com.shamanland.fonticon.FontIconButton
+                android:id="@+id/common_main_tab_btn5_bt"
+                style="@style/common_main_tab_btn_style"
+                android:tag="4"/>
+
+            <TextView
+                android:id="@+id/common_main_tab_tips5_tv"
+                style="@style/common_main_tab_tips_style"
+                android:layout_alignEnd="@id/common_main_tab_btn5_bt"
+                android:layout_alignRight="@id/common_main_tab_btn5_bt"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- 分隔线 -->
+
+    <View
+        android:id="@+id/common_main_tab_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@id/common_main_tabs_layout"
+        android:background="@color/bg_color2"/>
+    <!-- 内容区 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/common_main_tab_line"
+        android:orientation="vertical">
+
+        <TabHost
+            android:id="@+id/common_main_tab_th"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+        </TabHost>
+    </LinearLayout>
+
+</RelativeLayout>

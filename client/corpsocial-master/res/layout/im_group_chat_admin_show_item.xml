@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/im_group_chat_setting_admin_show_height"
+                android:background="@color/im_group_chat_setting_admin_pressed">
+
+    <ImageView
+        android:id="@+id/im_group_chat_employee_head"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:contentDescription="@string/app_name"
+        android:padding="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/component_initial_headimg"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/im_group_chat_admin_show_employee_name"
+        style="@style/group_chat_setting_admin_show_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/im_group_chat_employee_head"
+        android:text="@string/gronp_chat_setting_show_admin_employee"/>
+
+    <TextView
+        android:id="@+id/im_group_chat_admin_show_employee_department"
+        style="@style/group_chat_setting_admin_show_style2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/im_group_chat_admin_show_employee_name"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@+id/im_group_chat_employee_head"
+        android:text="@string/gronp_chat_setting_picture"/>
+
+    <include layout="@layout/public_line_horizontal_gray2"/>
+
+</RelativeLayout>

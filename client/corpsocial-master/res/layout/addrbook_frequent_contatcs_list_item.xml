@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/addrbook_frequent_contatcs_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff1f1f1"
+        android:padding="8dp"
+        android:text="常用联系人"
+        android:textSize="14sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/listview_item_bg_selector"
+        android:padding="10dp">
+
+        <!-- 头像 -->
+
+        <ImageView
+            android:id="@+id/addrbook_frequent_contatcs_head_iv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/addrbook_contact"/>
+
+        <LinearLayout
+            android:id="@+id/addrbook_frequent_contatcs_msg1_item1_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/addrbook_frequent_contatcs_head_iv"
+            android:layout_toRightOf="@id/addrbook_frequent_contatcs_head_iv"
+            android:orientation="horizontal">
+
+            <!-- 姓名 -->
+
+            <TextView
+                android:id="@+id/addrbook_frequent_contatcs_msg1_name_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="名称"
+                android:textColor="@color/grayblack"
+                android:textSize="15sp"/>
+
+            <!-- 时间 -->
+
+            <TextView
+                android:id="@+id/addrbook_frequent_contatcs_msg1_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:text="3月18日"
+                android:textColor="@color/edit_gray"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addrbook_frequent_contatcs_msg1_item2_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/addrbook_frequent_contatcs_head_iv"
+            android:layout_toRightOf="@id/addrbook_frequent_contatcs_head_iv"
+            android:gravity="center_vertical">
+
+            <!-- 签名 -->
+
+            <TextView
+                android:id="@+id/addrbook_frequent_contatcs_msg1_signature_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="签名"
+                android:textColor="@color/workgrp_praised_name"
+                android:textSize="13sp"/>
+
+            <!-- 状态 -->
+
+            <ImageView
+                android:id="@+id/addrbook_frequent_contatcs_msg1_state_iv"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/addrbook_img_wechat"/>
+
+        </LinearLayout>
+
+        <!-- 公众号名称 -->
+
+        <TextView
+            android:id="@+id/addrbook_frequent_contatcs_msg2_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/addrbook_frequent_contatcs_head_iv"
+            android:maxWidth="150dp"
+            android:singleLine="true"
+            android:text="公众号名称"
+            android:textColor="@color/grayblack"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

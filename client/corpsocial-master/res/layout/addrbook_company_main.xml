@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/addrbook_contact_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <include layout="@layout/public_line_horizontal_gray"/>
+
+        <Button
+            android:id="@+id/addrbook_contacts_submit"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/addrbook_select_submit_bg"
+            android:text="@string/ok_str"
+            android:textColor="#333333"
+            android:textSize="13sp"/>
+
+        <HorizontalScrollView
+            android:id="@+id/select_contacts"
+            android:layout_width="fill_parent"
+            android:layout_height="64dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_toLeftOf="@id/addrbook_contacts_submit">
+
+            <LinearLayout
+                android:id="@+id/addrbook_select_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
+
+
+    <ListView
+        android:id="@+id/addrbook_company_pulllist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/addrbook_contact_submit"
+        android:divider="@null"
+        android:dividerHeight="0dp">
+
+    </ListView>
+    <TextView
+        android:id="@+id/addrbook_company_empty_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="正在加载联系人列表中,请稍后…………"
+        android:visibility="gone"
+        />
+</RelativeLayout>

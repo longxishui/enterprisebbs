@@ -1,0 +1,12 @@
+{
+  "tabs": [
+    {
+      "name": "好友",
+      "cls": "com.aspirecn.corpsocial.bundle.addrbook.ui.ShareAddrbookFriendFragment_"
+    },
+    {
+      "name": "我的群组",
+      "cls": "com.aspirecn.corpsocial.bundle.addrbook.ui.ShareAddrbookGroupFragment_"
+    }
+  ]
+}

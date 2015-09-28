@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>二级采购决策</title>
+    <link rel="stylesheet" href="../../commons/jquery.mobile/jquery.mobile-1.3.2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/backlog.css">
+    <script src="../../commons/jquery.mobile/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../commons/jquery.mobile/jquery.alerts.css">
+    <script type="text/javascript" src="../../commons/jquery.mobile/jquery.alerts.js"></script>
+    <script src="../../commons/jquery.mobile/jquery.mobile-1.3.2.min.js"></script>
+    <script src="../../commons/jquery.mobile/baiduTemplate.js"></script>
+    <script src="../../commons/DataHelper.js"></script>
+    <script src="../../commons/common.js"></script>
+    <script src="js/process.js"></script>
+    <script type="text/javascript">
+function initCurrentPage(){
+	processData = DataHelper.getData();
+	if(typeof(processData.fullData)=="string"){processData.fullData=JSON.parse(processData.fullData);}
+	if(typeof(processData.attachList)=="string"){processData.attachList=JSON.parse(processData.attachList);}
+	curUser =  DataHelper.getCurUser();
+	initPageTemplate();
+	initEvent();
+}
+$(function() {
+	if(typeof(HostApp)!='undefined'){
+		initCurrentPage();
+	}else{
+		var intervalId =  window.setInterval(function(){
+			console.log("HostApp未定义,出现定时任务执行的情况"+intervalId);
+			if(typeof(HostApp)!='undefined'){
+				initCurrentPage();
+				clearInterval(intervalId);
+			}
+		},50);
+	}
+})
+function wrapApproveLog(type){
+	var approveLogs = processData.fullData.approveLog;
+	var array = [];
+	for(var i=0;i<approveLogs.length;i++){
+		var logObj = approveLogs[i];
+		if(logObj.type.trim()==type.trim()){
+			var logArrpove={};
+			var trData ="";
+			var index=logObj.content.indexOf(' ',logObj.content.indexOf(' ',logObj.content.indexOf(' ',logObj.content.indexOf(' ')+1)+1)+1);
+			if(index!=-1){
+				trData= logObj.content.substring(logObj.content.indexOf(' ',logObj.content.indexOf(' ',logObj.content.indexOf(' ')+1)+1),logObj.content.indexOf(' ',logObj.content.indexOf(' ',logObj.content.indexOf(' ',logObj.content.indexOf(' ')+1)+1)+1));														
+			}else{
+				trData= logObj.content.substring(logObj.content.indexOf(' ',logObj.content.indexOf(' ',logObj.content.indexOf(' ')+1)+1))
+			}
+			logArrpove["approveContent"]=trData;
+			logArrpove["approver"]=logObj.content.substring(logObj.content.indexOf(' ',logObj.content.indexOf(' ')+1),logObj.content.indexOf(' ',logObj.content.indexOf(' ',logObj.content.indexOf(' ')+1)+1));
+			logArrpove["time"]=logObj.content.substring(0,logObj.content.indexOf(' ',logObj.content.indexOf(' ')+1))
+			array.push(logArrpove);
+		}
+	}
+	return array;
+}
+function initEvent(){
+	$.event.special.swipe.horizontalDistanceThreshold=60;
+	$("#approval_cont").click(function(){
+		if($(this).val()==""){
+			$(".approvalOption").show();
+		}
+	});
+
+	$("#approval_cont").keyup(function(e){
+		if ($(this).val()=="") {
+			$(".approvalOption").show();
+		}else{
+			$(".approvalOption").hide();
+		}
+	});
+	$(".phone").click(function(){
+		var phoneNumber = $(this).attr("number");
+		if(phoneNumber){
+			DataHelper.call(phoneNumber);
+		}
+	});
+	$(".approvalOption ul li").click(function(){
+		$("#approval_cont").val($(this).text());
+		$(".approvalOption").hide();
+	});
+
+	$(".backlogTab ul li").click(function(){
+		var index = $(this).index();
+		$(this).addClass("current").siblings().removeClass("current");
+		$(".backlogTabCont>div").eq(index).show().siblings().hide();
+	});
+	//滑动效果
+	$("body").on("swipeleft",function(){
+		var next = $(".backlogTab ul li.current").next().click();
+	}).on("swiperight",function(){
+		var next = $(".backlogTab ul li.current").prev().click();
+	});
+       $(document).click(function(e){
+	    var thisGroup = $(".approvalOption");
+	    var checkText = $("#approval_cont");
+	    var parents = $(e.target).parents(".approvalOption");
+	    var isGroup = $(e.target);
+	    if(parents[0] == thisGroup[0] || isGroup[0] == thisGroup[0] || isGroup[0] == checkText[0]){
+	        return;
+	    }else{
+	    	thisGroup.hide();
+	    }
+	});
+	//$("#fileSize").text(change($("#fileSize").attr("thisText")));
+   	function change(fileSize){
+ 		var size = fileSize + "BYTE";
+ 		if (fileSize > 1024 * 1024) {
+ 			size = (Math.round((fileSize / (1024 * 1024)) * 100) / 100)
+ 					+ 'MB';
+ 		} else if (fileSize > 1024) {
+ 			size = (Math.round((fileSize / 1024) * 100) / 100) + 'KB';
+ 		}
+ 		return size;
+   	};
+   	$(".fileSize").each(function(){
+   		$(this).html(change($(this).attr("thisText")));
+   	});
+	var status = $("#appStatus").attr("thisText");
+	var isVis = '0';
+	if(status =='已审批' || isVis == '0'){
+		hideApprovalCont();
+	}
+}
+
+function hideApprovalCont(){
+	$("#approvalCont").hide();
+	var winHeight = $(window).height();
+	var contHeight = $("#content").height();
+	if(contHeight+93+10 < winHeight){
+		$("#contInfo").height(winHeight-93-10-20);	// 93-header高度,10-content外边距(top),20-content外边距(bottom)
+	}
+}
+
+
+    </script>
+    <script>
+	function onClike(url,filename,index){
+		var loadingImg="../../commons/images/loading.gif";
+		var imgSrc="../../commons/images/icon_download.png";
+		if($("#attachDownImg"+index).hasClass("loadingClass")){//正在加载中的话不下载
+			return;
+		}
+		$("#attachDownImg"+index).attr("src",loadingImg).addClass("loadingClass");
+	 	DataHelper.openAttach(filename,url,function(){
+	 		$("#attachDownImg"+index).attr('src',imgSrc).removeClass("loadingClass");
+	 	});
+	}
+	function onReceiverMsg(msg) {
+			//alert('onOPenFile msg success : ' + msg.success);
+			//alert('onOPenFile msg data : ' + msg.data);
+	}
+	
+	function onError(error) {
+			// do something...
+			//alert('System is error.');
+	}
+	
+	function doSubmit(serialNumber,circuitNode,type){
+		var memo = document.getElementById("approval_cont").value;
+		if(type=='2' && memo ==''){
+			window.js2java.showErrorMsg('请填写驳回理由!');
+			return;
+		}else if(type == '5'){
+			DataHelper.selectContacts('','',ReceiverMsg);
+			return;
+		}
+		var submit = {"circuitNode":circuitNode,"action":type,"memo" : memo};
+		DataHelper.httpRequest(onReceiverMsg,onError,common.getSubmitJsonToStr(submit));
+		//DataHelper.httpRequest(onReceiverMsg,onError,'serialNumber='+serialNumber+';circuitNode='+circuitNode+';action='+type+';memo='+memo);
+	}
+	function donwnFail(){
+		window.js2java.showErrorMsg('附件转换失败!');
+	}
+	
+	function ReceiverMsg(msg){
+		var userId = '';
+		if(msg.length > 0){
+			userId = msg[0].loginName;
+	    	var memo = document.getElementById("approval_cont").value;
+		    var serialNumber = $("#billNo").attr("thisText");
+		    var circuitNode = $("#taksId").attr("thisText");
+		    var submit = {
+				"circuitNode":circuitNode,	
+				"action":"5",	
+				"memo" : memo,
+				"transmitUser":userId
+			};
+		    DataHelper.httpRequest(onReceiverMsg,onError,common.getSubmitJsonToStr(submit));
+		   // DataHelper.httpRequest(onReceiverMsg,onError,'serialNumber='+serialNumber+';circuitNode='+circuitNode+';action=5;memo='+memo+';transmitUser='+userId);
+		}
+	}
+
+
+    </script>
+    <style type="text/css">
+        .content{margin: 0 16px;}
+        .bodybgcolor{background: #dce1e4; padding-bottom: 0;}
+        .backlog_cont{
+        width: 99.99%; border:1px solid #c3c4c5; background: #fff; overflow: hidden; margin-bottom:
+        10px;
+        border-radius: 6px;
+        box-shadow: -2px 0 4px #ccc,0 -2px 4px #ccc,0 2px 4px #ccc,2px 0 4px #ccc;
+        }
+    </style>
+</head>
+<body>
+<div data-role="page" class="bodybgcolor">
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
+        <!--<div class="myheader">
+            <div class="content" onClick='window.js2java.back()'>
+                <img src="../../commons/images/back.png" class="FL back"/><span class="FL pageTitle">公文签报</span>
+            </div>
+        </div>--><!--end header -->
+        <div class="backlogTab">
+            <ul>
+                <li class="current">基本信息</li>
+                <li>公文正文</li>
+                <li>公文附件</li>
+                <li>流程跟踪</li>
+            </ul>
+        </div>
+    </div>
+    <div class="backlogTabCont">
+        <!--basicInfo-->
+		<span templateId="hiddenTmpl">
+			<script type="text/html" id="hiddenTmpl">
+                <input type="hidden" id="appStatus" thisText=<%=fullData.status%> />
+                <input type="hidden" id="billNo" thisText=<%=fullData.billNo%> />
+                <input type="hidden" id="taksId" thisText=<%=fullData.taskId%> />
+            </script>
+		</span>
+
+        <div class="basicInfo m-t10">
+            <div class="content" id="content">
+                <!--基本信息-->
+                <div class="backlog_cont" id="contInfo">
+                    <table class="m-l10 normalTable" width="100%" border="0" cellspacing="0"
+                           cellpadding="0">
+                        <tr height="16">
+                            <td width="83" class="color95" valign="top">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</td>
+                            <td width="100%" class="color4D" valign="top"
+                                rendname="fullData.billNo"></td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</td>
+                            <td class="color4D" templateId="imgTmpl" valign="top">
+
+                                <script id="imgTmpl" type="text/html">
+                                    <%=fullData.billTitle%>
+                                    <%if(fullData.processData.secClass =='一般'){%>
+                                    <img src="../../commons/images/icon_secClass1.png"/>
+                                    <%}else if(fullData.processData.secClass =='秘密'){%>
+                                    <img src="../../commons/images/icon_secClass2.png"/>
+                                    <%}else if(fullData.processData.secClass =='机密'){%>
+                                    <img src="../../commons/images/icon_secClass3.png"/>
+                                    <%}else{%>
+                                    <img src="../../commons/images/icon_secClass1.png"/>
+                                    <%}%>
+                                </script>
+                            </td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">申&nbsp;&nbsp;请&nbsp;人：</td>
+                            <td class="color4D" valign="top" rendname="fullData.billEmpName"></td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">签报日期：</td>
+                            <td class="color4D" valign="top" rendname="fullData.billDate"></td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="middle">联系电话：</td>
+                            <td class="color4D" templateId="phoneTpl" style="line-height:37px;">
+                                <script id="phoneTpl" type="text/html">
+                                    <%if(fullData.phone){%>
+                                    <span class="FL"><%=fullData.phone%></span>
+                                    <a class="phone" number="<%=fullData.phone%>"><img
+                                            src="../../commons/images/icon_phone.png"
+                                            class="FL m-l10"/></a>
+                                    <%}%>
+                                </script>
+                            </td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">申请部门：</td>
+                            <td class="color4D" valign="top" rendname="fullData.billDept"></td>
+                        </tr>
+                        <tr height="16" templateId="signDeptTpl" templatePosition="after">
+                            <td class="color95" valign="top">需求部门：</td>
+                            <td class="color4D" valign="top"
+                                rendname="fullData.processData.F_xqbm_name"></td>
+                        </tr>
+                        <script id="signDeptTpl" type="text/html">
+                            <%if(fullData.processData.signDept){%>
+                            <%for(var i=0;i
+                            <fullData.processData.signDept.length;i++){
+                            var dept = fullData.processData.signDept[i];
+                            %>
+                            <tr height="16">
+                                <td class="color95" valign="top">会签部门：</td>
+                                <td class="color4D" valign="top"><%=dept.deptName%></td>
+                            </tr>
+                            <%}%>
+                            <%}%>
+                        </script>
+                        <tr height="16">
+                            <td class="color95" valign="top">公文种类：</td>
+                            <td class="color4D" valign="top"
+                                rendname="fullData.processData.docType"></td>
+                        </tr>
+                        <tr height="16">
+                            <td class="color95" valign="top">公文类型：</td>
+                            <td class="color4D" valign="top"
+                                rendname="fullData.processData.F_gwlx"></td>
+                        </tr>
+                        <!--<tr height="16">
+                            <td class="color95" valign="top">关&nbsp;&nbsp;键&nbsp;词：</td>
+                            <td class="color4D" valign="top">${((JSONArray.fromObject(processData)).optJSONObject(0)).subject}</td>
+                        </tr>-->
+                        <tr height="16">
+                            <td class="color95" valign="top" colspan="2">签报批示信息</td>
+                        </tr>
+                        <tr>
+                            <!--签报批示信息-->
+                            <td class="color95 solidBottomBorder" valign="top" colspan="2">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                       class="rocessInfoTable">
+                                    <colgroup>
+                                        <col width="31%"></col>
+                                        <col width="69%"></col>
+                                    </colgroup>
+                                    <tr class="infoTitlt" templateId="approveLogTmpl"
+                                        templatePosition="after">
+                                        <td colspan="2" valign="midden" class="p-l10">公司领导意见：</td>
+                                    </tr>
+                                    <script type="text/html" id="approveLogTmpl">
+                                        <%var bumenShenpiDataArr = wrapApproveLog("公司领导意见");%>
+                                        <%if(bumenShenpiDataArr.length>0){%>
+                                        <%for(var i=0;i
+                                        <bumenShenpiDataArr.length;i++){%>
+                                        <tr>
+                                            <%if(i==0){%>
+                                            <td colspan="2" class="color4D p-l10">
+                                                <%}else{%>
+                                            <td colspan="2" class="color4D p-l10 dottedBorder">
+                                                <%}%>
+                                                <%=bumenShenpiDataArr[i].approveContent%>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="t-aC">&nbsp;&nbsp;&nbsp;&nbsp;<%=bumenShenpiDataArr[i].approver%></td>
+                                            <td><%=bumenShenpiDataArr[i].time%></td>
+                                        </tr>
+                                        <%}%>
+                                        <%}else{%>
+                                        <tr></tr>
+                                        <%}%>
+                                    </script>
+                                </table>
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                       class="rocessInfoTable">
+                                    <colgroup>
+                                        <col width="31%"></col>
+                                        <col width="69%"></col>
+                                    </colgroup>
+                                    <tr class="infoTitlt" templateId="approveLogBenbumenTmpl"
+                                        templatePosition="after">
+                                        <td colspan="2" valign="midden" class="p-l10">本部门领导意见：</td>
+                                    </tr>
+                                    <script type="text/html" id="approveLogBenbumenTmpl">
+                                        <%var bumenShenpiDataArr = wrapApproveLog("本部门领导意见");%>
+                                        <%if(bumenShenpiDataArr.length>0){%>
+                                        <%for(var i=0;i
+                                        <bumenShenpiDataArr.length;i++){%>
+                                        <tr>
+                                            <%if(i==0){%>
+                                            <td colspan="2" class="color4D p-l10">
+                                                <%}else{%>
+                                            <td colspan="2" class="color4D p-l10 dottedBorder">
+                                                <%}%>
+                                                <%=bumenShenpiDataArr[i].approveContent%>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="t-aC">&nbsp;&nbsp;&nbsp;&nbsp;<%=bumenShenpiDataArr[i].approver%></td>
+                                            <td><%=bumenShenpiDataArr[i].time%></td>
+                                        </tr>
+                                        <%}%>
+                                        <%}else{%>
+                                        <tr></tr>
+                                        <%}%>
+                                    </script>
+                                </table>
+                                <div templateId="approveLogXGBumenTmpl"></div>
+                                <script type="text/html" id="approveLogXGBumenTmpl">
+                                    <%var ShenpiDataArr = wrapApproveLog("相关部门意见");%>
+                                    <%if(ShenpiDataArr.length>0){%>
+                                    <%for(var i=0;i
+                                    <ShenpiDataArr.length;i++){%>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                           class="rocessInfoTable">
+                                        <colgroup>
+                                            <col width="31%"></col>
+                                            <col width="69%"></col>
+                                        </colgroup>
+                                        <%if(i==0){%>
+                                        <tr class="infoTitlt">
+                                            <td colspan="2" valign="midden" class="p-l10">
+                                                相关部门会签意见:
+                                            </td>
+                                        </tr>
+                                        <%}%>
+                                        <tr>
+                                            <%if(i==0){%>
+                                            <td colspan="2" class="color4D p-l10">
+                                                <%}else{%>
+                                            <td colspan="2" class="color4D p-l10 dottedBorder">
+                                                <%}%>
+                                                <%=ShenpiDataArr[i].approveContent%>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="t-aC">&nbsp;&nbsp;&nbsp;&nbsp;<%=ShenpiDataArr[i].approver%></td>
+                                            <td><%=ShenpiDataArr[i].time%></td>
+                                        </tr>
+                                        <%}%>
+                                        <%}else{%>
+                                        <tr></tr>
+                                        <%}%>
+                                </script>
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                                       class="rocessInfoTable">
+                                    <colgroup>
+                                        <col width="31%"></col>
+                                        <col width="69%"></col>
+                                    </colgroup>
+                                    <tr class="infoTitlt" templateId="approveLogBumenluoshiTmpl"
+                                        templatePosition="after">
+                                        <td colspan="2" valign="midden" class="p-l10">部门落实情况:</td>
+                                    </tr>
+                                    <script type="text/html" id="approveLogBumenluoshiTmpl">
+                                        <%var bumenShenpiDataArr = wrapApproveLog("部门落实情况");%>
+                                        <%if(bumenShenpiDataArr.length>0){%>
+                                        <%for(var i=0;i
+                                        <bumenShenpiDataArr.length;i++){%>
+                                        <tr>
+                                            <%if(i==0){%>
+                                            <td colspan="2" class="color4D p-l10">
+                                                <%}else{%>
+                                            <td colspan="2" class="color4D p-l10 dottedBorder">
+                                                <%}%>
+                                                <%=bumenShenpiDataArr[i].approveContent%>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="t-aC">&nbsp;&nbsp;&nbsp;&nbsp;<%=bumenShenpiDataArr[i].approver%></td>
+                                            <td><%=bumenShenpiDataArr[i].time%></td>
+                                        </tr>
+                                        <%}%>
+                                        <%}else{%>
+                                        <tr></tr>
+                                        <%}%>
+                                    </script>
+                                </table>
+                                <!--
+                                <#if JSONArray.fromObject(approveLog)??>
+                                <#list JSONArray.fromObject(approveLog) as logObj>
+                                <#if logObj.type??>
+                                <#if logObj.type!="本部门领导意见" && logObj.type!="公司领导意见" && logObj.type!="">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="rocessInfoTable">
+                                    <colgroup>
+                                        <col width="31%"></col>
+                                        <col width="69%"></col>
+                                    </colgroup>
+                                    <tr class="infoTitlt">
+                                        <td colspan="2" valign="midden" class="p-l10">${logObj.type}:</td>
+                                    </tr>
+                                    <tr>
+                                        <#assign index=logObj.content?index_of(' ',logObj.content?index_of(' ',logObj.content?index_of(' ',logObj.content?index_of(' ')+1)+1)+1) />
+                                        <#if index != -1>
+                                            <td colspan="2" class="color4D p-l10">${logObj.content?substring(logObj.content?index_of(' ',logObj.content?index_of(' ',logObj.content?index_of(' ')+1)+1),logObj.content?index_of(' ',logObj.content?index_of(' ',logObj.content?index_of(' ',logObj.content?index_of(' ')+1)+1)+1))}</td>
+                                        <#else>
+                                            <td colspan="2" class="color4D p-l10">${logObj.content?substring(logObj.content?index_of(' ',logObj.content?index_of(' ',logObj.content?index_of(' ')+1)+1))}</td>
+                                        </#if>
+                                    </tr>
+                                    <tr>
+                                        <td class="dottedBorder t-aC">${logObj.content?substring(logObj.content?index_of(' ',logObj.content?index_of(' ')+1),logObj.content?index_of(' ',logObj.content?index_of(' ',logObj.content?index_of(' ')+1)+1))}</td>
+                                        <td class="dottedBorder">${logObj.content?substring(0,logObj.content?index_of(' ',logObj.content?index_of(' ')+1))}</td>
+                                    </tr>
+                                    </table>
+                                </#if>
+                                </#if>
+                                </#list>
+                                </#if>-->
+                            </td>
+                            <!--end 签报批示信息-->
+                        </tr>
+                    </table>
+                </div>
+                <!--end 基本信息-->
+            </div>
+            <div data-position="fixed" data-tap-toggle="false" id="approvalCont">
+                <div class="footBtnGroup">
+                    <div class="content">
+                        <!--
+                        <div class="H40 color4D m-l15">
+                            <span class="FL">审批意见</span>
+                            <div class="FR">
+                                <span class="FL f-s12 p-r5">向上呈报</span>
+                                <select name="flip-3" id="flip-3" data-role="slider" data-mini="true" class="FL">
+                                    <option value="off">O</option>
+                                    <option value="on">|</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="approvalCont">
+                            <textarea id="approval_cont" placeholder="请输入审批意见"></textarea>
+                            <div class="approvalOption hide">
+                                <ul>
+                                    <li>已阅</li>
+                                    <li>审批通过</li>
+                                    <li>同意</li>
+                                    <li>通过</li>
+                                    <li>退回稽查</li>
+                                </ul>
+                                <div class="triangle"></div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li class="btn" onClick="doSubmit('${billNo}','${taskId}','1')">同意</li>
+                            <li class="btn" onClick="doSubmit('${billNo}','${taskId}','2')">驳回</li>
+                            <li class="btn" onClick="doSubmit('${billNo}','${taskId}','5')">转办</li>
+                        </ul>-->
+                        <div class="btnGroup">
+                            <ul>
+                                <li class="btn FL"
+                                    onclick="javascript:window.location.href='handle.html'">办理
+                                </li>
+                                <li class="btn FR"
+                                    onclick="javascript:window.location.href='back.html'">退回
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end basicInfo-->
+        <!--公文正文-->
+        <div class="officialDocument hide">
+            <div class="officialDocument" rendname="fullData.processData.textContentHtml"></div>
+        </div>
+        <!--end 公文正文-->
+        <!--公文附件-->
+        <div class="officialAttachment m-t10 hide">
+            <div class="content" templateId="attachFileTmpl">
+                <script type="text/html" id="attachFileTmpl">
+                    <%if(typeof(attachList)!="undefined" && attachList!=null&&attachList.length>0){%>
+                    <div class="backlog_cont">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                               class="attachmentsTable color95">
+                            <%for(var i=0;i
+                            <attachList.length
+                                    ;i++){ var files=attachList[i];%>
+                                <tr onclick="onClike('<%=files.url%>','<%=files.filename%>','<%=i%>')">
+                                    <%if(typeof(files.filename)!="undefined"){%>
+                                    <%if(files.filename.toLowerCase().endsWith("xls") ||
+                                    files.filename.toLowerCase().endsWith("xlsx")){%>
+                                    <td width="75%" class="p-l60 icon_xls">
+                                        <%}else if(files.filename.toLowerCase().endsWith("doc") ||
+                                        files.filename.toLowerCase().endsWith("docx")){%>
+                                    <td width="75%" class="p-l60 icon_doc">
+                                        <%}else if(files.filename.toLowerCase().endsWith("pdf")){%>
+                                    <td width="75%" class="p-l60 icon_pdf">
+                                        <%}else if(files.filename.toLowerCase().endsWith("ppt")){%>
+                                    <td width="75%" class="p-l60 icon_ppt">
+                                        <%}else if(files.filename.toLowerCase().endsWith("png") ||
+                                        files.filename.toLowerCase().endsWith("jpg") ||
+                                        files.filename.toLowerCase().endsWith("bmp") ||
+                                        files.filename.toLowerCase().endsWith("gif") ||
+                                        files.filename.toLowerCase().endsWith("jpeg") ||
+                                        files.filename.toLowerCase().endsWith("pcx")){%>
+                                    <td width="75%" class="p-l60 icon_img">
+                                        <%}else if(files.filename.toLowerCase().endsWith("rp")){%>
+                                    <td width="75%" class="p-l60 icon_office noBottomBorder">
+                                        <%}else{%>
+                                    <td width="75%" class="p-l60 icon_office noBottomBorder">
+                                        <%}%>
+                                        <%if(files.url){%>
+                                        <a href="javascript:void(0)" class="attachmentsLink">
+                                            <%if(files.filename.length>8){%><%=files.filename.substring(0,8)%>...<%}else{%><%=files.filename%><%}%>
+                                        </a>
+                                        <%}else{%>
+                                        <a href="javascript:donwnFail()" class="attachmentsLink">
+                                            <%if(files.filename.length>8){%><%=files.filename.substring(0,8)%>...<%}else{%><%=files.filename%><%}%>
+                                        </a>
+                                        <%}%>
+                                    <span style="float:right;"><img style="vertical-align:middle;"
+                                                                    id="attachDownImg<%=i%>"
+                                                                    height="20px"
+                                                                    src="../../commons/images/icon_download.png"/></span>
+                                    </td>
+                                    <td width="25%" class="fileSize" thisText=<%=files["filesize"]%>
+                                        >
+                                    </td>
+                                    <%}else{%>
+                                    <td width="75%" class="p-l60 icon_office noBottomBorder">
+                                        <%if(files.filename.length>8){%><%=files.filename.substring(0,8)%>...<%}else{%><%=files.filename%><%}%>[附件未推送]
+                                    </td>
+                                    <td width="25%" class="fileSize" thisText=<%=files.attachSize%>>
+                                    </td>
+                                    <%}%>
+                                </tr>
+                                <%}%>
+                        </table>
+                    </div>
+                    <%}%>
+                </script>
+            </div>
+        </div>
+        <!--end 公文附件-->
+        <!--流程跟踪-->
+        <div class="signLog m-t10 hide">
+            <div class="content">
+                <div class="backlog_cont">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                           class="signLogTable color95">
+                        <tr class="color4D tHead" templateId="approveLogTraceTmplId"
+                            templatePosition="after">
+                            <td width="20%">处理环节</td>
+                            <td width="15%">审批人</td>
+                            <td width="30%">审批时间</td>
+                            <td width="15%">选择方式</td>
+                            <td width="20%" class="noRightBorder">处理意见</td>
+                        </tr>
+                        <script type="text/html" id="approveLogTraceTmplId">
+                            <%if(fullData.approveLog){%>
+                            <%for(var i=0;i
+                            <fullData.approveLog.length;i++){var logObj=fullData.approveLog[i];%>
+                            <tr>
+                                <td class="t-aC"><%=logObj.type%></td>
+                                <%if(logObj.content){%>
+                                <td class="t-aC">
+                                    <%=logObj.content.substring(logObj.content.indexOf('
+                                    ',logObj.content.indexOf(' ')+1),logObj.content.indexOf('
+                                    ',logObj.content.indexOf(' ',logObj.content.indexOf('
+                                    ')+1)+1))%>
+                                </td>
+                                <td class="t-aC">
+                                    <%=logObj.content.substring(0,logObj.content.indexOf('
+                                    ',logObj.content.indexOf(' ')+1))%>
+                                </td>
+                                <td class="t-aC"><%if(logObj.delMode){%><%=logObj.delMode%><%}%>
+                                </td>
+                                <%var index=logObj.content.indexOf(' ',logObj.content.indexOf('
+                                ',logObj.content.indexOf(' ',logObj.content.indexOf(' ')+1)+1)+1);%>
+                                <%if(index != -1){%>
+                                <td class="t-i10 noRightBorder opinion"
+                                    thisText=<%=logObj.content.substring(logObj.content.indexOf('
+                                ',logObj.content.indexOf(' ',logObj.content.indexOf('
+                                ',logObj.content.indexOf('
+                                ')+1)+1)+1))%>><%=logObj.content.substring(logObj.content.indexOf('
+                                ',logObj.content.indexOf(' ',logObj.content.indexOf('
+                                ')+1)+1),logObj.content.indexOf(' ',logObj.content.indexOf('
+                                ',logObj.content.indexOf(' ',logObj.content.indexOf('
+                                ')+1)+1)+1))%></td>
+                                <%}else{%>
+                                <td class="t-i10">
+                                    <%=logObj.content.substring(logObj.content.indexOf('
+                                    ',logObj.content.indexOf(' ',logObj.content.indexOf('
+                                    ')+1)+1))%>
+                                </td>
+                                <%}%>
+                                <%}%>
+                            </tr>
+                            <%}%>
+                            <%}%>
+                        </script>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--end 流程跟踪-->
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=gb2312">
+    <script type="text/javascript">
+	
+    function connectWebViewJavascriptBridge(callback) {
+        
+        if (window.WebViewJavascriptBridge) {
+            callback(WebViewJavascriptBridge)
+        } else {
+            document.addEventListener('WebViewJavascriptBridgeReady', function() {
+                                      callback(WebViewJavascriptBridge)
+                                      }, false)
+        }
+    }
+
+	function quickApproveSubmit(rstStr){
+		if(typeof(rstStr)=="string"){
+			rstStr=JSON.parse(rstStr);
+		}
+		var data = rstStr;
+		var rst = JSON.parse(data.content);
+		var returnJson = {success:"0",dataid:data.dataid};
+		if(rst==null||rst.result!='0'){
+			returnJson.success='1';
+		}
+		if(typeof(window.jsinterface)!='undefined'&&typeof(window.jsinterface.quickApproverCallBack)!='undefined'){
+			window.jsinterface.quickApproverCallBack(JSON.stringify(returnJson));
+		}else{
+			return returnJson;//JSON.stringify(returnJson);
+		}
+	}
+
+    connectWebViewJavascriptBridge(function(bridge) {
+       
+       bridge.init(function(message, responseCallback) {
+           var strJson = quickApproveSubmit(message);
+           responseCallback(strJson);
+        })
+    })
+
+
+    </script>
+</head>
+<body>
+</body>
+</html>

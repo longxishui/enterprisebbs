@@ -1,0 +1,55 @@
+<resources>
+
+    <!-- line -->
+    <dimen name="public_line_horizontal_blue_height">1px</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="actionbar_height">41.5dip</dimen>
+    <dimen name="actionbar_item_height">41.5dip</dimen>
+    <dimen name="actionbar_item_width">41.5dip</dimen>
+
+    <!-- im_GroupChatSettingActivity -->
+    <dimen name="im_group_chat_setting_item_height">40dp</dimen>
+    <dimen name="im_group_chat_setting_admin_show_height">60dp</dimen>
+
+    <!-- 公众号  -->
+    <dimen name="pub_account_main_list_item_margin">16dp</dimen>
+    <dimen name="pub_account_main_list_item_padding">8dp</dimen>
+    <dimen name="pub_account_menu_item_text_size">15sp</dimen>
+    <dimen name="pub_account_text_size_00">10sp</dimen>
+    <dimen name="pub_account_text_size_01">11sp</dimen>
+    <dimen name="pub_account_text_size_02">12sp</dimen>
+    <dimen name="pub_account_text_size_03">13sp</dimen>
+    <dimen name="pub_account_text_size_04">14sp</dimen>
+    <dimen name="pub_account_text_size_05">15sp</dimen>
+    <dimen name="pub_account_text_size_06">16sp</dimen>
+    <dimen name="pub_account_text_size_07">17sp</dimen>
+    <dimen name="pub_account_text_size_08">18sp</dimen>
+    <dimen name="pub_account_text_size_09">20sp</dimen>
+
+    <!-- 工作台 -->
+    <dimen name="workbench_main_tab_item_text_size">16sp</dimen>
+
+    <!-- actionbar -->
+    <dimen name="actionbar_layout_height">44dp</dimen>
+
+    <!-- 字体大小 -->
+    <dimen name="text_size1">17sp</dimen>
+    <dimen name="text_size2">15sp</dimen>
+    <dimen name="text_size3">12sp</dimen>
+    <dimen name="text_size4">10sp</dimen>
+    <dimen name="text_size5">9sp</dimen>
+    <dimen name="text_size6">18sp</dimen>
+    <dimen name="text_size_0">12sp</dimen>
+    <dimen name="text_size_1">13sp</dimen>
+    <dimen name="text_size_2">14sp</dimen>
+    <dimen name="text_size_3">15sp</dimen>
+    <dimen name="text_size_4">20sp</dimen>
+    <dimen name="text_size_5">22sp</dimen>
+    <dimen name="text_size_6">24sp</dimen>
+    <dimen name="text_size_7">26sp</dimen>
+    <dimen name="text_size_8">28sp</dimen>
+    <dimen name="text_size_9">30sp</dimen>
+</resources>

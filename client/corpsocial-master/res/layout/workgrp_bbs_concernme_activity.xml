@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff">
+
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.aspirecn.corpsocial.common.ui.component.tabView.ScrollableTabView
+        android:id="@+id/workgrp_concernme_title_tabid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_actionbar"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/workgrp_bbs_concernme_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/workgrp_concernme_title_tabid"/>
+</RelativeLayout>

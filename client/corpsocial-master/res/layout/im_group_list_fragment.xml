@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/add_conatacts_rl"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <ImageView style="@style/HorizontalGaryLine"/>
+
+        <TextView
+            android:id="@+id/add_conatacts_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/addrbook_addmore_personal"
+            android:textSize="14sp"/>
+
+        <ImageView
+            android:id="@+id/add_conatacts_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/add_conatacts_text"
+            android:paddingRight="10dp"
+            android:src="@drawable/addrbook_add_normal"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/add_conatacts_rl"
+        android:orientation="vertical">
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/addrbook_contacts_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:dividerHeight="0dp"/>
+
+        <RelativeLayout
+            android:id="@+id/addrbook_contact_nodata_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/addrbook_contact_nodata_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/addrbook_nocontacts"
+                android:textColor="@color/gray"
+                android:textSize="15sp"/>
+
+            <ImageView
+                android:id="@+id/addrbook_contact_nodata_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/addrbook_contact_nodata_text"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/no_chat_msg_tips"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

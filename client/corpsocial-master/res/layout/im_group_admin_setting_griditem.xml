@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:paddingTop="15dp">
+
+    <RelativeLayout
+        android:id="@+id/im_member_head_img_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/im_member_head_img_iv"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/im_chat_setting_head_selector"/>
+
+        <CheckBox
+            android:id="@+id/im_member_delete_icon_cb"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignRight="@+id/im_member_head_img_iv"
+            android:layout_alignTop="@+id/im_member_head_img_iv"
+            android:background="@drawable/im_group_admin_setting_checkbox"
+            android:button="@null"
+            android:focusable="false"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/im_member_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="2dp"
+            android:text="名称"
+            android:textColor="#ff999999"/>
+
+        <ImageView
+            android:id="@+id/im_member_friend_icon_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/im_member_name_tv"
+            android:src="@drawable/common_stranger_icon"
+            android:visibility="visible"/>
+    </RelativeLayout>
+
+</LinearLayout>

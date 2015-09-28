@@ -1,0 +1,64 @@
+{
+  "configurable": true,
+  "showNews": true,
+  "shouldPadding": false,
+  "apps": [
+    {
+      "groupSortNo": "1",
+      "appSortNo": "1",
+      "appStartPath": "PUB_ACC",
+      "appResIconId": "PUB_ACC",
+      "appName": "服务号",
+      "cls": "com.aspirecn.corpsocial.bundle.pubaccount.ui.PubAccountListActivity_",
+      "hide": false
+    },
+    {
+      "groupSortNo": "1",
+      "appSortNo": "2",
+      "appStartPath": "EXTENSIVE_CALL",
+      "appResIconId": "EXTENSIVE_CALL",
+      "appName": "多方通话",
+      "cls": "com.aspirecn.corpsocial.bundle.extensivecall.ui.ExtensiveCallActivity_"
+    },
+    {
+      "groupSortNo": "1",
+      "appSortNo": "3",
+      "appStartPath": "WORK_SCHEDULE",
+      "appResIconId": "WORK_SCHEDULE",
+      "appName": "日程管理",
+      "cls": "com.aspirecn.corpsocial.bundle.task.ui.TaskMainActivity_"
+    },
+    {
+      "groupSortNo": "1",
+      "appSortNo": "4",
+      "appStartPath": "WORK_ATTENDANCE",
+      "appResIconId": "WORK_ATTENDANCE",
+      "appName": "考勤管理",
+      "cls": "com.aspirecn.corpsocial.bundle.checkin.ui.CheckInMainActivity_"
+    },
+    {
+      "groupSortNo": "1",
+      "appSortNo": "5",
+      "appStartPath": "WORK_PROCESS",
+      "appResIconId": "WORK_PROCESS",
+      "appName": "协同办公",
+      "cls": "com.aspirecn.corpsocial.bundle.simpleprocess.ui.ProcessMainActivity_"
+    },
+    {
+      "groupSortNo": "1",
+      "appSortNo": "6",
+      "appStartPath": "REPORT_DAILY",
+      "appResIconId": "REPORT_DAILY",
+      "appName": "日报管理",
+      "cls": "com.aspirecn.corpsocial.bundle.daily.ui.DailyMainActivity_"
+    },
+    {
+      "groupSortNo": "1",
+      "appSortNo": "7",
+      "appStartPath": "APP_CENTER",
+      "appResIconId": "APP_CENTER",
+      "appName": "应用推荐",
+      "cls": "com.aspirecn.corpsocial.bundle.appcenter.ui.AppCenterMainTabAcitivity_"
+    }
+  ]
+}

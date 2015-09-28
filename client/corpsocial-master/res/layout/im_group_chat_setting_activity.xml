@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@android:color/white"
+              android:orientation="vertical">
+
+    <!-- 标题栏:高度48dp -->
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 群聊名称 -->
+            <RelativeLayout
+                android:id="@+id/im_group_chat_setting_name_layout"
+                style="@style/group_chat_setting_item_layout_style">
+
+                <TextView
+                    android:id="@+id/im_group_chat_setting_name_title_tv"
+                    style="@style/group_chat_setting_item_title_text_style"
+                    android:text="@string/gronp_chat_setting_name"/>
+
+                <TextView
+                    android:id="@+id/im_group_chat_setting_name_content_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/im_group_chat_setting_name_title_tv"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
+
+            <!-- 群图片 -->
+            <RelativeLayout
+                android:id="@+id/im_group_chat_setting_picture_layout"
+                style="@style/group_chat_setting_item_layout_style">
+
+                <TextView
+                    style="@style/group_chat_setting_item_title_text_style"
+                    android:text="@string/gronp_chat_setting_picture"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/common_go_next_icon_gray"/>
+            </RelativeLayout>
+
+            <!-- 管理员 -->
+            <RelativeLayout
+                android:id="@+id/im_group_chat_setting_admin_layout"
+                style="@style/group_chat_setting_item_layout_style"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/group_chat_setting_item_title_text_style"
+                    android:text="@string/gronp_chat_setting_admin"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/common_go_next_icon_gray"/>
+            </RelativeLayout>
+
+            <!-- 群成员 -->
+            <RelativeLayout
+                android:id="@+id/im_group_chat_setting_member_layout"
+                style="@style/group_chat_setting_item_layout_style">
+
+                <TextView
+                    android:id="@+id/im_group_chat_setting_member_title_tv"
+                    style="@style/group_chat_setting_item_title_text_style"
+                    android:text="@string/gronp_chat_setting_member"/>
+
+                <TextView
+                    android:id="@+id/im_group_chat_setting_member_content_tv"
+                    style="@style/group_chat_setting_item_title_text_style"
+                    android:layout_marginLeft="0dp"
+                    android:layout_toRightOf="@id/im_group_chat_setting_member_title_tv"
+                    android:text="(-)"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/common_go_next_icon_gray"/>
+            </RelativeLayout>
+
+            <!-- 新消息通知开关 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/im_group_chat_setting_admin_show_height">
+
+                <TextView
+                    style="@style/group_chat_setting_item_title_text_style"
+                    android:text="@string/gronp_chat_setting_message_switch"/>
+
+                <CheckBox
+                    android:id="@+id/im_group_chat_setting_new_msg_switch_cb"
+                    android:layout_width="60dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/common_checkbox_select"
+                    android:button="@null"/>
+
+                <include layout="@layout/public_line_horizontal_gray2"/>
+            </RelativeLayout>
+
+            <!-- 查找聊天记录 -->
+            <RelativeLayout
+                android:id="@+id/im_group_chat_setting_find_chat_msg_layout"
+                style="@style/group_chat_setting_item_layout_style">
+
+                <TextView
+                    style="@style/group_chat_setting_item_title_text_style"
+                    android:text="@string/gronp_chat_setting_search_chat_log"/>
+            </RelativeLayout>
+
+            <!-- 清空聊天记录 -->
+            <RelativeLayout
+                android:id="@+id/im_group_chat_setting_clear_chat_msg_layout"
+                style="@style/group_chat_setting_item_layout_style">
+
+                <TextView
+                    style="@style/group_chat_setting_item_title_text_style"
+                    android:text="@string/gronp_chat_setting_clear_chat_log"/>
+            </RelativeLayout>
+
+            <!-- 解散群 -->
+            <RelativeLayout
+                android:id="@+id/im_group_chat_setting_dismiss_group_layout"
+                style="@style/group_chat_setting_item_layout_style"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/group_chat_setting_item_title_text_style"
+                    android:text="@string/gronp_chat_setting_dismiss"
+                    android:textColor="@color/red"/>
+            </RelativeLayout>
+
+            <!-- 退出群 -->
+            <RelativeLayout
+                android:id="@+id/im_group_chat_setting_quit_group_layout"
+                style="@style/group_chat_setting_item_layout_style"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/group_chat_setting_item_title_text_style"
+                    android:text="@string/gronp_chat_setting_exit"
+                    android:textColor="@color/red"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

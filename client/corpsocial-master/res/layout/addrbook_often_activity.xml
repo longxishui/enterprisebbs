@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/addrbook_often_country_lvcountry"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:divider="@null"/>
+
+        <TextView
+            android:id="@+id/addrbook_often_dialog"
+            android:layout_width="80.0dip"
+            android:layout_height="80.0dip"
+            android:layout_gravity="center"
+            android:background="@drawable/addrbook_friend_show_head_toast_bg"
+            android:gravity="center"
+            android:textColor="#8d8d8d"
+            android:textSize="30.0dip"
+            android:visibility="invisible"/>
+
+        <com.aspirecn.corpsocial.bundle.addrbook.ui.widget.SideBar
+            android:id="@+id/addrbook_often_sidrbar"
+            android:layout_width="30dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right|center"/>
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/new_often_tv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/addrbook_addmore_cantacts"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addrbook_addmore_personal"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+</LinearLayout>

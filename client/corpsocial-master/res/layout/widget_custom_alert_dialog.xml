@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="260dp"
+              android:layout_height="wrap_content"
+              android:background="@drawable/widget_custom_tips_dialog_bg"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/widget_custom_alert_dialog_alert_msg_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="70dp"
+        android:padding="10dp"
+        android:text="提示描述"
+        android:textColor="#ff333333"
+        android:textSize="16sp"
+        android:visibility="visible"/>
+
+    <EditText
+        android:id="@+id/widget_custom_alert_dialog_alert_input_msg_et"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@null"
+        android:hint="输入内容"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:visibility="gone"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ffcccccc"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/widget_custom_alert_dialog_btn_1_bt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/widget_custom_tips_dialog_cancel_btn_bg_selector"
+            android:text="button1"
+            android:textColor="#ff333333"
+            android:textSize="16sp"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/widget_custom_alert_dialog_btn_2_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#ffcccccc"/>
+
+            <Button
+                android:id="@+id/widget_custom_alert_dialog_btn_2_bt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/widget_custom_tips_dialog_confirm_btn_bg_selector"
+                android:text="button2"
+                android:textColor="#ff333333"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

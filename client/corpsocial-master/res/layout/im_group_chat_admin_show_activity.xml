@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ffffff"
+              android:orientation="vertical">
+
+    <!-- 标题栏:高度48dp -->
+    <FrameLayout
+        android:id="@+id/layout_actionbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:id="@+id/im_group_chat_setting_master"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/listview_item_bg_selector"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/im_group_chat_admin_master_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="12dp"
+            android:src="@drawable/addrbook_contact"/>
+
+        <TextView
+            android:id="@+id/im_group_chat_admin_master_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/im_group_chat_admin_master_head"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/im_group_chat_admin_master_head"
+            android:text="@string/gronp_chat_setting_show_admin_master"
+            android:textColor="#ff333333"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/group_chat_setting_master_department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/im_group_chat_admin_master_head"
+            android:layout_marginBottom="3dp"
+            android:layout_toRightOf="@+id/im_group_chat_admin_master_head"
+            android:singleLine="true"
+            android:text="@string/gronp_chat_setting_show_admin_department"
+            android:textColor="#ff999999"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+
+</LinearLayout>

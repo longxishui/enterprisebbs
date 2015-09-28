@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="64dp"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/listview_item_bg_selector">
+        <!-- 头像 -->
+        <RelativeLayout
+            android:id="@+id/addrbook_contatcs_item_headimg_rl"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp">
+
+            <ImageView
+                android:id="@+id/addrbook_component_headimg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/addrbook_contact"/>
+
+            <TextView
+                android:id="@+id/addrbook_component_headtext"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/text_color1"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/addrbookcontatcs_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <!-- 时间 -->
+
+            <TextView
+                android:id="@+id/addrbook_contatcs_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="           "
+                android:textColor="@color/edit_gray"
+                android:textSize="12sp"/>
+            <!-- 状态 -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/addrbook_contatcs_item_state"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"/>
+            </RelativeLayout>
+            <!-- 选择 -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="gone">
+
+                <CheckBox
+                    android:id="@+id/addrbook_contatcs_select"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/component_noimg"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/addrbookcontatcs_right"
+            android:layout_toRightOf="@id/addrbook_contatcs_item_headimg_rl"
+            android:orientation="vertical">
+
+            <!-- 姓名 -->
+
+            <TextView
+                android:id="@+id/addrbook_contatcs_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:singleLine="true"
+                android:text="test"
+                android:textColor="@color/grayblack"
+                android:textSize="15sp"/>
+            <!-- 签名 -->
+
+            <TextView
+                android:id="@+id/addrbook_contatcs_item_department"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:singleLine="true"
+                android:text="test"
+                android:textColor="@color/workgrp_praised_name"
+                android:textSize="13sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

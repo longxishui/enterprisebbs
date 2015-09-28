@@ -1,0 +1,26 @@
+<resources>
+    <string name="icon_contactadd">a</string>
+    <string name="icon_calendar">b</string>
+    <string name="icon_pen">c</string>
+    <string name="icon_location">d</string>
+    <string name="icon_me">e</string>
+    <string name="icon_im">f</string>
+    <string name="icon_telephone">g</string>
+    <string name="icon_chat">h</string>
+    <string name="icon_schedule">i</string>
+    <string name="icon_email">j</string>
+    <string name="icon_logo">k</string>
+    <string name="icon_contactremove">l</string>
+    <string name="icon_alarm">m</string>
+    <string name="icon_sms">n</string>
+    <string name="icon_workbench">o</string>
+    <string name="icon_contact">p</string>
+    <string name="icon_photograph">q</string>
+    <string name="icon_arrow">r</string>
+    <string name="icon_edit">s</string>
+    <string name="icon_select">t</string>
+    <string name="icon_background">u</string>
+    <string name="icon_checkbox">v</string>
+    <string name="icon_workgroup">w</string>
+    <string name="icon_setting">x</string>
+</resources>

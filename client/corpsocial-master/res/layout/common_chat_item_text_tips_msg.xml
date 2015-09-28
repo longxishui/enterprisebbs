@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:padding="12dp">
+
+    <TextView
+        android:id="@+id/common_chat_item_time_tv"
+        style="@style/item_time_style"/>
+
+    <TextView
+        android:id="@+id/common_chat_item_text_tips_content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/common_chat_item_time_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/im_chat_msg_time_bg"
+        android:padding="5dp"
+        android:text="提示消息safasfsdafasdfsadfsafdsadfsafsadfsafsadfsadfdsaasfsadfasfd"
+        android:textColor="#ffffffff"
+        android:textSize="@dimen/pub_account_text_size_04"/>
+
+</RelativeLayout>

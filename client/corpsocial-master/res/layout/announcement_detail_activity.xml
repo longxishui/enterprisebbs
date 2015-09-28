@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:orientation="vertical">
+
+    <!--
+    <RelativeLayout
+        android:id="@+id/newscenter_tittle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/actionbar_newscenter_bg" >
+
+        返回按钮与标题文字
+
+        <TextView
+            android:id="@+id/newscenter_back_tv"
+            style="@style/newscenter_actionbar_back_btn_style" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            android:text="@string/newscenter_announcement_dedail"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </RelativeLayout>
+    -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/actionbar_bg">
+
+        <TextView
+            android:id="@+id/newscenter_back_tv"
+            style="@style/newscenter_actionbar_back_btn_style"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="80dp"
+            android:text="@string/newscenter_announcement_dedail"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <!-- 新闻标题 -->
+
+        <TextView
+            android:id="@+id/announcement_detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="12dp"
+            android:textColor="@color/grayblack"
+            android:textSize="20sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+            <!-- 作者来源 -->
+
+            <TextView
+                android:id="@+id/announcement_detail_creator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:textSize="12sp"/>
+            <!-- 新闻时间 -->
+
+            <TextView
+                android:id="@+id/announcement_detail_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/gray"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <ImageView
+            style="@style/HorizontalGaryLine"
+            android:layout_marginTop="12dp"/>
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/announcement_detail_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
+
+</LinearLayout>
