@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="AMapLBS_Android-2.1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/client/corpsocial-master/libs/AMapLBS_Android-2.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
