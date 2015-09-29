@@ -43,8 +43,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-//import com.aspirecn.corpsocial.bundle.addrbook.facade.UserService;
-
 public class WorkgrpReplyListAdapter extends BaseAdapter {
 
     private Context context;
@@ -53,6 +51,7 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
     private BBSItem bbsItem;
     //private ContactDao contactDao;
     private UserDao userDao;
+    private OnClickListener praiseOnClickListener;
     private OnClickListener pictureClickListener = new OnClickListener() {
 
         @Override
@@ -114,7 +113,6 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
             popuWin = new PopupWindow(context);
             popuWin.setContentView(view);
             final BBSItem bbsitem = (BBSItem) arg0.getTag();
-//
 //			view.findViewById(R.id.workgrp_bbs_dialog_edit)
 //					.setOnClickListener(new OnClickListener() {
 //						@Override
@@ -192,11 +190,12 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
     };
 
     public WorkgrpReplyListAdapter(Context context,
-                                   List<BBSReplyInfoEntity> replyInfoEntitys, BBSItem bbsItem) {
+                                   List<BBSReplyInfoEntity> replyInfoEntitys, BBSItem bbsItem,OnClickListener praiseOnClickListener) {
         super();
         this.context = context;
         this.replyInfoEntitys = replyInfoEntitys;
         this.bbsItem = bbsItem;
+        this.praiseOnClickListener = praiseOnClickListener;
         //contactDao = new ContactDao();
         userDao = new UserDao();
     }
@@ -333,6 +332,8 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
                     .findViewById(R.id.workgrp_reply_title_edit);
             titleViewHolder.replyInfo = (TextView) titleView
                     .findViewById(R.id.workgrp_detail_reply_tv);
+            titleViewHolder.praiseIV = (ImageView) titleView
+                    .findViewById(R.id.workgrp_detail_praise_iv);
             titleView.setTag(titleViewHolder);
         } else {
             titleViewHolder = (TitleViewHolder) titleView.getTag();
@@ -387,25 +388,18 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
         BBSUtil.setUserHeadImg(bbsItem.getBbsItemEntity().getCreatorId(), titleViewHolder.userHead);
         titleViewHolder.userHead.setTag(bbsItem.getBbsItemEntity().getCreatorId());
         titleViewHolder.userHead.setOnClickListener(headClickListener);
+        if (Integer.valueOf(bbsItem.getBbsItemEntity().getPraiseTimes()) > 0) {
+            ArrayList<String> praiseUserIds = bbsItem.getPraiseUseridList();
+            if (praiseUserIds!=null&&praiseUserIds.contains(Config.getInstance().getUserId())) {
+                titleViewHolder.praiseIV.setBackgroundResource(R.drawable.workgrp_praised_icon2);
+            } else {
+                titleViewHolder.praiseIV.setBackgroundResource(R.drawable.workgrp_nopraise_icon2);
+            }
+        } else {
+            titleViewHolder.praiseIV.setBackgroundResource(R.drawable.workgrp_nopraise_icon2);
+        }
         titleViewHolder.praisesInfo.setText("赞 "+bbsItem.getBbsItemEntity().getPraiseTimes());
-//        if (Integer.valueOf(bbsItem.getBbsItemEntity().getPraiseTimes()) == 0) {
-//            titleViewHolder.praisesTip.setVisibility(View.GONE);
-//        } else {
-//            titleViewHolder.praisesTip.setVisibility(View.VISIBLE);
-//            ArrayList<KeyValue> pUserNames = new ArrayList<KeyValue>();
-//            List<User> contactVO = getcontactVO(bbsItem
-//                    .getPraiseUseridList());
-//            if (contactVO != null && contactVO.size() > 0) {
-//                for (User cb : contactVO) {
-//                    pUserNames.add(new KeyValue(cb.getUserid(), cb.getName()));
-//                }
-//            } else {
-//                for (String userid : bbsItem.getPraiseUseridList()) {
-//                    pUserNames.add(new KeyValue(userid, userid));
-//                }
-//            }
-//            titleViewHolder.praisesTip.setText("赞 "+bbsItem.getBbsItemEntity().getPraiseTimes());
-//        }
+        titleViewHolder.praiseIV.setOnClickListener(praiseOnClickListener);
         titleViewHolder.praisesInfo.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -439,7 +433,7 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
             try {
                 contactVO.addAll(userDao.findFilterByContactIds(Config.getInstance().getUserId(), praiseUserIds));
             } catch (Exception e) {
-                LogUtil.e("", e);
+                LogUtil.e("WorkgrpReplyListAdapter", e);
             }
         }
         return contactVO;
@@ -456,6 +450,7 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
     }
 
     public class TitleViewHolder {
+        ImageView praiseIV;
         TextView praisesInfo;
         TextView replyInfo;
         TextView userNameTv;

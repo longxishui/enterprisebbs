@@ -7,11 +7,14 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -48,6 +51,7 @@ import com.aspirecn.corpsocial.common.eventbus.ErrorCode;
 import com.aspirecn.corpsocial.common.eventbus.EventFragmentActivity;
 import com.aspirecn.corpsocial.common.eventbus.EventListenerSubjectLoader;
 import com.aspirecn.corpsocial.common.util.BitmapUtil;
+import com.aspirecn.corpsocial.common.util.StringUtils;
 import com.aspiren.corpsocial.R;
 
 import org.androidannotations.annotations.AfterViews;
@@ -83,8 +87,10 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
     private static final int EDITBBS_SUCCESS = 7;
     @ViewById(R.id.workgrp_detail_reply_listid)
     ListView replyListView;
-    @ViewById(R.id.workgrp_detail_bivid)
-    BottomInputView biv;
+    @ViewById(R.id.workgrp_detail_reply_et)
+    EditText mET_reply;
+    @ViewById(R.id.workgrp_detail_reply_send_iv)
+    ImageView mIV_reply_btn;
 
     private BBSItem bbsItem = null;
     private List<BBSReplyInfoEntity> replyInfoEntitys = null;
@@ -111,7 +117,6 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
                         String replyTimes = (Integer.valueOf(bbsItem.getBbsItemEntity()
                                 .getReplyTimes()) + 1) + "";
                         bbsItem.getBbsItemEntity().setReplyTimes(replyTimes);
-                        biv.clearBIVStatus();
                         doGetBBSDetail();
                         if (mProgressDialog != null && mProgressDialog.isShowing()) {
                             mProgressDialog.dismiss();
@@ -130,6 +135,8 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
                     BBSReplyRespEvent bbsPraiseRespEvent = (BBSReplyRespEvent) msg.obj;
                     if (ErrorCode.SUCCESS.getValue() == bbsPraiseRespEvent
                             .getErrorCode()) {
+                        TitleViewHolder titleViewHolder = (TitleViewHolder) headView
+                                .getTag();
                         ArrayList<String> praiseUserIds = bbsItem
                                 .getPraiseUseridList();
                         String userID = Config.getInstance().getUserId();
@@ -138,13 +145,13 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
                             praiseUserIds.remove(userID);
                             bbsItem.getBbsItemEntity().setPraiseTimes((Integer.valueOf(bbsItem.getBbsItemEntity()
                                     .getPraiseTimes()) - 1) + "");
+                            titleViewHolder.praiseIV.setBackgroundResource(R.drawable.workgrp_nopraise_icon2);
                         } else {
                             bbsItem.getBbsItemEntity().setPraiseTimes((Integer.valueOf(bbsItem.getBbsItemEntity()
                                     .getPraiseTimes()) + 1) + "");
                             praiseUserIds.add(userID);
+                            titleViewHolder.praiseIV.setBackgroundResource(R.drawable.workgrp_praised_icon2);
                         }
-                        TitleViewHolder titleViewHolder = (TitleViewHolder) headView
-                                .getTag();
                             titleViewHolder.praisesInfo
                                     .setText("赞 "+bbsItem.getBbsItemEntity().getPraiseTimes());
                     } else {
@@ -175,16 +182,6 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
             }
         }
     };
-
-   private void doClickReplyLayout() {
-        biv.setVisibility(View.VISIBLE);
-        biv.getInputEditText().requestFocus();
-        BBSUtil.openInputMethod(this, biv.getInputEditText());
-    }
-
-   private void doClickPraiseLayout() {
-        doDetailBBSPraise();
-    }
 
     @Background
     void doDetailBBSPraise() {
@@ -222,33 +219,45 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
         replyInfoDao = new BBSReplyInfoDao();
         replyInfoEntitys = replyInfoDao.findAllReplyInfos(bbsItem.getBbsItemEntity().getId());
         replyListAdapter = new WorkgrpReplyListAdapter(this, replyInfoEntitys,
-                bbsItem);
+               bbsItem,new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                doDetailBBSPraise();
+            }
+        });
         headView = replyListAdapter.initTitleItem(this, bbsItem);
         replyListView.addHeaderView(headView);
         replyListView.setAdapter(replyListAdapter);
-
-        biv.setSendButtonClick(new View.OnClickListener() {
+        mIV_reply_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String reply = biv.getInputResult();
-                if (TextUtils.isEmpty(reply)
-                        && TextUtils.isEmpty(biv.getPicture_path())) {
-                    Toast.makeText(getApplicationContext(), "评论为空，请输入评论内容后重试！",
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    System.out.println("发送的内容为：" + reply + "图片地址为:"
-                            + biv.getPicture_path());
-                    mProgressDialog.show();
-                    doBBSReply(reply);
-                }
+                String reply = mET_reply.getText().toString();
+                mProgressDialog.show();
+                mET_reply.setText("");
+                doBBSReply(reply);
+            }
+        });
+        mIV_reply_btn.setEnabled(false);
+        mET_reply.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+            if(StringUtils.isEmpty(mET_reply.getText().toString())){
+                mIV_reply_btn.setEnabled(false);
+            }else{
+                mIV_reply_btn.setEnabled(true);
+            }
             }
         });
         doGetBBSDetail();
         boolean isOpen = getIntent().getBooleanExtra("open", false);
         if (isOpen) {
-            biv.setVisibility(View.VISIBLE);
-            biv.getInputEditText().requestFocus();
-            BBSUtil.openInputMethod(this, biv.getInputEditText());
+            mET_reply.requestFocus();
         }
         fab.setLifeCycleListener(this);
     }
@@ -260,10 +269,7 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
         bbsReplyEvent.setItemId(bbsItem.getBbsItemEntity().getId());
         bbsReplyEvent.setContent(inputText);
         bbsReplyEvent.setGroupId(bbsItem.getBbsItemEntity().getGroupId());
-        if (biv.getPicture_path() != null && !biv.getPicture_path().isEmpty()) {
-            bbsReplyEvent.setHasPic(true);
-            bbsReplyEvent.setPath(biv.getPicture_path());
-        }
+        bbsReplyEvent.setHasPic(false);
         uiEventHandleFacade.handle(bbsReplyEvent);
     }
 
@@ -321,30 +327,6 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
     // mIntent.putExtra("itemid", bbsItem.getId());
     // return mIntent;
     // }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == BBSUtil.BBS_REQUEST_PHOTO) {
-            if (resultCode == RESULT_OK) {
-                Uri uri = data.getData();
-                String[] proj = {MediaStore.Images.Media.DATA};
-                Cursor cursor = managedQuery(uri, proj, null, null, null);
-                int column_index = cursor
-                        .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                cursor.moveToFirst();
-                String path = cursor.getString(column_index);
-                BitmapUtil.correction(path);
-                biv.showPicture(path);
-            }
-        } else if (requestCode == BBSUtil.BBS_REQUEST_CAMERA) {
-            if (resultCode == RESULT_OK) {
-                String imagePath = biv.getPicture_path();
-                BitmapUtil.correction(imagePath);
-                biv.showPicture(imagePath);
-            }
-        }
-    }
     @UiThread
     @Override
     public void onHandleGetBBSDetailRespEvent(GetBBSDetailRespEvent event) {

@@ -12,18 +12,41 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 
-    <com.aspirecn.corpsocial.bundle.workgrp.ui.widget.BottomInputView
-        android:id="@+id/workgrp_detail_bivid"
+    <RelativeLayout
+        android:id="@+id/workgrp_detail_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:visibility="visible"/>
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/listview_item_bg_normal"
+        >
+        <EditText
+            android:id="@+id/workgrp_detail_reply_et"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="40dp"
+            android:textSize="15dp"
+            android:hint="说点什么吧"
+            android:background="@color/white"/>
+        <ImageView
+            android:id="@+id/workgrp_detail_reply_send_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/workgrp_send_btn_selector"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:layout_alignParentRight="true"/>
+        </RelativeLayout>
     <ListView
         android:id="@+id/workgrp_detail_reply_listid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/layout_actionbar"
-        android:layout_above="@id/workgrp_detail_bivid"
+        android:layout_above="@id/workgrp_detail_input"
         android:transcriptMode="normal"
         />
 </RelativeLayout>
