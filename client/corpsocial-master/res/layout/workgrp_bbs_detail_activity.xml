@@ -19,7 +19,7 @@
         android:layout_alignParentBottom="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:background="@drawable/listview_item_bg_normal"
+        android:background="@drawable/workgrp_input_bg"
         >
         <EditText
             android:id="@+id/workgrp_detail_reply_et"
