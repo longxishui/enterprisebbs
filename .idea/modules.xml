@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/corpsocial.iml" filepath="$PROJECT_DIR$/corpsocial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
       <module fileurl="file://$PROJECT_DIR$/client/corpsocial-lib-common/corpsocial-lib-common.iml" filepath="$PROJECT_DIR$/client/corpsocial-lib-common/corpsocial-lib-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/client/corpsocial-lib-common/corpsocial-lib-common.iml" filepath="$PROJECT_DIR$/client/corpsocial-lib-common/corpsocial-lib-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/client/corpsocial-lib-pulltorefreshutils/corpsocial-lib-pulltorefreshutils.iml" filepath="$PROJECT_DIR$/client/corpsocial-lib-pulltorefreshutils/corpsocial-lib-pulltorefreshutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/client/corpsocial-lib-pulltorefreshutils/corpsocial-lib-pulltorefreshutils.iml" filepath="$PROJECT_DIR$/client/corpsocial-lib-pulltorefreshutils/corpsocial-lib-pulltorefreshutils.iml" />
       <module fileurl="file://$PROJECT_DIR$/client/corpsocial-master/corpsocial-master.iml" filepath="$PROJECT_DIR$/client/corpsocial-master/corpsocial-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/corpsocialtest.iml" filepath="$PROJECT_DIR$/corpsocialtest.iml" />
       <module fileurl="file://$PROJECT_DIR$/enterprisebbs.iml" filepath="$PROJECT_DIR$/enterprisebbs.iml" />
     </modules>
   </component>
 </project>
-
