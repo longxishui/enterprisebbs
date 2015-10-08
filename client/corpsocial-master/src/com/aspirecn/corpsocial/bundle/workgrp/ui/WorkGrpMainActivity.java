@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -23,10 +26,8 @@ import com.aspirecn.corpsocial.bundle.workgrp.ui.fragment.BaseBBSFragment;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.fragment.BaseBBSFragment_;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.fragment.FragmentViewPagerAdapter;
 import com.aspirecn.corpsocial.common.config.Config;
-import com.aspirecn.corpsocial.common.config.ConfigPersonal;
 import com.aspirecn.corpsocial.common.eventbus.ErrorCode;
 import com.aspirecn.corpsocial.common.eventbus.EventFragmentActivity;
-import com.aspirecn.corpsocial.common.eventbus.OsgiServiceLoader;
 import com.aspirecn.corpsocial.common.ui.component.tabView.ScrollableTabView;
 import com.aspirecn.corpsocial.common.ui.component.tabView.TabEntity;
 import com.aspiren.corpsocial.R;
@@ -46,7 +47,7 @@ import java.util.List;
  */
 @EActivity(R.layout.workgrp_main_tab_activity)
 public class WorkGrpMainActivity extends EventFragmentActivity implements
-        GetBBSGroupRespEventListener, ActionBarFragment.LifeCycleListener, GetCorpViewDefRespSubject.GetCorpViewDefRespListener {
+        GetBBSGroupRespEventListener, ActionBarFragment.LifeCycleListener, GetCorpViewDefRespSubject.GetCorpViewDefRespListener, Animation.AnimationListener {
     public ArrayList<BBSGroup> bbsGroups = null;
     List<TabEntity> listTabEntity = new ArrayList<TabEntity>();
     @ViewById(R.id.workgrp_title_tabid)
@@ -59,6 +60,22 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
     ImageButton btnRight;
     @ViewById(R.id.workgrp_main_tab_noitem_ll)
     LinearLayout mLL_noGroup;
+    @ViewById(R.id.workgrp_main_create_ll)
+    LinearLayout mLL_bottom;
+    @Click(R.id.workgrp_main_create_tv)
+    void createBBS(){
+        if (groupId == null) {
+            Toast.makeText(WorkGrpMainActivity.this, "暂无频道", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Intent mIntent = new Intent(WorkGrpMainActivity.this, com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpNewBBSActivity_.class);
+        mIntent.putExtra("groupid", groupId);
+        startActivityForResult(mIntent, REQUEST_NEW_BBS);
+    }
+    @Click(R.id.workgrp_main_concernme_tv)
+    void concerenMe(){
+        startActivity(new Intent(this,ConcernMeBBSListActivity_.class));
+    }
     /**
      * viewPager的适配器
      */
@@ -68,10 +85,6 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
     private BBSGroupDao groupDao = null;
     private int REQUEST_NEW_BBS = 3;
     private boolean isCreate = false;
-    @Click(R.id.tv_sliding_panel)
-    void doSlidingPanel() {
-    }
-
     @AfterViews
     void doAfterViews() {
         ActionBarFragment fab = ActionBarFragment_.builder().navigation(true).
@@ -154,7 +167,54 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
             doGetBBSGroup();
         }
     }
+    private boolean mIsTitleHide = false;
+    private boolean mIsAnim = false;
+    private float lastX = 0;
+    private float lastY = 0;
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event)
+    {
+        super.dispatchTouchEvent(event);
+        if (mIsAnim) {
+            return false;
+        }
+        final int action = event.getAction();
 
+        float x = event.getX();
+        float y = event.getY();
+
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                lastY = y;
+                lastX = x;
+                return false;
+            case MotionEvent.ACTION_MOVE:
+                float dY = Math.abs(y - lastY);
+                float dX = Math.abs(x - lastX);
+                boolean down = y > lastY ? true : false;
+                lastY = y;
+                lastX = x;
+                if (dX < 8 && dY > 8 && !mIsTitleHide && !down) {
+                    Animation anim = AnimationUtils.loadAnimation(
+                            this, R.anim.push_bottom_in);
+                    anim.setAnimationListener(this);
+                    mLL_bottom.startAnimation(anim);
+                } else if (dX < 8 && dY > 8 && mIsTitleHide && down) {
+                    Animation anim = AnimationUtils.loadAnimation(
+                            this, R.anim.push_bottom_out);
+                    anim.setAnimationListener(this);
+                    mLL_bottom.startAnimation(anim);
+                } else {
+                    return false;
+                }
+                mIsTitleHide = !mIsTitleHide;
+                mIsAnim = true;
+                break;
+            default:
+                return false;
+        }
+        return false;
+    }
     @Override
     protected void onResume() {
         // TODO Auto-generated method stub
@@ -171,27 +231,13 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
     @UiThread
     @Override
     public void onActionBarViewCreated(ActionBarFragment fab) {
-        fab.build().setFirstButtonIcon(R.drawable.workgrp_bbs_new_btn)
-                .setSecondButtonIcon(R.drawable.workgrp_bbs_concernme_btn)
+        fab.build().setFirstButtonIcon(R.drawable.workgrp_me_setting)
                 .apply();
 
         fab.build().setFirstButtonListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (groupId == null) {
-                    Toast.makeText(WorkGrpMainActivity.this, "暂无频道", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Intent mIntent = new Intent(WorkGrpMainActivity.this, com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpNewBBSActivity_.class);
-                mIntent.putExtra("groupid", groupId);
-                startActivityForResult(mIntent, REQUEST_NEW_BBS);
 
-            }
-        }).setSecondButtonListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mIntent = new Intent(WorkGrpMainActivity.this, com.aspirecn.corpsocial.bundle.workgrp.ui.ConcernMeBBSListActivity_.class);
-                startActivity(mIntent);
             }
         }).apply();
     }
@@ -200,5 +246,23 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
     @Override
     public void onGetCorpViewDefEvent(GetCorpViewDefRespEvent event) {
         tabView.updateTabColor(event.fontColor);
+    }
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+        mLL_bottom.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onAnimationEnd(Animation animation) {
+        if (mIsTitleHide) {
+            mLL_bottom.setVisibility(View.GONE);
+        }
+        mIsAnim = false;
+    }
+
+    @Override
+    public void onAnimationRepeat(Animation animation) {
+
     }
 }

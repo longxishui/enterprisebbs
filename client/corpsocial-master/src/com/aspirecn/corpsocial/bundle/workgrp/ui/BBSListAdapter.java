@@ -25,6 +25,7 @@ import com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookPersonalParticularsAct
 import com.aspirecn.corpsocial.bundle.workgrp.domain.BBSItem;
 import com.aspirecn.corpsocial.bundle.workgrp.domain.KeyValue;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.FileInfoEntity;
+import com.aspirecn.corpsocial.bundle.workgrp.ui.fragment.ShareDialog;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.widget.BBSDialog;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.widget.BBSUtil;
 import com.aspirecn.corpsocial.common.config.Config;
@@ -102,6 +103,7 @@ public class BBSListAdapter extends BaseAdapter {
             mHolder.itemContent = (TextView) convertView.findViewById(R.id.workgrp_item_contentid);
             mHolder.itemPicture = (ImageView) convertView.findViewById(R.id.workgrp_item_content_pictureid);
             mHolder.itemUserImage = (ImageView) convertView.findViewById(R.id.workgrp_user_imageid);
+            mHolder.itemshareBtn = (ImageView) convertView.findViewById(R.id.workgrp_item_share_btnimageid);
             convertView.setTag(mHolder);
         } else {
             mHolder = (ViewHolder) convertView.getTag();
@@ -128,6 +130,12 @@ public class BBSListAdapter extends BaseAdapter {
                 bbsDialog.show();
                 bbsDialog.setTitle("复制帖子");
                 return true;
+            }
+        });
+        mHolder.itemshareBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ShareDialog(context,"wxd9e637fe30c9280e",bbsItem.getBbsItemEntity().getContent(),bbsItem.getBbsItemEntity().getTitle(),"").show();
             }
         });
 //        mHolder.itemTitle.setText(bbsItem.getBbsItemEntity().getTitle());
@@ -254,6 +262,7 @@ public class BBSListAdapter extends BaseAdapter {
         ImageView itemPraiseBtnViewImage;
         ImageView itemReplyImage;
         TextView itemPraiseBtnViewText;
+        ImageView itemshareBtn;
         ImageView itemPicture;
         ImageView itemUserImage;
     }

@@ -247,13 +247,6 @@
         <activity
             android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkbenchSettingSignatureActivity_"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.aspirecn.corpsocial.bundle.settings.ui.WorkBenchSettingUpdateTypeActivity_"
-            android:screenOrientation="portrait" />
-
-        <!-- 新闻资讯 -->
-        <uses-library android:name="android.test.runner" />
-
         <!-- 同事圈 相关设置 -->
         <activity
             android:name="com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpMainActivity_"

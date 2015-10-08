@@ -63,4 +63,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/workgrp_loading_viewid"/>
+    <LinearLayout
+        android:id="@+id/workgrp_main_create_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="#e00085d0"
+        >
+        <com.aspirecn.corpsocial.common.ui.widget.DrawCenterText
+            android:id="@+id/workgrp_main_create_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="@string/workgrp_create"
+            android:textSize="15dp"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="8dp"
+            android:layout_weight="10"
+            android:textColor="@color/white"
+            android:drawableLeft="@drawable/workgrp_newbbs_icon"
+            android:background="@drawable/workgrp_bbs_create_bg_select"
+            />
+        <View
+            android:layout_width="1px"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/white"/>
+        <com.aspirecn.corpsocial.common.ui.widget.DrawCenterText
+            android:id="@+id/workgrp_main_concernme_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textSize="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="10"
+            android:drawablePadding="8dp"
+            android:text="@string/workgrp_concernme"
+            android:textColor="@color/white"
+            android:drawableLeft="@drawable/workgrp_concenrme_icon"
+            android:background="@drawable/workgrp_bbs_create_bg_select"/>
+        </LinearLayout>
 </RelativeLayout>

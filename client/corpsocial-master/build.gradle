@@ -6,20 +6,20 @@ dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile files('libs/org.json.jar')
     //ImageCache 的项目
-//        compile 'com.aspirecn.corpsocial:corpsocial-lib-common:1.1'
-//    compile 'com.aspirecn.corpsocial:corpsocial-lib-pulltorefreshutils:1.0'
+    //        compile 'com.aspirecn.corpsocial:corpsocial-lib-common:1.1'
+    //    compile 'com.aspirecn.corpsocial:corpsocial-lib-pulltorefreshutils:1.0'
     compile 'com.j256.ormlite:ormlite-core:4.40'
     compile 'com.j256.ormlite:ormlite-android:4.40'
     //上传文件的插件
-//    compile 'com.lidroid.xutils:xUtils:2.4.7'
+    //    compile 'com.lidroid.xutils:xUtils:2.4.7'
     compile 'de.mindpipe.android:android-logging-log4j:1.0.3'
     //友盟监听导入
     compile 'com.umeng.analytics:analytics:latest.integration'
     //注解jar导入
     compile 'org.androidannotations:androidannotations-api:3.3.2'
     //字体替换jar
-//    compile 'com.shamanland.fonticon:lib:1.1.0'
-//    compile 'com.shamanland:fonticon:0.1.8'
+    //    compile 'com.shamanland.fonticon:lib:1.1.0'
+    //    compile 'com.shamanland:fonticon:0.1.8'
     compile deps.android_support_v4
     //方法数限制突破
     compile 'com.android.support:multidex:1.0.1'
@@ -36,7 +36,9 @@ dependencies {
     compile project(':client:corpsocial-lib-pulltorefreshutils')
     //图片导入插件
     compile project(':client:corpsocial-lib-common')
-    compile(name:'lib-1.1.0', ext:'aar')
+    compile(name: 'lib-1.1.0', ext: 'aar')
+    compile files('libs/open_sdk_r5276_lite.jar')
+    compile files('libs/libammsdk.jar')
 }
 
 apt {
@@ -47,7 +49,7 @@ apt {
 }
 
 android {
-    compileSdkVersion COMPILE_SDK_VERSION
+    compileSdkVersion 22
     buildToolsVersion BUILD_TOOLS_VERSION
 
     packagingOptions {
@@ -147,7 +149,7 @@ android {
     }
     productFlavors {
         product {
-            applicationId "com.aspiren.corpsocial.bbs"
+            applicationId "com.aspiren.corpsocial.ict"
             versionCode 1
             versionName "2.0.1.001"
         }

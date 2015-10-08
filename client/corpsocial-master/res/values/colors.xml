@@ -76,6 +76,7 @@
     <color name="workgrp_tab_unselected">#333333</color>
     <color name="workgrp_praised_name">#666666</color>
     <color name="workgrp_praised_info">#999999</color>
+    <color name="workgrp_create_bg">#ff0085d0</color>
 
     <!-- 主界面底部菜单按钮字体颜色 -->
     <color name="common_main_tab_menu_text_color_pressed">#ff0079ff</color>
