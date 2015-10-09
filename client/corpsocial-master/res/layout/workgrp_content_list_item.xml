@@ -135,11 +135,10 @@
             />
         <ImageView
             android:id="@+id/workgrp_item_share_btnimageid"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_margin="14dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:src="@drawable/workgrp_bbs_share_select"
             />
     </RelativeLayout>

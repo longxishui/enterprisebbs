@@ -399,6 +399,7 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
             titleViewHolder.praiseIV.setBackgroundResource(R.drawable.workgrp_nopraise_icon2);
         }
         titleViewHolder.praisesInfo.setText("赞 "+bbsItem.getBbsItemEntity().getPraiseTimes());
+        titleViewHolder.replyInfo.setText("评论 "+bbsItem.getBbsItemEntity().getReplyTimes());
         titleViewHolder.praiseIV.setOnClickListener(praiseOnClickListener);
         titleViewHolder.praisesInfo.setOnClickListener(new OnClickListener() {
 

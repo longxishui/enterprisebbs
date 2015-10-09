@@ -135,7 +135,7 @@ public class BBSListAdapter extends BaseAdapter {
         mHolder.itemshareBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ShareDialog(context,"wxd9e637fe30c9280e",bbsItem.getBbsItemEntity().getContent(),bbsItem.getBbsItemEntity().getTitle(),"").show();
+                new ShareDialog(context,"wxd9e637fe30c9280e",bbsItem.getBbsItemEntity().getContent(),bbsItem.getBbsItemEntity().getTitle(),"",bbsItem.getBbsItemEntity().getId()).show();
             }
         });
 //        mHolder.itemTitle.setText(bbsItem.getBbsItemEntity().getTitle());

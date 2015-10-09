@@ -89,7 +89,7 @@ public class AppConfig {
         if (!TextUtils.isEmpty(appConfigString)) {
             config = new Gson().fromJson(appConfigString, AppConfig.class);
             if (TextUtils.isEmpty(config.appName)) {
-                config.appName = "工作•圈";
+                config.appName = "ICT生态圈";
             }
             if (config.topViewDef == null) {
                 config.topViewDef = new ViewDef();

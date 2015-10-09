@@ -151,7 +151,7 @@ android {
         product {
             applicationId "com.aspiren.corpsocial.ict"
             versionCode 1
-            versionName "2.0.1.001"
+            versionName "1.0.1.001"
         }
 
     }

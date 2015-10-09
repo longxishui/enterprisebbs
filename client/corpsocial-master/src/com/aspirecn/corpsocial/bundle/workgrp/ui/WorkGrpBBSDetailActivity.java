@@ -362,10 +362,12 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
             titleViewHolder.praisesInfo.setText("赞 0");
         }
         if (mReplyInfos == null) {
+            titleViewHolder.replyInfo.setText("评论 0");
             return;
         }
         int size = mReplyInfos.size();
         if (size > 0) {
+            titleViewHolder.replyInfo.setText("评论 "+size);
             replyInfoEntitys.clear();
             Log.e("WorkGrpBBSDetail","评论数："+size);
             replyInfoEntitys.addAll(mReplyInfos);

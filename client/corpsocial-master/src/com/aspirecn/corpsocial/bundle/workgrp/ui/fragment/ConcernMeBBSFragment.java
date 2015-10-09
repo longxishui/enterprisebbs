@@ -228,11 +228,11 @@ public class ConcernMeBBSFragment extends Fragment implements GetBBSListRespEven
     private ArrayList<BBSItem> getListBBSItem(int type) {
         switch (type) {
             case 0:
-                return (ArrayList<BBSItem>) itemDao.findConcernMeItemsCreate(ConfigPersonal.getString(ConfigPersonal.Key.CORP_ID_SELECTED));
+                return (ArrayList<BBSItem>) itemDao.findConcernMeItemsCreate(Config.getInstance().getCorpId());
             case 1:
-                return (ArrayList<BBSItem>) itemDao.findConcernMeItemsPartin(ConfigPersonal.getString(ConfigPersonal.Key.CORP_ID_SELECTED));
+                return (ArrayList<BBSItem>) itemDao.findConcernMeItemsPartin(Config.getInstance().getCorpId());
             default:
-                return (ArrayList<BBSItem>) itemDao.findConcernMeItemsCreate(ConfigPersonal.getString(ConfigPersonal.Key.CORP_ID_SELECTED));
+                return (ArrayList<BBSItem>) itemDao.findConcernMeItemsCreate(Config.getInstance().getCorpId());
         }
     }
 
@@ -345,7 +345,6 @@ public class ConcernMeBBSFragment extends Fragment implements GetBBSListRespEven
                     } else {
                         listData.clear();
                         listData.addAll(getListBBSItem(type));
-//					bbsitem.setReplyTimes((Integer.valueOf(bbsitem.getReplyTimes())-1)+"");
                     }
                     handler.sendEmptyMessage(DATACHANGE);
                     break;

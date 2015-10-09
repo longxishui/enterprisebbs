@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.aspiren.corpsocial.R;
 import com.tencent.connect.share.QQShare;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.sdk.modelmsg.WXImageObject;
 import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXTextObject;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
@@ -33,6 +34,7 @@ public class ShareDialog extends Dialog {
     private String appid;
     private String textTitle;
     private String textcontent;
+    private String bbsid;
     private String imageUrl;
     private boolean sendFriend;
     public View.OnClickListener weixinClickListener = new View.OnClickListener() {
@@ -41,8 +43,8 @@ public class ShareDialog extends Dialog {
             IWXAPI api = WXAPIFactory.createWXAPI(mContext, "wxd9e637fe30c9280e");
             boolean sendFiend = view.getTag().equals("0");
 
-//            WXWebpageObject webpage = new WXWebpageObject();
-//            webpage.webpageUrl = "http://baidu.com";
+            WXWebpageObject webpage = new WXWebpageObject();
+            webpage.webpageUrl = "http://amoadev.aspirecn.com:8803/portweb/bbs!getDetail.do?id="+bbsid;
 //            WXMediaMessage msg = new WXMediaMessage();
 //
 //            msg.title = "title";
@@ -52,17 +54,17 @@ public class ShareDialog extends Dialog {
 //            msg.setThumbImage(thumb);
 
 
-//            Bitmap bmp = BitmapFactory.decodeResource(mContext.getResources(),
-//                    R.drawable.app_icon);
-//            WXImageObject wxImageObject = new WXImageObject(bmp);
+            Bitmap bmp = BitmapFactory.decodeResource(mContext.getResources(),
+                    R.drawable.app_icon);
+            WXImageObject wxImageObject = new WXImageObject(bmp);
             WXTextObject wxTextObject = new WXTextObject(textcontent);
                 WXMediaMessage msg = new WXMediaMessage();
-                msg.mediaObject = wxTextObject;
-//            Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, 60, 60, true);
-//            bmp.recycle();
-//            msg.thumbData = bmpToByteArray(thumbBmp, true);
-//                msg.title = textcontent;
-//                msg.description = textcontent;
+                msg.mediaObject = webpage;
+            Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, 60, 60, true);
+            bmp.recycle();
+            msg.thumbData = bmpToByteArray(thumbBmp, true);
+                msg.title = textTitle;
+                msg.description = textcontent;
 
 //            msg.setThumbImage(thumb);
                 SendMessageToWX.Req req = new SendMessageToWX.Req();
@@ -70,6 +72,7 @@ public class ShareDialog extends Dialog {
                 req.message = msg;
                 req.scene = sendFiend?SendMessageToWX.Req.WXSceneSession:SendMessageToWX.Req.WXSceneTimeline;
                 api.sendReq(req);
+            ShareDialog.this.dismiss();
         }
     };
     private View.OnClickListener qqClickListener = new View.OnClickListener() {
@@ -90,13 +93,14 @@ public class ShareDialog extends Dialog {
             }
         }
     };
-	public ShareDialog(Context context,String appid,String textContent,String title,String imageUrl) {
+	public ShareDialog(Context context,String appid,String textContent,String title,String imageUrl,String bbsId) {
 		super(context, R.style.MyDialog);
 		mContext = context;
         this.appid = appid;
         this.textcontent = textContent;
         this.textTitle = title;
         this.imageUrl = imageUrl;
+        this.bbsid = bbsId;
 		init();
 	}
 
