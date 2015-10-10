@@ -117,7 +117,7 @@ public class AppConfig {
 
         } else {
             config = new AppConfig();
-            config.appName = "工作•圈";
+            config.appName = "ICT生态圈";
             config.topViewDef = new ViewDef();
             config.topViewDef.backgroundColor = "#0085d0";
             config.topViewDef.fontColor = "#ffffff";
