@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.aspirecn.corpsocial.bundle.workgrp.ui.fragment;
 
 import android.os.Bundle;

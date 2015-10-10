@@ -14,19 +14,14 @@ import java.util.List;
 public class HttpRequest {
 
     public static void request(String businessId, String data, HttpCallBack callBack) {
-        request(businessId, data, null, false, callBack);
+        request(businessId, data, null, callBack);
     }
 
-    public static void request(String businessId, String data, boolean allowFailRetry, HttpCallBack callBack) {
-        request(businessId, data, null, allowFailRetry, callBack);
+    public static void request(String businessId, String data,boolean allowRetry, HttpCallBack callBack) {
+        request(businessId, data, null, callBack);
     }
 
-
-    public static void request(String businessId, String data, File file, HttpCallBack callBack) {
-        request(businessId, data, file, false, callBack);
-    }
-
-    public static void request(String businessId, String data, File file, boolean allowFailRetry, final HttpCallBack callBack) {
+    public static void request(String businessId,String data,File file,final HttpCallBack callBack) {
         String url = PropertyInfo.getInstance().getString("http_url");
         ReqParameter reqParameter = new ReqParameter();
         reqParameter.setReqType(businessId);

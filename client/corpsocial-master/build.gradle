@@ -50,7 +50,7 @@ apt {
 
 android {
     compileSdkVersion 22
-    buildToolsVersion BUILD_TOOLS_VERSION
+    buildToolsVersion '22.0.1'
 
     packagingOptions {
         exclude 'AndroidManifest.xml'
