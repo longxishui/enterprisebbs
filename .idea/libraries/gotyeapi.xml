@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="gotyeapi">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/client/corpsocial-master/libs/gotyeapi.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
