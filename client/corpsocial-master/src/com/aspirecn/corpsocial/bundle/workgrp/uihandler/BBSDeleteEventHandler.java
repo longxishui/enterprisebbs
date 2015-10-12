@@ -1,6 +1,7 @@
 package com.aspirecn.corpsocial.bundle.workgrp.uihandler;
 
 import com.aspirecn.corpsocial.bundle.net.HttpCallBack;
+import com.aspirecn.corpsocial.bundle.net.HttpRequest;
 import com.aspirecn.corpsocial.bundle.workgrp.event.BBSDeleteEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.event.BBSDeleteRespEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.event.GetBBSGroupRespEvent;
@@ -14,7 +15,6 @@ import com.aspirecn.corpsocial.common.eventbus.EventBusAnnotation.UIEventHandler
 import com.aspirecn.corpsocial.common.eventbus.EventListenerSubjectLoader;
 import com.aspirecn.corpsocial.common.eventbus.IHandler;
 import com.aspirecn.corpsocial.common.eventbus.Null;
-import com.aspirecn.corpsocial.common.util.HttpRequest;
 
 @UIEventHandler(eventType = BBSDeleteEvent.class)
 public class BBSDeleteEventHandler implements IHandler<Null, BBSDeleteEvent> {
@@ -35,7 +35,7 @@ public class BBSDeleteEventHandler implements IHandler<Null, BBSDeleteEvent> {
 
         HttpRequest.request(WorkgrpConfig.BBS_DELETE, args.getJson(), new HttpCallBack() {
             @Override
-            public void notifyResult(int errorCode,String message) {
+            public void notifyResult(int errorCode, String message) {
                 GetBBSGroupRespEvent getBBSGroupRespEvent = new GetBBSGroupRespEvent();
                 if (errorCode == ErrorCode.SUCCESS.getValue()) {
                     HttpMessage httpMessage = WorkgrpConfig.getHttpMessage(message);

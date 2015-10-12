@@ -11,7 +11,6 @@ import com.aspirecn.corpsocial.common.eventbus.ErrorCode;
 import com.aspirecn.corpsocial.common.eventbus.EventBusAnnotation;
 import com.aspirecn.corpsocial.common.eventbus.IHandler;
 import com.aspirecn.corpsocial.common.eventbus.Null;
-import com.aspirecn.corpsocial.common.util.HttpRequest;
 import com.aspirecn.corpsocial.common.util.LogUtil;
 import com.google.gson.Gson;
 

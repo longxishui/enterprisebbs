@@ -3,6 +3,7 @@ package com.aspirecn.corpsocial.bundle.workgrp.uihandler;
 import android.util.Log;
 
 import com.aspirecn.corpsocial.bundle.net.HttpCallBack;
+import com.aspirecn.corpsocial.bundle.net.HttpRequest;
 import com.aspirecn.corpsocial.bundle.workgrp.event.GetBBSDetailEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.event.GetBBSDetailRespEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.BBSItemDao;
@@ -17,7 +18,6 @@ import com.aspirecn.corpsocial.common.eventbus.EventBusAnnotation.UIEventHandler
 import com.aspirecn.corpsocial.common.eventbus.EventListenerSubjectLoader;
 import com.aspirecn.corpsocial.common.eventbus.IHandler;
 import com.aspirecn.corpsocial.common.eventbus.Null;
-import com.aspirecn.corpsocial.common.util.HttpRequest;
 import com.aspirecn.corpsocial.common.util.LogUtil;
 import com.google.gson.Gson;
 
@@ -41,7 +41,7 @@ public class GetBBSDetailEventHandler implements
         LogUtil.i("同事圈详情请求json：" + args.getJson());
         HttpRequest.request(WorkgrpConfig.GET_BBS_DETAIL, args.getJson(), new HttpCallBack() {
             @Override
-            public void notifyResult(int errorCode,String message) {
+            public void notifyResult(int errorCode, String message) {
                 GetBBSDetailRespEvent respEvent;
                 if (errorCode == ErrorCode.SUCCESS.getValue()) {
                     HttpMessage httpMessage = WorkgrpConfig.getHttpMessage(message);

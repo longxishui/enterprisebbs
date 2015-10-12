@@ -1,6 +1,7 @@
 package com.aspirecn.corpsocial.bundle.workgrp.uihandler;
 
 import com.aspirecn.corpsocial.bundle.net.HttpCallBack;
+import com.aspirecn.corpsocial.bundle.net.HttpRequest;
 import com.aspirecn.corpsocial.bundle.workgrp.domain.BBSItem;
 import com.aspirecn.corpsocial.bundle.workgrp.event.GetBBSListEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.event.GetBBSListRespEvent;
@@ -15,7 +16,6 @@ import com.aspirecn.corpsocial.common.eventbus.EventBusAnnotation.UIEventHandler
 import com.aspirecn.corpsocial.common.eventbus.EventListenerSubjectLoader;
 import com.aspirecn.corpsocial.common.eventbus.IHandler;
 import com.aspirecn.corpsocial.common.eventbus.Null;
-import com.aspirecn.corpsocial.common.util.HttpRequest;
 import com.aspirecn.corpsocial.common.util.LogUtil;
 import com.google.gson.Gson;
 
@@ -38,7 +38,7 @@ public class GetBBSListEventHandler implements IHandler<Null, GetBBSListEvent> {
         LogUtil.i("请求的json数据为：" + getBBSListEvent.getJson());
         HttpRequest.request(WorkgrpConfig.GET_BBS_LIST, getBBSListEvent.getJson(), new HttpCallBack() {
             @Override
-            public void notifyResult(int errorCode,String message) {
+            public void notifyResult(int errorCode, String message) {
                 GetBBSListRespEvent getBBSListRespEvent;
                 if (errorCode == ErrorCode.SUCCESS.getValue()) {
                     LogUtil.e("获得同事圈数据为：" + message);

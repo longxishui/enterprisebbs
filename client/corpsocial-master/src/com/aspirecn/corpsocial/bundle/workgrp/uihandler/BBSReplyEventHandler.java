@@ -1,6 +1,7 @@
 package com.aspirecn.corpsocial.bundle.workgrp.uihandler;
 
 import com.aspirecn.corpsocial.bundle.net.HttpCallBack;
+import com.aspirecn.corpsocial.bundle.net.HttpRequest;
 import com.aspirecn.corpsocial.bundle.workgrp.event.BBSReplyEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.event.BBSReplyRespEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.util.HttpMessage;
@@ -13,11 +14,8 @@ import com.aspirecn.corpsocial.common.eventbus.EventListenerSubjectLoader;
 import com.aspirecn.corpsocial.common.eventbus.IHandler;
 import com.aspirecn.corpsocial.common.eventbus.Null;
 import com.aspirecn.corpsocial.common.util.BitmapUtil;
-import com.aspirecn.corpsocial.common.util.HttpRequest;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 @UIEventHandler(eventType = BBSReplyEvent.class)
 public class BBSReplyEventHandler implements IHandler<Null, BBSReplyEvent> {

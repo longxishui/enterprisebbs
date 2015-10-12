@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 
 import com.aspirecn.corpsocial.bundle.net.HttpCallBack;
+import com.aspirecn.corpsocial.bundle.net.HttpRequest;
 import com.aspirecn.corpsocial.bundle.workgrp.domain.BBSItem;
 import com.aspirecn.corpsocial.bundle.workgrp.event.CreateOrModifyBBSEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.event.CreateOrModifyBBSRespEvent;
@@ -19,7 +20,6 @@ import com.aspirecn.corpsocial.common.eventbus.EventListenerSubjectLoader;
 import com.aspirecn.corpsocial.common.eventbus.IHandler;
 import com.aspirecn.corpsocial.common.eventbus.Null;
 import com.aspirecn.corpsocial.common.util.BitmapUtil;
-import com.aspirecn.corpsocial.common.util.HttpRequest;
 import com.aspirecn.corpsocial.common.util.LogUtil;
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;

@@ -1,15 +1,11 @@
-package com.aspirecn.corpsocial.common.util;
+package com.aspirecn.corpsocial.bundle.net;
 
-import com.aspirecn.corpsocial.bundle.net.HttpCallBack;
-import com.aspirecn.corpsocial.bundle.net.HttpReq;
-import com.aspirecn.corpsocial.bundle.net.ReqParameter;
 import com.aspirecn.corpsocial.common.config.PropertyInfo;
 
 import java.io.File;
-import java.util.List;
 
 /**
- * Created by yinghuihong on 15/7/9.
+ * Created by duyz on 15/7/9.
  */
 public class HttpRequest {
 
