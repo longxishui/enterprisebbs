@@ -105,7 +105,7 @@ public class BaseBBSFragment extends EventFragment implements
             BBSReplyEvent bbsReplyEvent = new BBSReplyEvent();
             bbsReplyEvent.setGroupId(bbsItem.getBbsItemEntity().getGroupId());
             bbsReplyEvent.setReplyType(ReplyType.PRAISE);
-            bbsReplyEvent.setItemId(bbsItem.getBbsItemEntity().getId());
+            bbsReplyEvent.setItemId(bbsItem.getBbsItemEntity().getItemId());
             UiEventHandleFacade.getInstance().handle(bbsReplyEvent);
             isPraising = true;
         }
@@ -289,28 +289,21 @@ public class BaseBBSFragment extends EventFragment implements
             return;
         }
         for (BBSItem bbsItem : listData) {
-            if (bbsReplyRespEvent.getBbsId().equals(bbsItem.getBbsItemEntity().getId())) {
+            if (bbsReplyRespEvent.getBbsId().equals(bbsItem.getBbsItemEntity().getItemId())) {
                 if (bbsReplyRespEvent.getType() == ReplyType.PRAISE) {
-                    List<String> praiseUserIds = bbsItem.getPraiseUseridList();
-                    String userID = Config.getInstance().getUserId();
-                    if (praiseUserIds
-                            .contains(Config.getInstance().getUserId())) {
-                        praiseUserIds.remove(userID);
+                    if (bbsItem.getBbsItemEntity().getIsPraised().equals("1")) {
+                        bbsItem.getBbsItemEntity().setIsPraised("0");
+                        bbsItem.getBbsItemEntity().setPraiseTimes((Integer.valueOf(bbsItem.getBbsItemEntity().getPraiseTimes())-1)+"");
                     } else {
-                        praiseUserIds.add(userID);
+                        bbsItem.getBbsItemEntity().setIsPraised("1");
+                        bbsItem.getBbsItemEntity().setPraiseTimes((Integer.valueOf(bbsItem.getBbsItemEntity().getPraiseTimes())+1)+"");
                     }
-                    String listUserIds = "";
-                    for (String userId : praiseUserIds) {
-                        listUserIds += userId + "-";
-                    }
-                    bbsItem.getBbsItemEntity().setPraiseTimes(praiseUserIds.size() + "");
-                    itemDao.updatePraiseUserIds(bbsItem.getBbsItemEntity().getId(), listUserIds,
-                            praiseUserIds.size() + "");
+                    itemDao.updatePraiseUserIds(bbsItem.getBbsItemEntity().getItemId(), bbsItem.getBbsItemEntity().getPraiseTimes()+"",bbsItem.getBbsItemEntity().getIsPraised());
                 } else {
                     String replyTimes = (Integer.valueOf(bbsItem.getBbsItemEntity()
                             .getReplyTimes()) + 1) + "";
                     bbsItem.getBbsItemEntity().setReplyTimes(replyTimes);
-                    itemDao.updateReplyTimes(bbsItem.getBbsItemEntity().getId(), replyTimes);
+                    itemDao.updateReplyTimes(bbsItem.getBbsItemEntity().getItemId(), replyTimes);
                 }
                 isPraising = false;
                 pullAdapter.notifyDataSetChanged();
@@ -325,7 +318,7 @@ public class BaseBBSFragment extends EventFragment implements
         if (bbsDeleteRespEvent.getGroupId().equals(groupId)
                 || bbsDeleteRespEvent.getErrorCode() == ErrorCode.SUCCESS.getValue()) {
             for (BBSItem bbsitem : listData) {
-                if (bbsDeleteRespEvent.getBbsItemId().equals(bbsitem.getBbsItemEntity().getId())) {
+                if (bbsDeleteRespEvent.getBbsItemId().equals(bbsitem.getBbsItemEntity().getItemId())) {
                     if (bbsDeleteRespEvent.getDeleteType() == DeleteType.ITEM) {
                         listData.remove(bbsitem);
                     } else {
@@ -356,7 +349,7 @@ public class BaseBBSFragment extends EventFragment implements
         // TODO Auto-generated method stub
         if (event.getErrorCode() == ErrorCode.OTHER_ERROR.getValue()) {
             for (BBSItem bbsitem : listData) {
-                if (event.getBbsId().equals(bbsitem.getBbsItemEntity().getId())) {
+                if (event.getBbsId().equals(bbsitem.getBbsItemEntity().getItemId())) {
                     listData.remove(bbsitem);
                     notifyAdapterChange();
                     break;
@@ -364,7 +357,7 @@ public class BaseBBSFragment extends EventFragment implements
             }
         } else if (event.getErrorCode() == ErrorCode.SUCCESS.getValue()) {
             for (BBSItem bbsitem : listData) {
-                if (event.getBbsId().equals(bbsitem.getBbsItemEntity().getId())) {
+                if (event.getBbsId().equals(bbsitem.getBbsItemEntity().getItemId())) {
                     bbsitem.getBbsItemEntity().setPraiseTimes(event.getPraiseInfos().size() + "");
                     bbsitem.getBbsItemEntity().setReplyTimes(event.getBbsReplyInfoEntities().size() + "");
                     notifyAdapterChange();

@@ -137,19 +137,15 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
                             .getErrorCode()) {
                         TitleViewHolder titleViewHolder = (TitleViewHolder) headView
                                 .getTag();
-                        ArrayList<String> praiseUserIds = bbsItem
-                                .getPraiseUseridList();
-                        String userID = Config.getInstance().getUserId();
-                        if (praiseUserIds
-                                .contains(Config.getInstance().getUserId())) {
-                            praiseUserIds.remove(userID);
+                        if (bbsItem.getBbsItemEntity().getIsPraised().equals("1")) {
+                            bbsItem.getBbsItemEntity().setIsPraised("0");
                             bbsItem.getBbsItemEntity().setPraiseTimes((Integer.valueOf(bbsItem.getBbsItemEntity()
                                     .getPraiseTimes()) - 1) + "");
                             titleViewHolder.praiseIV.setBackgroundResource(R.drawable.workgrp_nopraise_icon2);
                         } else {
                             bbsItem.getBbsItemEntity().setPraiseTimes((Integer.valueOf(bbsItem.getBbsItemEntity()
                                     .getPraiseTimes()) + 1) + "");
-                            praiseUserIds.add(userID);
+                            bbsItem.getBbsItemEntity().setIsPraised("1");
                             titleViewHolder.praiseIV.setBackgroundResource(R.drawable.workgrp_praised_icon2);
                         }
                             titleViewHolder.praisesInfo
@@ -187,7 +183,7 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
     void doDetailBBSPraise() {
         BBSReplyEvent bbsReplyEvent = new BBSReplyEvent();
         bbsReplyEvent.setReplyType(ReplyType.PRAISE);
-        bbsReplyEvent.setItemId(bbsItem.getBbsItemEntity().getId());
+        bbsReplyEvent.setItemId(bbsItem.getBbsItemEntity().getItemId());
         bbsReplyEvent.setGroupId(bbsItem.getBbsItemEntity().getGroupId());
         uiEventHandleFacade.handle(bbsReplyEvent);
     }
@@ -217,7 +213,7 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
             finish();
         }
         replyInfoDao = new BBSReplyInfoDao();
-        replyInfoEntitys = replyInfoDao.findAllReplyInfos(bbsItem.getBbsItemEntity().getId());
+        replyInfoEntitys = replyInfoDao.findAllReplyInfos(bbsItem.getBbsItemEntity().getItemId());
         replyListAdapter = new WorkgrpReplyListAdapter(this, replyInfoEntitys,
                bbsItem,new View.OnClickListener() {
             @Override
@@ -266,7 +262,7 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
     void doBBSReply(String inputText) {
         BBSReplyEvent bbsReplyEvent = new BBSReplyEvent();
         bbsReplyEvent.setReplyType(ReplyType.REPLY);
-        bbsReplyEvent.setItemId(bbsItem.getBbsItemEntity().getId());
+        bbsReplyEvent.setItemId(bbsItem.getBbsItemEntity().getItemId());
         bbsReplyEvent.setContent(inputText);
         bbsReplyEvent.setGroupId(bbsItem.getBbsItemEntity().getGroupId());
         bbsReplyEvent.setHasPic(false);
@@ -276,7 +272,7 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
     @Background
     void doGetBBSDetail() {
         GetBBSDetailEvent getBBSDetailEvent = new GetBBSDetailEvent();
-        getBBSDetailEvent.setBbsId(bbsItem.getBbsItemEntity().getId());
+        getBBSDetailEvent.setBbsId(bbsItem.getBbsItemEntity().getItemId());
         getBBSDetailEvent.setDetailType(DetailType.ALL);
         getBBSDetailEvent.setLimit(100);
         getBBSDetailEvent.setStartPos(0);
@@ -330,7 +326,6 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
     @UiThread
     @Override
     public void onHandleGetBBSDetailRespEvent(GetBBSDetailRespEvent event) {
-        Log.e("WorkGrpBBSDetailActivity","触发获取详情监听");
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
@@ -354,7 +349,6 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
             for (String praiseInfo : mPraiseInfos) {
                 praiseUserIds.add(praiseInfo);
             }
-            bbsItem.setPraiseUseridList(praiseUserIds);
             titleViewHolder.praisesInfo
                     .setText("赞 "+mPraiseInfos.size());
         } else {
@@ -436,7 +430,7 @@ public class WorkGrpBBSDetailActivity extends EventFragmentActivity implements
                     Intent mIntent = new Intent(
                             WorkGrpBBSDetailActivity.this,
                             com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpNewBBSActivity_.class);
-                    mIntent.putExtra("itemid", bbsItem.getBbsItemEntity().getId());
+                    mIntent.putExtra("itemid", bbsItem.getBbsItemEntity().getItemId());
                     startActivity(mIntent);
                 }
             }).apply();

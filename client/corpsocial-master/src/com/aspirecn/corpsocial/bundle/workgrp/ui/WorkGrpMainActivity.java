@@ -17,11 +17,11 @@ import com.aspirecn.corpsocial.bundle.common.event.GetCorpViewDefRespEvent;
 import com.aspirecn.corpsocial.bundle.common.listener.GetCorpViewDefRespSubject;
 import com.aspirecn.corpsocial.bundle.common.ui.fragment.ActionBarFragment;
 import com.aspirecn.corpsocial.bundle.common.ui.fragment.ActionBarFragment_;
-import com.aspirecn.corpsocial.bundle.workgrp.domain.BBSGroup;
 import com.aspirecn.corpsocial.bundle.workgrp.event.GetBBSGroupEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.event.GetBBSGroupRespEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.listener.GetBBSGroupRespSubject.GetBBSGroupRespEventListener;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.BBSGroupDao;
+import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.BBSGroupEntity;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.fragment.BaseBBSFragment;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.fragment.BaseBBSFragment_;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.fragment.FragmentViewPagerAdapter;
@@ -48,7 +48,7 @@ import java.util.List;
 @EActivity(R.layout.workgrp_main_tab_activity)
 public class WorkGrpMainActivity extends EventFragmentActivity implements
         GetBBSGroupRespEventListener, ActionBarFragment.LifeCycleListener, GetCorpViewDefRespSubject.GetCorpViewDefRespListener, Animation.AnimationListener {
-    public ArrayList<BBSGroup> bbsGroups = null;
+    public List<BBSGroupEntity> bbsGroups = null;
     List<TabEntity> listTabEntity = new ArrayList<TabEntity>();
     @ViewById(R.id.workgrp_title_tabid)
     ScrollableTabView tabView;
@@ -79,7 +79,6 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
     /**
      * viewPager的适配器
      */
-//	private FragmentViewPagerAdapter adapter;
     private String groupId = null;
     private String corpId = Config.getInstance().getCorpId();
     private BBSGroupDao groupDao = null;
@@ -110,12 +109,16 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
                 .getErrcode()) {
             if (getBBSGroupRespEvent.isChange()) {
                 initWithLocalData();
+                if (getBBSGroupRespEvent.getBbsGroups() == null || getBBSGroupRespEvent.getBbsGroups().size() == 0) {
+                    mLL_noGroup.setVisibility(View.VISIBLE);
+                }
             } else {
                 return;
             }
-        }
-        if (getBBSGroupRespEvent.getBbsGroups() == null || getBBSGroupRespEvent.getBbsGroups().size() == 0) {
-            mLL_noGroup.setVisibility(View.VISIBLE);
+        }else{
+            if (bbsGroups == null || bbsGroups.size() == 0) {
+                mLL_noGroup.setVisibility(View.VISIBLE);
+            }
         }
         if (loadingView.getVisibility() == View.VISIBLE) {
             loadingView.setVisibility(View.GONE);
@@ -129,9 +132,9 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
         boolean flag = true;
         if (bbsGroups.size() > 0) {
             mLL_noGroup.setVisibility(View.GONE);
-            for (final BBSGroup mGroup : bbsGroups) {
+            for (final BBSGroupEntity mGroup : bbsGroups) {
                 Bundle arguments = new Bundle();
-                arguments.putString("groupid", mGroup.getBbsGroupEntity().getId());
+                arguments.putString("groupid", mGroup.getBbsGroupId());
                 if (flag) {
                     arguments.putBoolean("isFirstTab", true);
                     flag = false;
@@ -142,17 +145,17 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
                 bbsFragment.setArguments(arguments);
                 fragments.add(bbsFragment);
                 TabEntity tabEntity = new TabEntity();
-                tabEntity.setName(mGroup.getBbsGroupEntity().getName());
+                tabEntity.setName(mGroup.getName());
                 tabEntity.setNotifyNum(0);
                 listTabEntity.add(tabEntity);
             }
-            groupId = bbsGroups.get(0).getBbsGroupEntity().getId();
+            groupId = bbsGroups.get(0).getBbsGroupId();
             FragmentViewPagerAdapter fragmentViewPagerAdapter = new FragmentViewPagerAdapter(getSupportFragmentManager(), mViewPager, fragments);
             fragmentViewPagerAdapter.setOnExtraPageChangeListener(new FragmentViewPagerAdapter.OnExtraPageChangeListener() {
                 @Override
                 public void onExtraPageSelected(int position) {
                     tabView.updateTabView(position);
-                    groupId = bbsGroups.get(position).getBbsGroupEntity().getId();
+                    groupId = bbsGroups.get(position).getBbsGroupId();
                     super.onExtraPageSelected(position);
                 }
             });
@@ -162,9 +165,11 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
                     mViewPager.setCurrentItem(position, true);
                 }
             }, listTabEntity);
-        }
-        if (bbsGroups != null && bbsGroups.size() > 0&&!isCreate) {
-            doGetBBSGroup();
+            if(!isCreate){
+                doGetBBSGroup();
+            }
+        }else{
+            mLL_noGroup.setVisibility(View.VISIBLE);
         }
     }
     private boolean mIsTitleHide = false;
@@ -263,6 +268,5 @@ public class WorkGrpMainActivity extends EventFragmentActivity implements
 
     @Override
     public void onAnimationRepeat(Animation animation) {
-
     }
 }

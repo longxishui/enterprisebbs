@@ -41,7 +41,7 @@ public class WorkgrpBBSPraiseListActivity extends EventFragmentActivity {
     @Click({R.id.workgrp_praiselist_titleid})
     void toDetail() {
         Intent intent = new Intent(this, WorkGrpBBSDetailActivity_.class);
-        intent.putExtra("bbsid", bbsItem.getBbsItemEntity().getId());
+        intent.putExtra("bbsid", bbsItem.getBbsItemEntity().getItemId());
         startActivity(intent);
     }
 
@@ -58,18 +58,18 @@ public class WorkgrpBBSPraiseListActivity extends EventFragmentActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.layout_actionbar, fab).commit();
         praiselistTitle.setText(bbsItem.getBbsItemEntity().getTitle());
         final ArrayList<KeyValue> pUserNames = new ArrayList<KeyValue>();
-        List<User> contactVO = getcontactVO(bbsItem.getPraiseUseridList());
-        if (contactVO != null && contactVO.size() > 0) {
-            for (User cb : contactVO) {
-                pUserNames.add(new KeyValue(cb.getUserid(), cb.getName()));
-            }
-        } else {
-            if (Integer.valueOf(bbsItem.getBbsItemEntity().getPraiseTimes()) > 0) {
-                for (String userid : bbsItem.getPraiseUseridList()) {
-                    pUserNames.add(new KeyValue(userid, userid));
-                }
-            }
-        }
+//        List<User> contactVO = getcontactVO(bbsItem.getPraiseUseridList());
+//        if (contactVO != null && contactVO.size() > 0) {
+//            for (User cb : contactVO) {
+//                pUserNames.add(new KeyValue(cb.getUserid(), cb.getName()));
+//            }
+//        } else {
+//            if (Integer.valueOf(bbsItem.getBbsItemEntity().getPraiseTimes()) > 0) {
+//                for (String userid : bbsItem.getPraiseUseridList()) {
+//                    pUserNames.add(new KeyValue(userid, userid));
+//                }
+//            }
+//        }
         BBSPraiseListAdapter adapter = new BBSPraiseListAdapter(this, pUserNames);
         praisesListView.setAdapter(adapter);
         praisesListView.setOnItemClickListener(new OnItemClickListener() {

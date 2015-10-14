@@ -208,7 +208,7 @@ public class BBSUtil {
 
     public static void goBBSPraiseListActivity(Context mContext, BBSItem bbsItem) {
         Intent mIntent = new Intent(mContext, com.aspirecn.corpsocial.bundle.workgrp.ui.WorkgrpBBSPraiseListActivity_.class);
-        mIntent.putExtra("bbsId", bbsItem.getBbsItemEntity().getId());
+        mIntent.putExtra("bbsId", bbsItem.getBbsItemEntity().getItemId());
         mContext.startActivity(mIntent);
     }
 

@@ -104,6 +104,7 @@ public class Config {
     /**
      * at的消息提醒标记
      */
+    private final String BBSGROUP_LASTMODIFYTIME = "bbsgrooup_lastmodifytime";
     private final String AT_MSG = "at_msg";
 
     private Editor editor = null;
@@ -632,6 +633,22 @@ public class Config {
      */
     public void setAtMsg(boolean msg) {
         editor.putBoolean(AT_MSG, msg);
+        editor.commit();
+    }
+    /**
+     *
+     * @return
+     */
+    public long getBBSGroupLastModifyTime() {
+        return sp.getLong(BBSGROUP_LASTMODIFYTIME, 0l);
+    }
+
+    /**
+     *设置BBSGROUP最后更新时间
+     * @param lastModifyTime
+     */
+    public void setBBSGroupLastModifyTime(long lastModifyTime) {
+        editor.putLong(BBSGROUP_LASTMODIFYTIME, lastModifyTime);
         editor.commit();
     }
 }

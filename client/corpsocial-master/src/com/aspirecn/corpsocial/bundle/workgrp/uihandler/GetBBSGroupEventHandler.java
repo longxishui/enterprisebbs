@@ -6,6 +6,7 @@ import com.aspirecn.corpsocial.bundle.workgrp.event.GetBBSGroupEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.event.GetBBSGroupRespEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.BBSGroupDao;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.BBSGroupEntity;
+import com.aspirecn.corpsocial.bundle.workgrp.util.BBSGroupNet;
 import com.aspirecn.corpsocial.bundle.workgrp.util.HttpMessage;
 import com.aspirecn.corpsocial.bundle.workgrp.util.WorkgrpConfig;
 import com.aspirecn.corpsocial.common.config.Config;
@@ -18,12 +19,6 @@ import com.aspirecn.corpsocial.common.eventbus.Null;
 import com.aspirecn.corpsocial.common.util.LogUtil;
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
 @UIEventHandler(eventType = GetBBSGroupEvent.class)
 public class GetBBSGroupEventHandler implements IHandler<Null, GetBBSGroupEvent> {
 
@@ -32,7 +27,7 @@ public class GetBBSGroupEventHandler implements IHandler<Null, GetBBSGroupEvent>
 
     @Override
     public Null handle(final GetBBSGroupEvent getGroupListEvent) {
-        LogUtil.i("bbsGroupHandler开始请求");
+        LogUtil.i("bbsGroupHandler开始请求数据："+getGroupListEvent.getJson());
         if (getGroupListEvent.getCorpId() == null) {
             getGroupListEvent.setCorpId(ConfigPersonal.getString(ConfigPersonal.Key.CORP_ID_SELECTED));
         }
@@ -50,6 +45,7 @@ public class GetBBSGroupEventHandler implements IHandler<Null, GetBBSGroupEvent>
                         getBBSGroupRespEvent.setErrcode(ErrorCode.NETWORK_FAILED.getValue());
                     }
                 } else {
+                    getBBSGroupRespEvent.setChange(false);
                     getBBSGroupRespEvent.setErrcode(errorCode);
                 }
                 instance.notifyListener(getBBSGroupRespEvent);
@@ -61,30 +57,21 @@ public class GetBBSGroupEventHandler implements IHandler<Null, GetBBSGroupEvent>
 
     private GetBBSGroupRespEvent handleRespData(String jsonString, String corpId) {
         GetBBSGroupRespEvent bbsGroupRespEvent = new GetBBSGroupRespEvent();
-        bbsGroupRespEvent.setChange(false);
         LogUtil.i("获取bbsgroup:" + jsonString);
-        try {
-            JSONObject jsonRoot = new JSONObject(jsonString);
-            JSONArray jsonGroupList = jsonRoot.getJSONArray("list");
-            ArrayList<BBSGroupEntity> mBbsGroups = new ArrayList<BBSGroupEntity>();
-            BBSGroupDao bbsGroupDao = new BBSGroupDao();
-            BBSGroupEntity entity = null;
-            bbsGroupDao.clearAllData(corpId);
-
-            for (int j = 0; j < jsonGroupList.length(); j++) {
-                String jsonGroupItem = jsonGroupList.getString(j);
-                entity = new Gson().fromJson(jsonGroupItem,BBSGroupEntity.class);
-                bbsGroupDao.insertEntity(entity);
-                mBbsGroups.add(entity);
+        BBSGroupNet bbsGroupNet = new Gson().fromJson(jsonString,BBSGroupNet.class);
+        BBSGroupDao bbsGroupDao = new BBSGroupDao();
+        Config.getInstance().setBBSGroupLastModifyTime(bbsGroupNet.lastModifiedTime);
+        if(bbsGroupNet.list.size()==0){
+            bbsGroupRespEvent.setChange(false);
+            bbsGroupRespEvent.setErrcode(ErrorCode.SUCCESS.getValue());
+        }else {
+            for (BBSGroupEntity bbsGroupEntity : bbsGroupNet.list) {
+                bbsGroupDao.insertEntity(bbsGroupEntity);
             }
-            bbsGroupRespEvent.setBbsGroups(mBbsGroups);
+            bbsGroupRespEvent.setBbsGroups(bbsGroupNet.list);
             bbsGroupRespEvent.setChange(true);
             bbsGroupRespEvent.setErrcode(ErrorCode.SUCCESS.getValue());
-        } catch (Exception e) {
-            bbsGroupRespEvent.setChange(false);
-            e.printStackTrace();
         }
         return bbsGroupRespEvent;
     }
-
 }

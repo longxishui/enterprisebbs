@@ -88,30 +88,15 @@ public class GetBBSListEventHandler implements IHandler<Null, GetBBSListEvent> {
                String jsonItemString = jsonListItem.getString(i);
                 BBSItem mBbsItem = new BBSItem();
                     bbsItemEntity = new Gson().fromJson(jsonItemString,BBSItemEntity.class);
-                bbsItemEntity.setFileInfo(new Gson().toJson(bbsItemEntity.getFileInfoData()));
+                bbsItemEntity.setFileInfoString(new Gson().toJson(bbsItemEntity.getFileInfo()));
                 bbsItemEntity.setUserid(Config.getInstance().getUserId());
                 bbsItemEntity.setCorpId(Config.getInstance().getCorpId());
                 if(bbsItemEntity.getStatus().equals("0")){
-                    JSONObject jsonDetail = jsonItem.getJSONObject("detail");
-                    JSONArray jsonPraiseList = jsonDetail.getJSONArray("praiseInfos");
-                    ArrayList<String> praiseList = new ArrayList<String>();
-                    StringBuffer sb = new StringBuffer();
-                    int len = jsonPraiseList.length();
-                    for (int m = 0; m < len; m++) {
-                        JSONObject jsonPraiseItem = jsonPraiseList.getJSONObject(m);
-                        String praiseId = jsonPraiseItem.getString("userid");
-                        sb.append(praiseId);
-                        praiseList.add(praiseId);
-                        if (m != (len - 1)) {
-                            sb.append("-");
-                        }
-                    }
-                    bbsItemEntity.setPraiseUserIds(sb.toString());
                     mBbsItem.setBbsItemEntity(bbsItemEntity);
                     mBbsItems.add(mBbsItem);
                     itemDao.insertEntity(bbsItemEntity);
                 } else {
-                    itemDao.deteleById(bbsItemEntity.getId());
+                    itemDao.deteleById(bbsItemEntity.getItemId());
                 }
             }
             getBBSListRespEvent.setBbsItems(mBbsItems);

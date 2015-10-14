@@ -1,14 +1,12 @@
 package com.aspirecn.corpsocial.bundle.workgrp.repository;
 
-import com.aspirecn.corpsocial.bundle.workgrp.domain.BBSGroup;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.BBSGroupEntity;
 import com.aspirecn.corpsocial.common.config.Config;
 import com.aspirecn.corpsocial.common.eventbus.SqliteDao;
+import com.aspirecn.corpsocial.common.util.LogUtil;
 import com.j256.ormlite.stmt.DeleteBuilder;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BBSGroupDao extends SqliteDao<BBSGroupEntity, Integer> {
@@ -24,24 +22,17 @@ public class BBSGroupDao extends SqliteDao<BBSGroupEntity, Integer> {
         return res;
     }
 
-    public ArrayList<BBSGroup> findAllGroups(String corpId) {
-        ArrayList<BBSGroup> groups = new ArrayList<BBSGroup>();
-        List<BBSGroupEntity> entitys;
+    public List<BBSGroupEntity> findAllGroups(String corpId) {
+        List<BBSGroupEntity> entitys = null;
         try {
-            entitys = dao.queryBuilder().orderByRaw("sortNo").where().eq("belongUserId", Config.getInstance().getUserId()).and().eq("belongCorpId", corpId).query();
-            BBSGroup group = null;
-            for (BBSGroupEntity entity : entitys) {
-                group = new BBSGroup();
-                group.setBbsGroupEntity(entity);
-                String[] admins = entity.getAdminList().split("-");
-                group.setAdmins(new ArrayList<String>(Arrays.asList(admins)));
-                groups.add(group);
-            }
+//            entitys = dao.queryBuilder().orderByRaw("sortNo").where().eq("belongUserId", Config.getInstance().getUserId()).and().eq("belongCorpId", corpId).query();
+            entitys = dao.queryBuilder().orderByRaw("sortNo").query();
+            LogUtil.i("得到的BBS_GROUP为"+entitys.size());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return groups;
+        return entitys;
     }
 
     public BBSGroupEntity findByGroupId(String groupId) {

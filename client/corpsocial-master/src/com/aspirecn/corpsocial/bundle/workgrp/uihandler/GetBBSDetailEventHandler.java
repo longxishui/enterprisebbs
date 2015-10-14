@@ -72,7 +72,7 @@ public class GetBBSDetailEventHandler implements
         GetBBSDetailRespEvent respEvent = new GetBBSDetailRespEvent();
         BBSItemDao itemDao = new BBSItemDao();
         BBSItemEntity bbsItemEntity = new Gson().fromJson(resultData,BBSItemEntity.class);
-        bbsItemEntity.setFileInfo(new Gson().toJson(bbsItemEntity.getFileInfoData()));
+        bbsItemEntity.setFileInfoString(new Gson().toJson(bbsItemEntity.getFileInfo()));
         bbsItemEntity.setUserid(Config.getInstance().getUserId());
         bbsItemEntity.setGroupId(Config.getInstance().getCorpId());
         try {
@@ -83,28 +83,12 @@ public class GetBBSDetailEventHandler implements
             replyInfoDao.detele(listBBSReplyInfoEntities);
             if (jsonItem.get("status").equals("0")) {
                 respEvent.setErrorCode(ErrorCode.SUCCESS.getValue());
-                JSONObject jsonDetail = jsonItem.getJSONObject("detail");
-                JSONArray jsonPraiseList = jsonDetail.getJSONArray("praiseInfos");
-                ArrayList<String> praiseList = new ArrayList<String>();
-                StringBuffer sb = new StringBuffer();
-                int len = jsonPraiseList.length();
-                for (int m = 0; m < len; m++) {
-                    JSONObject jsonPraiseItem = jsonPraiseList.getJSONObject(m);
-                    String praiseId = jsonPraiseItem.getString("userid");
-                    sb.append(praiseId);
-                    praiseList.add(praiseId);
-                    if (m != (len - 1)) {
-                        sb.append("-");
-                    }
-                }
-                bbsItemEntity.setPraiseUserIds(sb.toString());
-                Log.e("GetBBSDetailEventHandler","获得的bbbsItemEntity的id为："+bbsItemEntity.getStatus()+bbsItemEntity.getGroupId());
 //                itemDao.deteleById(bbsItemEntity.getId());
 //                BBSItemEntity dbBBSItemEntity = itemDao.findById(bbsItemEntity.getId());
 
 //                itemDao.insert(bbsItemEntity);
                 itemDao.insertEntity(bbsItemEntity);
-                JSONArray jsonReplyList = jsonDetail.getJSONArray("replyInfos");
+                JSONArray jsonReplyList = jsonItem.getJSONArray("bbsReplyInfoDatas");
                 List<BBSReplyInfoEntity> bbsReplyInfoEntityList = new ArrayList<BBSReplyInfoEntity>();
                 for (int j = 0; j < jsonReplyList.length(); j++) {
                     String jsonReplyItemString = jsonReplyList.getString(j);
@@ -112,15 +96,13 @@ public class GetBBSDetailEventHandler implements
                     bbsReplyInfoEntity.setFileInfo(new Gson().toJson(bbsReplyInfoEntity.getFileInfoData()));
                     bbsReplyInfoEntity.setCorpId(Config.getInstance().getCorpId());
                     bbsReplyInfoEntity.setUserid(Config.getInstance().getUserId());
-                    bbsReplyInfoEntity.setItemId(bbsItemEntity.getId());
+                    bbsReplyInfoEntity.setItemId(bbsItemEntity.getItemId());
                     replyInfoDao.insertEntity(bbsReplyInfoEntity);
                     bbsReplyInfoEntityList.add(bbsReplyInfoEntity);
                 }
                 respEvent.setBbsReplyInfoEntities(bbsReplyInfoEntityList);
-                respEvent.setPraiseInfos(praiseList);
             } else {
                 /** 表示帖子已删除 */
-                Log.e("GetBBBSDetailEventHandler","帖子已删除");
                 respEvent.setErrorCode(ErrorCode.OTHER_ERROR.getValue());
                 itemDao.detele(bbsItemEntity);
             }

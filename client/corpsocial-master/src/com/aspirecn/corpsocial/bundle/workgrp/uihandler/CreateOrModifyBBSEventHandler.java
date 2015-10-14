@@ -69,7 +69,7 @@ public class CreateOrModifyBBSEventHandler implements
                                 fileInfoEntity.setUrl(args.getPath());
                                 fileInfoEntity.setUserid(Config.getInstance().getUserId());
                                 fileInfoEntity.setId(args.getItemId());
-                                bbsItemEntity.setFileInfo(new Gson().toJson(fileInfoEntity));
+                                bbsItemEntity.setFileInfoString(new Gson().toJson(fileInfoEntity));
                                 bbsItemDao.update(bbsItemEntity);
                                 createOrModifyBBSRespEvent.setFileInfoEntity(fileInfoEntity);
                             }

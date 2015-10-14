@@ -28,6 +28,10 @@ public class FileInfoEntity implements Serializable {
     private String orginalUrl;
     @DatabaseField
     private long orginalLength;
+    @DatabaseField
+    private String imgSize;
+    @DatabaseField
+    private String orginalImgSize;
     /**
      * 用户的 id
      */

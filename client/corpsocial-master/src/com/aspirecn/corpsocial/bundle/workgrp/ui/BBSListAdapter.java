@@ -13,8 +13,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aspirecn.corpsocial.bundle.addrbook.domain.User;
@@ -23,13 +21,11 @@ import com.aspirecn.corpsocial.bundle.addrbook.repository.UserDao;
 import com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookGroupChoose_;
 import com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookPersonalParticularsActivity_;
 import com.aspirecn.corpsocial.bundle.workgrp.domain.BBSItem;
-import com.aspirecn.corpsocial.bundle.workgrp.domain.KeyValue;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.FileInfoEntity;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.fragment.ShareDialog;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.widget.BBSDialog;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.widget.BBSUtil;
 import com.aspirecn.corpsocial.common.config.Config;
-import com.aspirecn.corpsocial.common.config.SysInfo;
 import com.aspirecn.corpsocial.common.eventbus.OsgiServiceLoader;
 import com.aspirecn.corpsocial.common.util.DateUtils;
 import com.aspirecn.corpsocial.common.util.FaceConversionUtil;
@@ -117,7 +113,7 @@ public class BBSListAdapter extends BaseAdapter {
                 Intent mIntent = new Intent(context,
                         com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpBBSDetailActivity_.class);
 
-                mIntent.putExtra("bbsid", bbsItem.getBbsItemEntity().getId());
+                mIntent.putExtra("bbsid", bbsItem.getBbsItemEntity().getItemId());
                 context.startActivity(mIntent);
             }
         });
@@ -135,7 +131,7 @@ public class BBSListAdapter extends BaseAdapter {
         mHolder.itemshareBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ShareDialog(context,"wxd9e637fe30c9280e",bbsItem.getBbsItemEntity().getContent(),bbsItem.getBbsItemEntity().getTitle(),"",bbsItem.getBbsItemEntity().getId()).show();
+                new ShareDialog(context,"wxd9e637fe30c9280e",bbsItem.getBbsItemEntity().getContent(),bbsItem.getBbsItemEntity().getTitle(),"",bbsItem.getBbsItemEntity().getItemId()).show();
             }
         });
 //        mHolder.itemTitle.setText(bbsItem.getBbsItemEntity().getTitle());
@@ -144,10 +140,10 @@ public class BBSListAdapter extends BaseAdapter {
 //		mHolder.itemTime.setText(BBSUtil.getDistanceTime(bbsItem.getCreateTime()));
         mHolder.itemCreator.setText(bbsItem.getBbsItemEntity().getCreatorName());
 
-        FileInfoEntity fileInfoEntity = bbsItem.getFileInfoEntity();
-        if (fileInfoEntity != null) {
+        List<FileInfoEntity> fileInfoEntity = bbsItem.getFileInfoList();
+        if (fileInfoEntity != null&&fileInfoEntity.size()>0) {
 //            mHolder.itemPicture.setImageResource(R.drawable.component_noimg_small);
-            String imageUrl = fileInfoEntity.getUrl();
+            String imageUrl = fileInfoEntity.get(0).getUrl();
             if (imageUrl != null && !imageUrl.trim().isEmpty()) {
                 mHolder.itemPicture.setVisibility(View.VISIBLE);
                 if (imageUrl.startsWith(Environment.getExternalStorageDirectory().getAbsolutePath())) {
@@ -177,10 +173,9 @@ public class BBSListAdapter extends BaseAdapter {
             mHolder.itemReplyBtnText.setText("评论 0");
         }
 
-        ArrayList<String> praiseUserIds = bbsItem.getPraiseUseridList();
         if (Integer.valueOf(bbsItem.getBbsItemEntity().getPraiseTimes()) > 0) {
             mHolder.itemPraiseBtnViewText.setText("赞 "+bbsItem.getBbsItemEntity().getPraiseTimes());
-            if (praiseUserIds!=null&&praiseUserIds.contains(Config.getInstance().getUserId())) {
+            if (bbsItem.getBbsItemEntity().getIsPraised().equals("1")) {
                 mHolder.itemPraiseBtnViewImage.setBackgroundResource(R.drawable.workgrp_praised_icon2);
             } else {
                 mHolder.itemPraiseBtnViewImage.setBackgroundResource(R.drawable.workgrp_nopraise_icon2);
@@ -221,7 +216,7 @@ public class BBSListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent mIntent = new Intent(context,
                         com.aspirecn.corpsocial.bundle.workgrp.ui.WorkGrpBBSDetailActivity_.class);
-                mIntent.putExtra("bbsid", bbsItem.getBbsItemEntity().getId());
+                mIntent.putExtra("bbsid", bbsItem.getBbsItemEntity().getItemId());
                 mIntent.putExtra("open", true);
                 context.startActivity(mIntent);
             }

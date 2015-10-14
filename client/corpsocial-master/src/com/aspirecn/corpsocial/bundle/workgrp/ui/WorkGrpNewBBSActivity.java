@@ -231,9 +231,9 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
             titleEt.setText(item.getBbsItemEntity().getTitle());
             contentEt.setText(FaceConversionUtil.getInstace()
                     .getExpressionString(this, item.getBbsItemEntity().getContent()));
-            if (item.getFileInfoEntity() != null
-                    && item.getFileInfoEntity().getUrl() != null) {
-                String imageUrl = item.getFileInfoEntity().getUrl();
+            if (item.getFileInfoList() != null
+                    && item.getFileInfoList().get(0).getUrl() != null) {
+                String imageUrl = item.getFileInfoList().get(0).getUrl();
                 if (imageUrl.startsWith(Environment
                         .getExternalStorageDirectory().getAbsolutePath())) {
                     resultImageView.setImageDrawable(BBSUtil
@@ -242,9 +242,9 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
                 } else {
 //					ImageDownloadUtil.INSTANCE.showImage(item.getFileInfo()
 //							.getUrl(), "bbs", resultImageView);
-                    ImageLoader.getInstance().displayImage(item.getFileInfoEntity().getUrl(), resultImageView);
+                    ImageLoader.getInstance().displayImage(item.getFileInfoList().get(0).getUrl(), resultImageView);
                     try {
-                        picturePath = ImageLoader.getInstance().getDiskCache().get(item.getFileInfoEntity().getUrl()).getAbsolutePath();
+                        picturePath = ImageLoader.getInstance().getDiskCache().get(item.getFileInfoList().get(0).getUrl()).getAbsolutePath();
                     } catch (Exception e) {
                         picturePath = imageUrl;
                         e.printStackTrace();

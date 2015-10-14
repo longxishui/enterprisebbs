@@ -7,6 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.List;
 
 @DatabaseTable(tableName = "bbs_item")
 public class BBSItemEntity implements Serializable {
@@ -17,7 +18,7 @@ public class BBSItemEntity implements Serializable {
     private static final long serialVersionUID = -2910040198870956879L;
 
     @DatabaseField(id = true, unique = true)
-    private String id;
+    private String itemId;
     @DatabaseField
     private String groupId;
     @DatabaseField
@@ -35,7 +36,7 @@ public class BBSItemEntity implements Serializable {
     @DatabaseField
     private long createTime;
     @DatabaseField
-    private String praiseUserIds;
+    private String creatorHeadImg;
     @DatabaseField
     private long lastModifiedTime;
     /**
@@ -47,13 +48,15 @@ public class BBSItemEntity implements Serializable {
     private String corpId;
     /** 帖子的图片的json数据 */
     @DatabaseField
-    private String fileInfo;
+    private String fileInfoString;
     @DatabaseField
     private boolean hasPic;
     @DatabaseField
     private String status;
+    @DatabaseField
+    private String isPraised;
 
-    private FileInfoEntity fileInfoData;
+    private List<FileInfoEntity> fileInfo;
     public BBSItemEntity() {
         super();
     }
@@ -63,7 +66,7 @@ public class BBSItemEntity implements Serializable {
                          String praiseTimes, String content, long createTime,
                          String praiseUserIds, long lastModifyTime, String userid) {
         super();
-        this.id = id;
+        this.itemId = id;
         this.groupId = groupId;
         this.title = title;
         this.creatorId = creatorId;
@@ -72,7 +75,6 @@ public class BBSItemEntity implements Serializable {
         this.praiseTimes = praiseTimes;
         this.content = content;
         this.createTime = createTime;
-        this.praiseUserIds = praiseUserIds;
         this.lastModifiedTime = lastModifyTime;
         this.userid = userid;
     }
@@ -83,14 +85,6 @@ public class BBSItemEntity implements Serializable {
 
     public void setCorpId(String corpId) {
         this.corpId = corpId;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getGroupId() {
@@ -157,14 +151,6 @@ public class BBSItemEntity implements Serializable {
         this.createTime = createTime;
     }
 
-    public String getPraiseUserIds() {
-        return praiseUserIds;
-    }
-
-    public void setPraiseUserIds(String praiseUserIds) {
-        this.praiseUserIds = praiseUserIds;
-    }
-
     public String getUserid() {
         return userid;
     }
@@ -179,10 +165,6 @@ public class BBSItemEntity implements Serializable {
 
     public void setLastModifiedTime(long lastModifiedTime) {
         this.lastModifiedTime = lastModifiedTime;
-    }
-
-    public void setFileInfo(String fileInfo) {
-        this.fileInfo = fileInfo;
     }
 
     public boolean isHasPic() {
@@ -200,26 +182,44 @@ public class BBSItemEntity implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-    public String getFileInfo(){
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getCreatorHeadImg() {
+        return creatorHeadImg;
+    }
+
+    public void setCreatorHeadImg(String creatorHeadImg) {
+        this.creatorHeadImg = creatorHeadImg;
+    }
+
+    public String getIsPraised() {
+        return isPraised;
+    }
+
+    public void setIsPraised(String isPraised) {
+        this.isPraised = isPraised;
+    }
+
+    public String getFileInfoString() {
+        return fileInfoString;
+    }
+
+    public void setFileInfoString(String fileInfoString) {
+        this.fileInfoString = fileInfoString;
+    }
+
+    public List<FileInfoEntity> getFileInfo() {
         return fileInfo;
     }
-    public FileInfoEntity getFileInfoData() {
-        return fileInfoData;
-    }
 
-    public void setFileInfoData(FileInfoEntity fileInfoData) {
-        this.fileInfoData = fileInfoData;
+    public void setFileInfo(List<FileInfoEntity> fileInfo) {
+        this.fileInfo = fileInfo;
     }
-
-    @Override
-    public String toString() {
-        return "BBSItemEntity [id=" + id + ", groupId=" + groupId + ", title="
-                + title + ", creatorId=" + creatorId + ", creatorName="
-                + creatorName + ", replyTimes=" + replyTimes + ", praiseTimes="
-                + praiseTimes + ", content=" + content + ", createTime="
-                + createTime + ", praiseUserIds=" + praiseUserIds
-                + ", lastModifiedTime=" + lastModifiedTime + ", userid=" + userid
-                + "]";
-    }
-
 }

@@ -22,7 +22,6 @@ import com.aspirecn.corpsocial.bundle.addrbook.repository.UserDao;
 import com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookGroupChoose_;
 import com.aspirecn.corpsocial.bundle.addrbook.ui.AddrbookPersonalParticularsActivity_;
 import com.aspirecn.corpsocial.bundle.workgrp.domain.BBSItem;
-import com.aspirecn.corpsocial.bundle.workgrp.domain.KeyValue;
 import com.aspirecn.corpsocial.bundle.workgrp.event.BBSDeleteEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.BBSReplyInfoEntity;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.FileInfoEntity;
@@ -135,7 +134,7 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
                             popuWin.dismiss();
                             UiEventHandleFacade.getInstance().handle(new
                                     BBSDeleteEvent(DeleteType.ITEM,
-                                    bbsitem.getBbsItemEntity().getId(), "", bbsitem.getBbsItemEntity().getGroupId()));
+                                    bbsitem.getBbsItemEntity().getItemId(), "", bbsitem.getBbsItemEntity().getGroupId()));
                         }
                     });
             popuWin.setBackgroundDrawable(new ColorDrawable(0));
@@ -361,8 +360,8 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
             titleViewHolder.operationbtnView.setVisibility(View.GONE);
         }
         // TODO 列表界面显示固定宽高的缩略图片，详情界面显示原图，现在只能显示缩略图
-        if (bbsItem.getFileInfoEntity() != null) {
-            String imageUrl = bbsItem.getFileInfoEntity().getUrl();
+        if (bbsItem.getFileInfoList() != null&&bbsItem.getFileInfoList().size()>0) {
+            String imageUrl = bbsItem.getFileInfoList().get(0).getUrl();
             if (TextUtils.isEmpty(imageUrl)) {
                 titleViewHolder.contentPicture.setVisibility(View.GONE);
                 LogUtil.i("帖子的图片内容为空");
@@ -373,10 +372,10 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
                     titleViewHolder.contentPicture.setImageDrawable(BBSUtil
                             .getLocalDrawablePicture(imageUrl));
                 } else {
-					ImageDownloadUtil.INSTANCE.showImage(bbsItem.getFileInfoEntity().getUrl(), "bbs", titleViewHolder.contentPicture);
-//                    ImageLoader.getInstance().displayImage(bbsItem.getFileInfoEntity().getUrl(), titleViewHolder.contentPicture);
+					ImageDownloadUtil.INSTANCE.showImage(bbsItem.getFileInfoList().get(0).getUrl(), "bbs", titleViewHolder.contentPicture);
+//                    ImageLoader.getInstance().displayImage(bbsItem.getFileInfoList().getUrl(), titleViewHolder.contentPicture);
                 }
-                titleViewHolder.contentPicture.setTag(bbsItem.getFileInfoEntity());
+                titleViewHolder.contentPicture.setTag(bbsItem.getFileInfoList());
                 titleViewHolder.contentPicture
                         .setOnClickListener(pictureClickListener);
             }
@@ -389,8 +388,7 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
         titleViewHolder.userHead.setTag(bbsItem.getBbsItemEntity().getCreatorId());
         titleViewHolder.userHead.setOnClickListener(headClickListener);
         if (Integer.valueOf(bbsItem.getBbsItemEntity().getPraiseTimes()) > 0) {
-            ArrayList<String> praiseUserIds = bbsItem.getPraiseUseridList();
-            if (praiseUserIds!=null&&praiseUserIds.contains(Config.getInstance().getUserId())) {
+            if (bbsItem.getBbsItemEntity().getPraiseTimes().equals("1")) {
                 titleViewHolder.praiseIV.setBackgroundResource(R.drawable.workgrp_praised_icon2);
             } else {
                 titleViewHolder.praiseIV.setBackgroundResource(R.drawable.workgrp_nopraise_icon2);

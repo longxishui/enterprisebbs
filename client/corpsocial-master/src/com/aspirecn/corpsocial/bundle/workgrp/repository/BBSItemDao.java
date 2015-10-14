@@ -37,17 +37,9 @@ public class BBSItemDao extends SqliteDao<BBSItemEntity, String> {
         columns.put("groupId", groupId);
         columns.put("userid", Config.getInstance().getUserId());
         List<BBSItemEntity> entitys = findAllByWhereAndIndex(columns, index, count, "createTime desc");
-//		replyInfoDao = new BBSReplyInfoDao();
         for (BBSItemEntity entity : entitys) {
             BBSItem item = new BBSItem();
             item.setBbsItemEntity(entity);
-            if (Integer.valueOf(entity.getPraiseTimes()) == 0) {
-                item.setPraiseUseridList(new ArrayList<String>());
-            } else {
-                ArrayList<String> praiseIds = new ArrayList<String>(Arrays.asList(entity.getPraiseUserIds().split("-")));
-                item.setPraiseUseridList(praiseIds);
-            }
-//			item.setBbsReplyInfoList(replyInfoDao.findAllReplyInfos(entity.getId()));
             items.add(item);
         }
         Log.e("BBSItemDao","获取到的数据数目为："+items.size());
@@ -58,7 +50,7 @@ public class BBSItemDao extends SqliteDao<BBSItemEntity, String> {
         List<BBSItemEntity> listentity = null;
         BBSItemEntity entity = null;
         try {
-            listentity = dao.queryBuilder().where().eq("id", bbsId).and().eq("userid", Config.getInstance().getUserId()).query();
+            listentity = dao.queryBuilder().where().eq("itemId", bbsId).query();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -70,19 +62,13 @@ public class BBSItemDao extends SqliteDao<BBSItemEntity, String> {
         }
         BBSItem item = new BBSItem();
         item.setBbsItemEntity(entity);
-        if (TextUtils.isEmpty(entity.getPraiseUserIds())) {
-            item.setPraiseUseridList(new ArrayList<String>());
-        } else {
-            ArrayList<String> praiseIds = new ArrayList<String>(Arrays.asList(entity.getPraiseUserIds().split("-")));
-            item.setPraiseUseridList(praiseIds);
-        }
         return item;
     }
 
-    public void updatePraiseUserIds(String itemId, String listPraiseUserID, String praiseTimes) {
-        String sql = "UPDATE bbs_item SET praiseUserIds=?,praiseTimes=? where id= ? and userid= ?";
+    public void updatePraiseUserIds(String itemId, String praiseTimes,String isPraised) {
+        String sql = "UPDATE bbs_item SET praiseTimes=? isPraised=? where itemId= ? and userid= ?";
         try {
-            dao.executeRaw(sql, listPraiseUserID, praiseTimes, itemId, Config.getInstance().getUserId());
+            dao.executeRaw(sql, praiseTimes,isPraised, itemId, Config.getInstance().getUserId());
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -146,7 +132,7 @@ public class BBSItemDao extends SqliteDao<BBSItemEntity, String> {
         String userid = Config.getInstance().getUserId();
         Map<String, Object[]> map = new HashMap<String, Object[]>();
         String[] bbsid = getBBSIDsByCreateId(userid, corpId);
-        map.put("id", bbsid);
+        map.put("itemId", bbsid);
         Map<String, Object> useridmap = new HashMap<String, Object>();
         useridmap.put("userid", Config.getInstance().getUserId());
         useridmap.put("corpId", corpId);
@@ -187,12 +173,6 @@ public class BBSItemDao extends SqliteDao<BBSItemEntity, String> {
         for (BBSItemEntity entity : listBBSItemEntitys) {
             BBSItem item = new BBSItem();
             item.setBbsItemEntity(entity);
-            if (Integer.valueOf(entity.getPraiseTimes()) == 0) {
-                item.setPraiseUseridList(new ArrayList<String>());
-            } else {
-                ArrayList<String> praiseIds = new ArrayList<String>(Arrays.asList(entity.getPraiseUserIds().split("-")));
-                item.setPraiseUseridList(praiseIds);
-            }
             listBBSItem.add(item);
         }
         return listBBSItem;

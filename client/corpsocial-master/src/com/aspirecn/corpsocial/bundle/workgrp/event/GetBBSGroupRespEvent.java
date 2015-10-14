@@ -4,6 +4,7 @@ import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.BBSGroupEntity;
 import com.aspirecn.corpsocial.common.eventbus.BusEvent;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GetBBSGroupRespEvent extends BusEvent {
     /**
@@ -13,7 +14,7 @@ public class GetBBSGroupRespEvent extends BusEvent {
     /**
      * 栏目模块 信息
      */
-    private ArrayList<BBSGroupEntity> bbsGroups;
+    private List<BBSGroupEntity> bbsGroups;
     /**
      * 是否与上次获得有更改（同步时使用）
      */
@@ -37,11 +38,11 @@ public class GetBBSGroupRespEvent extends BusEvent {
         this.errcode = errcode;
     }
 
-    public ArrayList<BBSGroupEntity> getBbsGroups() {
+    public List<BBSGroupEntity> getBbsGroups() {
         return bbsGroups;
     }
 
-    public void setBbsGroups(ArrayList<BBSGroupEntity> bbsGroups) {
+    public void setBbsGroups(List<BBSGroupEntity> bbsGroups) {
         this.bbsGroups = bbsGroups;
     }
 

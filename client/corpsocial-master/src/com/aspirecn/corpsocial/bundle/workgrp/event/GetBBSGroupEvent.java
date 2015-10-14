@@ -37,6 +37,7 @@ public class GetBBSGroupEvent extends BusEvent {
             jsonData.put("corpId", Config.getInstance().getCorpId());
             jsonData.put("userId", Config.getInstance().getUserId());
             jsonData.put("veritify", "123");
+            jsonData.put("lastModifiedTime", Config.getInstance().getBBSGroupLastModifyTime());
         } catch (JSONException e) {
             LogUtil.e("组装GetBBSGroupEvent失败");
             e.printStackTrace();
