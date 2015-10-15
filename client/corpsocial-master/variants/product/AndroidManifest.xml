@@ -298,7 +298,8 @@
         <activity
             android:name="com.aspirecn.corpsocial.common.ui.component.safewebviewbridge.WebActivity"
             android:screenOrientation="portrait" />
-
+        <activity android:name="com.aspirecn.corpsocial.common.ui.component.imageSelect.activity.ImageSelectorActivity"
+            android:screenOrientation="portrait" />
         <!-- 消息分发服务-->
         <service android:name="com.aspirecn.corpsocial.bundle.common.service.NotifyService" />
 

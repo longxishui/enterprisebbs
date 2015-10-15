@@ -27,6 +27,7 @@ import com.aspirecn.corpsocial.bundle.workgrp.domain.BBSItem;
 import com.aspirecn.corpsocial.bundle.workgrp.domain.KeyValue;
 import com.aspirecn.corpsocial.common.config.Constant;
 import com.aspirecn.corpsocial.common.eventbus.OsgiServiceLoader;
+import com.aspirecn.corpsocial.common.ui.component.imageSelect.activity.ImageSelectorActivity;
 import com.aspiren.corpsocial.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -112,10 +113,12 @@ public class BBSUtil {
      * @param mActivity
      */
     public static void pickPhoto(Activity mActivity) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        mActivity.startActivityForResult(intent, BBS_REQUEST_PHOTO);
+        Intent intent = new Intent(mActivity,ImageSelectorActivity.class);
+        mActivity.startActivityForResult(intent,BBS_REQUEST_PHOTO);
+//        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_PICK);
+//        intent.setType("image/*");
+//        mActivity.startActivityForResult(intent, BBS_REQUEST_PHOTO);
     }
 
     /**

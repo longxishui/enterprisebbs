@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -71,18 +72,11 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
     RelativeLayout moreSelectLayout;
     @ViewById(R.id.newbbs_brow_viewid)
     ChatFaceRelativeLayout faceLayout;
-    @ViewById(R.id.newbbs_picture_layoutid)
-    LinearLayout pictureLayout;
-    @ViewById(R.id.newbbs_picture_showlayoutid)
-    RelativeLayout pictureShowlayout;
-    @ViewById(R.id.newbbs_picture_resultid)
-    ImageView resultImageView;
-    @ViewById(R.id.newbbs_picture_addid)
-    ImageView addImageView;
-    @ViewById(R.id.newbbs_picture_deleteid)
     ImageView delPicture;
     @ViewById(R.id.workgrp_newbbs_selectbar_pictureid)
     ImageButton pictureBtn;
+    @ViewById(R.id.workgrp_new_bbs_picture_gv)
+    GridView mGV_picture;
     private ProgressDialog mProgressDialog = null;
 
 //	@Click({ R.id.actionbar_back_btn })
@@ -91,13 +85,11 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
 //	}
 
     //	@ViewById(R.id.actionbar_right_btn)
-//	Button confirmBtn;
     private String groupid = null;
     private BBSItem item = null;
     private Bitmap mBitmap = null;
     private String picturePath = null;
     private String cameraPath = null;
-    // private FileInfoDao fileDao = null;
     private BBSItemDao itemDao = null;
     private String itemId;
     private Handler newBBSHandler = new Handler() {
@@ -138,7 +130,7 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
         }
     };
 
-    @Click({R.id.newbbs_picture_addid})
+    @Click(R.id.workgrp_newbbs_selectbar_pictureid)
     void doAddPicture() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         final String[] items = new String[]{"拍照", "相册"};
@@ -154,20 +146,9 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
                 }
             }
         });
-        //	dialogBuilder.setTitle("操作");
         dialogBuilder.create().show();
     }
 
-    @Click({R.id.newbbs_picture_resultid})
-    void doGetPicture() {
-    }
-
-    @Click({R.id.newbbs_picture_deleteid})
-    void doDelPicture() {
-        pictureShowlayout.setVisibility(View.GONE);
-        picturePath = null;
-        recycleBitmap();
-    }
    private void doConfirmClick() {
         String mTitle = titleEt.getText().toString().trim();
         if (mTitle.isEmpty()) {
@@ -189,27 +170,9 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
             faceLayout.setVisibility(View.GONE);
             BBSUtil.openInputMethod(WorkGrpNewBBSActivity.this, contentEt);
         } else {
-            if (pictureLayout.isShown()) {
-                pictureLayout.setVisibility(View.GONE);
-            }
             if (BBSUtil.isInputMethodOpend(WorkGrpNewBBSActivity.this)) {
                 BBSUtil.closeInputMethod(WorkGrpNewBBSActivity.this, contentEt);
                 faceLayout.setVisibility(View.VISIBLE);
-            }
-        }
-    }
-
-    @Click({R.id.workgrp_newbbs_selectbar_pictureid})
-    void selectPictureClick() {
-        if (pictureLayout.isShown()) {
-            pictureLayout.setVisibility(View.GONE);
-        } else {
-            if (faceLayout.isShown()) {
-                faceLayout.setVisibility(View.GONE);
-            }
-            pictureLayout.setVisibility(View.VISIBLE);
-            if (BBSUtil.isInputMethodOpend(WorkGrpNewBBSActivity.this)) {
-                BBSUtil.closeInputMethod(WorkGrpNewBBSActivity.this, contentEt);
             }
         }
     }
@@ -236,20 +199,20 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
                 String imageUrl = item.getFileInfoList().get(0).getUrl();
                 if (imageUrl.startsWith(Environment
                         .getExternalStorageDirectory().getAbsolutePath())) {
-                    resultImageView.setImageDrawable(BBSUtil
-                            .getLocalDrawablePicture(imageUrl));
+//                    resultImageView.setImageDrawable(BBSUtil
+//                            .getLocalDrawablePicture(imageUrl));
                     picturePath = imageUrl;
                 } else {
 //					ImageDownloadUtil.INSTANCE.showImage(item.getFileInfo()
 //							.getUrl(), "bbs", resultImageView);
-                    ImageLoader.getInstance().displayImage(item.getFileInfoList().get(0).getUrl(), resultImageView);
+//                    ImageLoader.getInstance().displayImage(item.getFileInfoList().get(0).getUrl(), resultImageView);
                     try {
                         picturePath = ImageLoader.getInstance().getDiskCache().get(item.getFileInfoList().get(0).getUrl()).getAbsolutePath();
                     } catch (Exception e) {
                         picturePath = imageUrl;
                         e.printStackTrace();
                     }
-                    pictureShowlayout.setVisibility(View.VISIBLE);
+//                    pictureShowlayout.setVisibility(View.VISIBLE);
 //                    picturePath = ImageLoader.getInstance().getDiskCache().get(item.getFileInfo().getUrl()).getAbsolutePath();
 //					String path = Constant.PICTURE_PATH + "bbs"
 //							+ File.separator;
@@ -266,15 +229,8 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     moreSelectLayout.setVisibility(View.GONE);
-                    // moreSelectLayout.setEnabled(false);
-                    // browBtn.setClickable(false);
-                    // voiceBtn.setClickable(false);
-                    // pictureBtn.setClickable(false);
                     if (faceLayout.isShown()) {
                         faceLayout.setVisibility(View.GONE);
-                    }
-                    if (pictureLayout.isShown()) {
-                        pictureLayout.setVisibility(View.GONE);
                     }
                 } else {
                     moreSelectLayout.setVisibility(View.VISIBLE);
@@ -327,9 +283,6 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
             public void onClick(View v) {
                 if (faceLayout.isShown()) {
                     faceLayout.setVisibility(View.GONE);
-                }
-                if (pictureLayout.isShown()) {
-                    pictureLayout.setVisibility(View.GONE);
                 }
             }
         });
@@ -405,17 +358,6 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
             createOrModifyBBSEvent.setPath(picturePath);
         }
         uiEventHandleFacade.handle(createOrModifyBBSEvent);
-        // item = new BBSItem();
-        // item.setBbsReplyInfoList(new ArrayList<BBSReplyInfo>());
-        // item.setContent(content);
-        // item.setCreateTime(System.currentTimeMillis());
-        // item.setCreatorId(Config.getInstance().getUserId());
-        // item.setCreatorName(Config.getInstance().getNickName());
-        // item.setGroupId(groupid);
-        // item.setPraiseTimes("0");
-        // item.setReplyTimes("0");
-        // item.setPraiseUseridList(new ArrayList<String>());
-        // item.setTitle(titleEt.getText().toString());
     }
 
     @Override
@@ -449,9 +391,8 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
                 BitmapUtil.correction(picturePath);
                 mBitmap = BBSUtil.getLocalBitmapPicture(picturePath);
 
-                // mBitmap = BitmapFactory.decodeFile(picturePath);
-                resultImageView.setImageBitmap(mBitmap);
-                pictureShowlayout.setVisibility(View.VISIBLE);
+//                resultImageView.setImageBitmap(mBitmap);
+//                pictureShowlayout.setVisibility(View.VISIBLE);
             }
         } else if (requestCode == BBSUtil.BBS_REQUEST_CAMERA) {
             if (resultCode == RESULT_OK) {
@@ -461,20 +402,9 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
                 BitmapUtil.correction(picturePath);
 
                 mBitmap = BBSUtil.getLocalBitmapPicture(picturePath);
-                resultImageView.setImageBitmap(mBitmap);
-
-                // BitmapFactory.Options opts = new BitmapFactory.Options();
-                // opts.inJustDecodeBounds = true;
-                // BitmapFactory.decodeFile(picturePath, opts);
-                // opts.inSampleSize = BBSUtil.computeSampleSize(opts, -1,
-                // 128*128);
-                // opts.inJustDecodeBounds = false;
-                // mBitmap = BitmapFactory.decodeFile(picturePath,opts);
-                // resultImageView.setImageBitmap(mBitmap);
-
-                // mBitmap = BitmapFactory.decodeFile(picturePath);
-                // resultImageView.setImageBitmap(mBitmap);
-                pictureShowlayout.setVisibility(View.VISIBLE);
+//                resultImageView.setImageBitmap(mBitmap);
+//
+//                pictureShowlayout.setVisibility(View.VISIBLE);
             } else {
 
             }

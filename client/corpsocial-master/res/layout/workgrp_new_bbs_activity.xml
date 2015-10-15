@@ -94,17 +94,6 @@
                 android:layout_marginLeft="90dp"
                 android:background="@drawable/common_brow_bg"
                 android:scaleType="fitXY"/>
-            <!-- <ImageButton
-                android:id="@+id/workgrp_newbbs_selectbar_voiceid"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/common_voice_bg"
-                android:layout_centerVertical="true"
-                android:scaleType="fitXY"
-                android:layout_toLeftOf="@id/workgrp_newbbs_selectbar_browid"
-                android:layout_marginRight="80dp"
-                android:visibility="gone"
-                /> -->
             <ImageButton
                 android:id="@+id/workgrp_newbbs_selectbar_pictureid"
                 android:layout_width="30dp"
@@ -120,47 +109,11 @@
             android:id="@+id/newbbs_brow_viewid"
             layout="@layout/im_chat_face_ll"
             android:visibility="gone"/>
-
-        <LinearLayout
-            android:id="@+id/newbbs_picture_layoutid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <RelativeLayout
-                android:id="@+id/newbbs_picture_showlayoutid"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:layout_margin="20dp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/newbbs_picture_resultid"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"/>
-
-                <ImageView
-                    android:id="@+id/newbbs_picture_deleteid"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/workgrp_biv_deletebg"
-                    android:scaleType="fitXY"/>
-            </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/newbbs_picture_addid"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:layout_margin="20dp"
-                android:background="@drawable/workgrp_biv_addbg"
-                android:scaleType="fitXY"/>
-        </LinearLayout>
     </LinearLayout>
-
+    <GridView
+        android:id="@+id/workgrp_new_bbs_picture_gv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></GridView>
     <TextView
         android:id="@+id/workgrp_new_bbs_content_lenglimit"
         android:layout_width="wrap_content"

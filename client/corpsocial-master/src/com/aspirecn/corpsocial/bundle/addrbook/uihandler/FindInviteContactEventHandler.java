@@ -40,19 +40,6 @@ public class FindInviteContactEventHandler extends EventHandler implements IHand
     @Override
     public Null handle(final FindInviteContactEvent findInviteContactEvent) {
         LogUtil.i("请求的json数据为：" + findInviteContactEvent.getJson());
-//        HttpRequest.request(AddrbookConfig.FIND_CONTACT, findInviteContactEvent.getJson(), new IHttpCallBack() {
-//            @Override
-//            public void callBack(Result result) {
-//                FindInviteContactRespEvent findInviteContactRespEvent = null;
-//                if (result != null && result.getErrorCode() == ErrorCode.SUCCESS.getValue()) {
-//                    LogUtil.d("获得用户数据为：" + result.getMessage());
-//                    findInviteContactRespEvent = handleRespData(result.getMessage());
-//                    instance.notifyListener(findInviteContactRespEvent);
-//                } else {
-//                    LogUtil.e("同步通讯录失败");
-//                }
-//            }
-//        });
         return new Null();
     }
 
