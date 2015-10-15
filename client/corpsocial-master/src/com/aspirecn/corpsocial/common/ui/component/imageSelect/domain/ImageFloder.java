@@ -28,6 +28,7 @@ public class ImageFloder
 	 * 文件名列表
 	 */
 	private List<String> fileNames = new ArrayList<String>();
+	private boolean isChecked;
 
 	public String getDir()
 	{
@@ -38,6 +39,10 @@ public class ImageFloder
 	{
 		this.dir = dir;
 		int lastIndexOf = this.dir.lastIndexOf("/");
+		if(lastIndexOf<=0){
+			this.name = dir;
+			return;
+		}
 		this.name = this.dir.substring(lastIndexOf);
 	}
 
@@ -73,6 +78,11 @@ public class ImageFloder
 		this.fileNames = fileNames;
 	}
 
-	
+	public boolean isChecked() {
+		return isChecked;
+	}
 
+	public void setIsChecked(boolean isChecked) {
+		this.isChecked = isChecked;
+	}
 }

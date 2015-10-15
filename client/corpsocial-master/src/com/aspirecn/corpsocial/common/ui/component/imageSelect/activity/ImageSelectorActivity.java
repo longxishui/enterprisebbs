@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.database.Cursor;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -45,11 +46,6 @@ public class ImageSelectorActivity extends Activity implements ListImageDirPopup
 	/**
 	 * 图片数量最多的文件夹
 	 */
-	private File mImgDir;
-	/**
-	 * 所有的图片
-	 */
-	private List<String> mImgs;
 
 	private GridView mGirdView;
 	private MyAdapter mAdapter;
@@ -62,6 +58,7 @@ public class ImageSelectorActivity extends Activity implements ListImageDirPopup
 	 * 当前的ImageFloader
 	 */
 	private ImageFloder currentImageFloader;
+	private List<String> mCurrentFileNames = new ArrayList<String>();
 	/**
 	 * 扫描拿到所有的图片文件夹
 	 */
@@ -71,16 +68,23 @@ public class ImageSelectorActivity extends Activity implements ListImageDirPopup
 
 	private TextView mChooseDir;
 	private TextView mImageCount;
-	int totalCount = 0;
 
 	private int mScreenHeight;
 
 	private ListImageDirPopupWindow mListImageDirPopupWindow;
+	/**
+	 * 所有文件的对象
+	 */
+	private ImageFloder mAllPic = new ImageFloder();
 
 	private Handler mHandler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
 		{
+			if(msg.what==12){
+				mGirdView.setSelection(0);
+				return;
+			}
 			mProgressDialog.dismiss();
 			// 为View绑定数据
 			data2View();
@@ -94,22 +98,21 @@ public class ImageSelectorActivity extends Activity implements ListImageDirPopup
 	 */
 	private void data2View()
 	{
-		if (mImgDir == null)
+		if (currentImageFloader == null)
 		{
 			Toast.makeText(getApplicationContext(), "擦，一张图片没扫描到",
 					Toast.LENGTH_SHORT).show();
 			return;
 		}
-
-//		mImgs = Arrays.asList(mImgDir.list());
-		mImgs = currentImageFloader.getFileNames();
+		mCurrentFileNames.clear();
+		mCurrentFileNames.addAll(currentImageFloader.getFileNames());
 		/**
 		 * 可以看到文件夹的路径和图片的路径分开保存，极大的减少了内存的消耗；
 		 */
-		mAdapter = new MyAdapter(getApplicationContext(), mImgs,
-				R.layout.common_imageselector_grid_item, mImgDir.getAbsolutePath());
+		mAdapter = new MyAdapter(getApplicationContext(), mCurrentFileNames,
+				R.layout.common_imageselector_grid_item,currentImageFloader.getDir());
 		mGirdView.setAdapter(mAdapter);
-		mImageCount.setText(totalCount + "张");
+		mImageCount.setText(currentImageFloader.getCount() + "张");
 	};
 
 	/**
@@ -183,7 +186,7 @@ public class ImageSelectorActivity extends Activity implements ListImageDirPopup
 						MediaStore.Images.Media.MIME_TYPE + "=? or "
 								+ MediaStore.Images.Media.MIME_TYPE + "=?",
 						new String[] { "image/jpeg", "image/png" },
-						MediaStore.Images.Media.DATE_MODIFIED+" desc");
+						MediaStore.Images.Media.DATE_ADDED+" desc");
 
 				Log.e("TAG", mCursor.getCount() + "");
 				while (mCursor.moveToNext())
@@ -193,7 +196,6 @@ public class ImageSelectorActivity extends Activity implements ListImageDirPopup
 							.getColumnIndex(MediaStore.Images.Media.DATA));
 					String fileName = mCursor.getString(mCursor
 							.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME));
-					Log.e("TAG", mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME))+"哈哈");
 					// 拿到第一张图片的路径
 					if (firstImage == null)
 						firstImage = path;
@@ -203,62 +205,51 @@ public class ImageSelectorActivity extends Activity implements ListImageDirPopup
 						continue;
 					String dirPath = parentFile.getAbsolutePath();
 					ImageFloder imageFloder = null;
-					totalCount++;
+					mAllPic.setCount(mAllPic.getCount() + 1);
+					if(mAllPic.getFirstImagePath()==null){
+						mAllPic.setFirstImagePath(path);
+					}
+					//防止文件目录不同但是文件夹名相同的问题
+					String fileDirname = dirPath.substring(dirPath.lastIndexOf("/"));
 					// 利用一个HashSet防止多次扫描同一个文件夹（不加这个判断，图片多起来还是相当恐怖的~~）
-					if (mDirPaths.contains(dirPath))
+					if (mDirPaths.contains(fileDirname))
 					{
-						imageFloder = mHashCach.get(dirPath);
-						imageFloder.getFileNames().add(fileName);
+						imageFloder = mHashCach.get(fileDirname);
+						if(dirPath.equals(imageFloder.getDir())) {
+							imageFloder.getFileNames().add(fileName);
+							mAllPic.getFileNames().add(path);
+						}
 						imageFloder.setCount(imageFloder.getCount()+1);
 						if(imageFloder.getCount()>mPicsSize){
 							mPicsSize = imageFloder.getCount();
-							mImgDir = parentFile;
 							currentImageFloader = imageFloder;
 						}
 						continue;
 					} else
 					{
-						mDirPaths.add(dirPath);
+						mDirPaths.add(fileDirname);
 						// 初始化imageFloder
 						imageFloder = new ImageFloder();
 						imageFloder.setDir(dirPath);
 						imageFloder.setFirstImagePath(path);
 						imageFloder.setCount(1);
 						imageFloder.getFileNames().add(fileName);
+						mAllPic.getFileNames().add(path);
 						if(currentImageFloader==null){
 							currentImageFloader = imageFloder;
 						}
-						mHashCach.put(dirPath, imageFloder);
+						mHashCach.put(fileDirname, imageFloder);
 					}
-
-//					int picSize = parentFile.list(new FilenameFilter()
-//					{
-//						@Override
-//						public boolean accept(File dir, String filename)
-//						{
-//							if (filename.endsWith(".jpg")
-//									|| filename.endsWith(".png")
-//									|| filename.endsWith(".jpeg"))
-//								return true;
-//							return false;
-//						}
-//					}).length;
-//					totalCount += picSize;
-
-//					imageFloder.setCount(picSize);
 					mImageFloders.add(imageFloder);
-
-//					if (picSize > mPicsSize)
-//					{
-//						mPicsSize = picSize;
-//						mImgDir = parentFile;
-//					}
 				}
 				mCursor.close();
 
 				// 扫描完成，辅助的HashSet也就可以释放内存了
 				mDirPaths = null;
-
+				currentImageFloader = mAllPic;
+				mImageFloders.add(0,mAllPic);
+				mAllPic.setDir("所有图片");
+				mAllPic.setIsChecked(true);
 				// 通知Handler扫描图片完成
 				mHandler.sendEmptyMessage(0x110);
 
@@ -303,27 +294,27 @@ public class ImageSelectorActivity extends Activity implements ListImageDirPopup
 	@Override
 	public void selected(ImageFloder floder)
 	{
-
-		mImgDir = new File(floder.getDir());
-		mImgs = Arrays.asList(mImgDir.list(new FilenameFilter()
-		{
-			@Override
-			public boolean accept(File dir, String filename)
-			{
-				if (filename.endsWith(".jpg") || filename.endsWith(".png")
-						|| filename.endsWith(".jpeg"))
-					return true;
-				return false;
-			}
-		}));
+		for(ImageFloder f:mImageFloders){
+			f.setIsChecked(false);
+		}
+		floder.setIsChecked(true);
+		currentImageFloader = floder;
+		mCurrentFileNames.clear();
+		mCurrentFileNames.addAll(currentImageFloader.getFileNames());
 		/**
 		 * 可以看到文件夹的路径和图片的路径分开保存，极大的减少了内存的消耗；
 		 */
-		mAdapter = new MyAdapter(getApplicationContext(), mImgs,
-				R.layout.common_imageselector_grid_item, mImgDir.getAbsolutePath());
-		mGirdView.setAdapter(mAdapter);
+//		mAdapter = new MyAdapter(getApplicationContext(), mImgs,
+//				R.layout.common_imageselector_grid_item);
+//		mGirdView.setAdapter(mAdapter);
+		if(mAdapter!= null) {
+			mAdapter.updateDirPath(currentImageFloader.getDir());
+			mAdapter.notifyDataSetChanged();
+			mHandler.sendEmptyMessage(12);
+		}
 		// mAdapter.notifyDataSetChanged();
 		mImageCount.setText(floder.getCount() + "张");
+		mChooseDir.setText(floder.getName());
 		mChooseDir.setText(floder.getName());
 		mListImageDirPopupWindow.dismiss();
 

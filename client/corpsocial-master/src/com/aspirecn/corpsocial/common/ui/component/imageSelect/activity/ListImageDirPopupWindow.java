@@ -38,6 +38,7 @@ public class ListImageDirPopupWindow extends BasePopupWindowForListView<ImageFlo
 				helper.setImageByUrl(R.id.id_dir_item_image,
 						item.getFirstImagePath());
 				helper.setText(R.id.id_dir_item_count, item.getCount() + "张");
+				helper.setImageResource(R.id.common_imageselector_dir_item_check,item.isChecked()?R.drawable.common_checkbox_select_open2:R.drawable.common_checkbox_select_close2);
 			}
 		});
 	}

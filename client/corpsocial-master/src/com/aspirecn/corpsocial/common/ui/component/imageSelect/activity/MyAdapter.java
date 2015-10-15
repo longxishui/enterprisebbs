@@ -23,7 +23,7 @@ public class MyAdapter extends CommonAdapter<String>
 	public static List<String> mSelectedImage = new LinkedList<String>();
 
 	/**
-	 * 文件夹路径
+	 * 文件夹路径,如果文件加路径为""，则表示item为全路径
 	 */
 	private String mDirPath;
 
@@ -33,7 +33,16 @@ public class MyAdapter extends CommonAdapter<String>
 		super(context, mDatas, itemLayoutId);
 		this.mDirPath = dirPath;
 	}
-
+	public List<String> getmSelectedImage(){
+		return mSelectedImage;
+	}
+	/**
+	 * 更新文件夹
+	 * @param dirPath
+	 */
+public void updateDirPath(String dirPath){
+	this.mDirPath = dirPath;
+}
 	@Override
 	public void convert(final ViewHolder helper, final String item)
 	{
@@ -43,8 +52,8 @@ public class MyAdapter extends CommonAdapter<String>
 				helper.setImageResource(R.id.grid_item_select,
 						R.drawable.common_checkbox_select_close2);
 		//设置图片
-		helper.setImageByUrl(R.id.grid_item_image, mDirPath + "/" + item);
-		
+		helper.setImageByUrl(R.id.grid_item_image, mDirPath.equals("所有图片")?item:mDirPath + "/" + item);
+
 		final ImageView mImageView = helper.getView(R.id.grid_item_image);
 		final ImageView mSelect = helper.getView(R.id.grid_item_select);
 		
@@ -58,15 +67,15 @@ public class MyAdapter extends CommonAdapter<String>
 			{
 
 				// 已经选择过该图片
-				if (mSelectedImage.contains(mDirPath + "/" + item))
+				if (mSelectedImage.contains(mDirPath.equals("所有图片")?item:mDirPath + "/" + item))
 				{
-					mSelectedImage.remove(mDirPath + "/" + item);
+					mSelectedImage.remove(mDirPath.equals("所有图片")?item:mDirPath + "/" + item);
 					mSelect.setImageResource(R.drawable.common_checkbox_select_close2);
 					mImageView.setColorFilter(null);
 				} else
 				// 未选择该图片
 				{
-					mSelectedImage.add(mDirPath + "/" + item);
+					mSelectedImage.add(mDirPath.equals("所有图片")?item:mDirPath + "/" + item);
 					mSelect.setImageResource(R.drawable.common_checkbox_select_open2);
 					mImageView.setColorFilter(Color.parseColor("#77000000"));
 				}
@@ -77,7 +86,7 @@ public class MyAdapter extends CommonAdapter<String>
 		/**
 		 * 已经选择过的图片，显示出选择过的效果
 		 */
-		if (mSelectedImage.contains(mDirPath + "/" + item))
+		if (mSelectedImage.contains(mDirPath.equals("所有图片")?item:mDirPath + "/" + item))
 		{
 			mSelect.setImageResource(R.drawable.common_checkbox_select_open2);
 			mImageView.setColorFilter(Color.parseColor("#77000000"));
