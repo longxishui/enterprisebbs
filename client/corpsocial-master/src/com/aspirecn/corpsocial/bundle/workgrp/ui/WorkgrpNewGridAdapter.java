@@ -11,9 +11,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.aspirecn.corpsocial.bundle.workgrp.ui.widget.BBSUtil;
+import com.aspirecn.corpsocial.common.util.ImageDownloadUtil;
 import com.aspiren.corpsocial.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.download.ImageDownloader;
 
 import java.util.List;
 
@@ -22,7 +25,6 @@ import java.util.List;
  */
 public class WorkgrpNewGridAdapter extends BaseAdapter {
     private Context context;
-    //private ContactDao contactDao;
     private List<String> listFileNames;
     private DisplayImageOptions options;
 
@@ -67,7 +69,9 @@ public class WorkgrpNewGridAdapter extends BaseAdapter {
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        ImageLoader.getInstance().displayImage(listFileNames.get(position), viewHolder.mIV_content);
+//        ImageLoader.getInstance().displayImage(listFileNames.get(position), viewHolder.mIV_content);
+        viewHolder.mIV_content.setImageDrawable(BBSUtil
+                            .getLocalDrawablePicture(listFileNames.get(position)));
         viewHolder.mIV_Select.setVisibility(View.GONE);
         return convertView;
     }

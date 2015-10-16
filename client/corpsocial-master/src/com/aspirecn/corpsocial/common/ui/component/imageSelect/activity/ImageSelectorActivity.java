@@ -11,6 +11,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.media.Image;
 import android.net.Uri;
@@ -144,7 +145,22 @@ public class ImageSelectorActivity extends Activity implements ListImageDirPopup
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.common_imageselector_activity);
-
+		findViewById(R.id.common_imageselector_title_back_iv).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				ImageSelectorActivity.this.finish();
+			}
+		});
+		findViewById(R.id.common_imageselector_confirm_tv).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent();
+				ArrayList<String> listImagePaths = (ArrayList<String>) mAdapter.getmSelectedImage();
+				intent.putExtra("selectorImagePaths", listImagePaths);
+				setResult(RESULT_OK,intent);
+				ImageSelectorActivity.this.finish();
+			}
+		});
 		DisplayMetrics outMetrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
 		mScreenHeight = outMetrics.heightPixels;

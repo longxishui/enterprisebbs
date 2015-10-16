@@ -1,6 +1,6 @@
 package com.aspirecn.corpsocial.common.ui.component.imageSelect.activity;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -20,7 +20,7 @@ public class MyAdapter extends CommonAdapter<String>
 	/**
 	 * 用户选择的图片，存储为图片的完整路径
 	 */
-	public static List<String> mSelectedImage = new LinkedList<String>();
+	public static List<String> mSelectedImage = new ArrayList<String>();
 
 	/**
 	 * 文件夹路径,如果文件加路径为""，则表示item为全路径

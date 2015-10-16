@@ -55,7 +55,7 @@
     <EditText
         android:id="@+id/workgrp_newbbs_content_etid"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:layout_below="@id/workgrp_newbbs_divider_id1"
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="10dp"
@@ -68,7 +68,20 @@
         android:textColor="#000000"
         android:textColorHint="#999999"
         android:textSize="15sp"/>
-
+    <GridView
+        android:id="@+id/workgrp_new_bbs_picture_gv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/workgrp_newbbs_content_etid"
+        android:cacheColorHint="@android:color/transparent"
+        android:clipChildren="true"
+        android:gravity="center"
+        android:horizontalSpacing="3dip"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="5"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="3dip"></GridView>
 
     <LinearLayout
         android:id="@+id/workgrp_newbbs"
@@ -110,10 +123,6 @@
             layout="@layout/im_chat_face_ll"
             android:visibility="gone"/>
     </LinearLayout>
-    <GridView
-        android:id="@+id/workgrp_new_bbs_picture_gv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></GridView>
     <TextView
         android:id="@+id/workgrp_new_bbs_content_lenglimit"
         android:layout_width="wrap_content"

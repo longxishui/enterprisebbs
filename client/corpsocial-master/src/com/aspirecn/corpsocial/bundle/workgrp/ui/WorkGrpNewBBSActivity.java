@@ -50,6 +50,9 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @EActivity(R.layout.workgrp_new_bbs_activity)
 public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
         CreateOrModifyBBSRespListener, ActionBarFragment.LifeCycleListener {
@@ -83,7 +86,8 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
 //	void doBackClick() {
 //		WorkGrpNewBBSActivity.this.finish();
 //	}
-
+    private WorkgrpNewGridAdapter mGridViewAdapter;
+    private List<String> mListImagePaths = new ArrayList<String>();
     //	@ViewById(R.id.actionbar_right_btn)
     private String groupid = null;
     private BBSItem item = null;
@@ -379,17 +383,26 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == BBSUtil.BBS_REQUEST_PHOTO) {
             if (resultCode == RESULT_OK) {
-                Uri uri = data.getData();
-                String[] proj = {MediaStore.Images.Media.DATA};
-                Cursor cursor = managedQuery(uri, proj, null, null, null);
-                int column_index = cursor
-                        .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                cursor.moveToFirst();
-                picturePath = cursor.getString(column_index);
-                recycleBitmap();
-
-                BitmapUtil.correction(picturePath);
-                mBitmap = BBSUtil.getLocalBitmapPicture(picturePath);
+                List<String> listImagePaths = data.getStringArrayListExtra("selectorImagePaths");
+                mListImagePaths.clear();
+                mListImagePaths.addAll(listImagePaths);
+                if(mGridViewAdapter==null){
+                    mGridViewAdapter = new WorkgrpNewGridAdapter(this,mListImagePaths);
+                    mGV_picture.setAdapter(mGridViewAdapter);
+                }else{
+                    mGridViewAdapter.notifyDataSetChanged();
+                }
+//                Uri uri = data.getData();
+//                String[] proj = {MediaStore.Images.Media.DATA};
+//                Cursor cursor = managedQuery(uri, proj, null, null, null);
+//                int column_index = cursor
+//                        .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//                cursor.moveToFirst();
+//                picturePath = cursor.getString(column_index);
+//                recycleBitmap();
+//
+//                BitmapUtil.correction(picturePath);
+//                mBitmap = BBSUtil.getLocalBitmapPicture(picturePath);
 
 //                resultImageView.setImageBitmap(mBitmap);
 //                pictureShowlayout.setVisibility(View.VISIBLE);

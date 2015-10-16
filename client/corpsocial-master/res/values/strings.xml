@@ -497,5 +497,7 @@
 <!-- 分享给好友 -->
     <string name="common_share_dialog_title">分享给好友</string>
     <string name="common_share_dialog_quit">取消</string>
+    <!-- 图片选择插件 -->
+    <string name="common_imageselector_confirm">确定</string>
 
 </resources>

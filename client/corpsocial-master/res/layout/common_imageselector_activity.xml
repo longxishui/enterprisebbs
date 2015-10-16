@@ -2,9 +2,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+    <RelativeLayout
+        android:id="@+id/common_imageselector_title"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="#e0000000">
+        <ImageView
+            android:id="@+id/common_imageselector_title_back_iv"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/actionbar_back_btn_bg_selector"/>
+        <TextView
+            android:id="@+id/common_imageselector_confirm_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:text="@string/common_imageselector_confirm"
+            android:background="@drawable/common_btn_bg_blue_selector"/>
+    </RelativeLayout>
     <GridView
         android:id="@+id/id_gridView"
+        android:layout_below="@id/common_imageselector_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:cacheColorHint="@android:color/transparent"
