@@ -4,6 +4,8 @@ import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.BBSItemEntity;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.FileInfoEntity;
 import com.aspirecn.corpsocial.common.eventbus.BusEvent;
 
+import java.util.List;
+
 public class CreateOrModifyBBSRespEvent extends BusEvent {
     /**
      * 错误码
@@ -21,7 +23,7 @@ public class CreateOrModifyBBSRespEvent extends BusEvent {
      * 实体对象
      */
     private BBSItemEntity bbsItemEntity;
-    private FileInfoEntity fileInfoEntity;
+    private List<FileInfoEntity> listFileInfoEntity;
 
     public CreateOrModifyBBSRespEvent() {
         super();
@@ -34,13 +36,12 @@ public class CreateOrModifyBBSRespEvent extends BusEvent {
         this.itemId = itemId;
         this.groupId = groupId;
     }
-
-    public FileInfoEntity getFileInfoEntity() {
-        return fileInfoEntity;
+    public List<FileInfoEntity> getListFileInfoEntity() {
+        return listFileInfoEntity;
     }
 
-    public void setFileInfoEntity(FileInfoEntity fileInfoEntity) {
-        this.fileInfoEntity = fileInfoEntity;
+    public void setListFileInfoEntity(List<FileInfoEntity> listFileInfoEntity) {
+        this.listFileInfoEntity = listFileInfoEntity;
     }
 
     public BBSItemEntity getBbsItemEntity() {

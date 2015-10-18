@@ -4,6 +4,7 @@
 package com.aspirecn.corpsocial.bundle.net;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * @author duyinzhou
@@ -13,7 +14,7 @@ public class ReqParameter {
 	private String url;
 	private String jsonData;
 	private String reqType;
-    private File file;
+    private List<File> files;
 	public String getUrl() {
 		return url;
 	}
@@ -33,11 +34,11 @@ public class ReqParameter {
 		this.reqType = reqType;
 	}
 
-    public File getFile() {
-        return file;
-    }
+	public List<File> getFiles() {
+		return files;
+	}
 
-    public void setFile(File file) {
-        this.file = file;
-    }
+	public void setFiles(List<File> files) {
+		this.files = files;
+	}
 }

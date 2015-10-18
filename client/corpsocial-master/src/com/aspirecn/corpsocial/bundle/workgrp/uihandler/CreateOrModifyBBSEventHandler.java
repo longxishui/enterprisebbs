@@ -61,20 +61,25 @@ public class CreateOrModifyBBSEventHandler implements
                             bbsItemEntity.setGroupId(args.getGroupId());
                             bbsItemEntity.setUserid(Config.getInstance().getUserId());
                             createOrModifyBBSRespEvent = handleRespData(httpMessage.data, bbsItemEntity);
-                            createOrModifyBBSRespEvent.setErrorCode(errorCode);
+                            createOrModifyBBSRespEvent.setErrorCode(ErrorCode.SUCCESS.getValue());
                             createOrModifyBBSRespEvent.setGroupId(args.getGroupId());
                             createOrModifyBBSRespEvent.setBbsItemEntity(bbsItemEntity);
                             if (args.isHasPic()) {
-                                FileInfoEntity fileInfoEntity = new FileInfoEntity();
-                                fileInfoEntity.setUrl(args.getPath());
-                                fileInfoEntity.setUserid(Config.getInstance().getUserId());
-                                fileInfoEntity.setId(args.getItemId());
-                                bbsItemEntity.setFileInfoString(new Gson().toJson(fileInfoEntity));
+                                List<FileInfoEntity> list = new ArrayList<FileInfoEntity>();
+                                for(String path :args.getListFilePath()){
+                                    FileInfoEntity fileInfoEntity = new FileInfoEntity();
+                                    fileInfoEntity.setUrl(path);
+                                    fileInfoEntity.setUserid(Config.getInstance().getUserId());
+                                    fileInfoEntity.setId(args.getItemId());
+                                    list.add(fileInfoEntity);
+                                }
+                                bbsItemEntity.setFileInfoString(new Gson().toJson(list));
                                 bbsItemDao.update(bbsItemEntity);
-                                createOrModifyBBSRespEvent.setFileInfoEntity(fileInfoEntity);
+                                createOrModifyBBSRespEvent.setListFileInfoEntity(list);
                             }
                         } else {
                             createOrModifyBBSRespEvent = handleRespData(httpMessage.data, null);
+                            createOrModifyBBSRespEvent.setErrorCode(ErrorCode.SUCCESS.getValue());
                             createOrModifyBBSRespEvent.setGroupId(args.getGroupId());
                         }
                     } else {
@@ -93,19 +98,12 @@ public class CreateOrModifyBBSEventHandler implements
             }
         };
         if (args.isHasPic()) {
-            File mFile;
-            if (args.getPath().startsWith(Environment
-                    .getExternalStorageDirectory().getAbsolutePath())) {
-                mFile = BitmapUtil.uploadFile(args.getPath());
-            } else {
-                try {
-                    String picturePath = ImageLoader.getInstance().getDiskCache().get(args.getPath()).getAbsolutePath();
-                    mFile = BitmapUtil.uploadFile(picturePath);
-                } catch (Exception e) {
-                    mFile = null;
-                }
+            List<File> fileList = new ArrayList<File>();
+            for(String path :args.getListFilePath()){
+            File mFile = BitmapUtil.uploadFile(path);
+                fileList.add(mFile);
             }
-            HttpRequest.request(WorkgrpConfig.CREATE_OR_MODIFY_ITEM, args.getJson(), mFile, httpCallBack);
+            HttpRequest.request(WorkgrpConfig.CREATE_OR_MODIFY_ITEM, args.getJson(), fileList, httpCallBack);
         } else {
             HttpRequest.request(WorkgrpConfig.CREATE_OR_MODIFY_ITEM, args.getJson(), httpCallBack);
         }
@@ -166,15 +164,16 @@ public class CreateOrModifyBBSEventHandler implements
 
     private CreateOrModifyBBSRespEvent handleRespData(String message, BBSItemEntity bbsItemEntity) {
         CreateOrModifyBBSRespEvent createOrModifyBBSRespEvent = new CreateOrModifyBBSRespEvent();
-        try {
-            JSONObject jsonData = new JSONObject(message);
-            createOrModifyBBSRespEvent.setItemId(jsonData.getString("itemId"));
-            if (bbsItemEntity != null) {
-                bbsItemEntity.setCreateTime(jsonData.getLong("createTime"));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        createOrModifyBBSRespEvent.setItemId(bbsItemEntity.getItemId());
+//        try {
+//            JSONObject jsonData = new JSONObject(message);
+//            createOrModifyBBSRespEvent.setItemId(jsonData.getString("itemId"));
+//            if (bbsItemEntity != null) {
+//                bbsItemEntity.setCreateTime(jsonData.getLong("createTime"));
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
         return createOrModifyBBSRespEvent;
     }
 

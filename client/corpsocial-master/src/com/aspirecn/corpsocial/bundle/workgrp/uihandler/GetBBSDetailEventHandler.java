@@ -87,13 +87,13 @@ public class GetBBSDetailEventHandler implements
 //                BBSItemEntity dbBBSItemEntity = itemDao.findById(bbsItemEntity.getId());
 
 //                itemDao.insert(bbsItemEntity);
-                itemDao.insertEntity(bbsItemEntity);
+//                itemDao.insertEntity(bbsItemEntity);
                 JSONArray jsonReplyList = jsonItem.getJSONArray("bbsReplyInfoDatas");
                 List<BBSReplyInfoEntity> bbsReplyInfoEntityList = new ArrayList<BBSReplyInfoEntity>();
                 for (int j = 0; j < jsonReplyList.length(); j++) {
                     String jsonReplyItemString = jsonReplyList.getString(j);
                     BBSReplyInfoEntity bbsReplyInfoEntity = new Gson().fromJson(jsonReplyItemString,BBSReplyInfoEntity.class);
-                    bbsReplyInfoEntity.setFileInfo(new Gson().toJson(bbsReplyInfoEntity.getFileInfoData()));
+                    bbsReplyInfoEntity.setFileInfoString(new Gson().toJson(bbsReplyInfoEntity.getFileInfo()));
                     bbsReplyInfoEntity.setCorpId(Config.getInstance().getCorpId());
                     bbsReplyInfoEntity.setUserid(Config.getInstance().getUserId());
                     bbsReplyInfoEntity.setItemId(bbsItemEntity.getItemId());

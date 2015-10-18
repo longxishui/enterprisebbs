@@ -8,6 +8,8 @@ import com.aspirecn.corpsocial.common.util.LogUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class CreateOrModifyBBSEvent extends BusEvent {
     /**
      * 帖子的标题
@@ -32,22 +34,12 @@ public class CreateOrModifyBBSEvent extends BusEvent {
     /**
      * 附件的本地 绝对路径
      */
-    private String path;
+    private List<String> listFilePath;
 
     public CreateOrModifyBBSEvent() {
         super();
     }
 
-    public CreateOrModifyBBSEvent(String title, String content, String groupId,
-                                  String itemId, boolean hasPic, String path) {
-        super();
-        this.title = title;
-        this.content = content;
-        this.groupId = groupId;
-        this.itemId = itemId;
-        this.hasPic = hasPic;
-        this.path = path;
-    }
 
     public String getTitle() {
         return title;
@@ -89,19 +81,12 @@ public class CreateOrModifyBBSEvent extends BusEvent {
         this.hasPic = hasPic;
     }
 
-    public String getPath() {
-        return path;
+    public List<String> getListFilePath() {
+        return listFilePath;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    @Override
-    public String toString() {
-        return "CreateOrModifyBBSEvent [title=" + title + ", content="
-                + content + ", groupId=" + groupId + ", itemId=" + itemId
-                + ", hasPic=" + hasPic + ", path=" + path + "]";
+    public void setListFilePath(List<String> listFilePath) {
+        this.listFilePath = listFilePath;
     }
 
     /**

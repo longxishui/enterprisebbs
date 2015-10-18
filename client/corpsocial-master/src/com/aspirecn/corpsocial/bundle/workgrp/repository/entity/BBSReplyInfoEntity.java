@@ -1,10 +1,15 @@
 package com.aspirecn.corpsocial.bundle.workgrp.repository.entity;
 
+import com.aspirecn.corpsocial.common.util.LogUtil;
 import com.google.gson.Gson;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import org.json.JSONArray;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @DatabaseTable(tableName = "bbs_replyinfo")
 public class BBSReplyInfoEntity implements Serializable {
@@ -33,9 +38,9 @@ public class BBSReplyInfoEntity implements Serializable {
     @DatabaseField
     private String corpId;
     @DatabaseField
-    private String fileInfo;
+    private String fileInfoString;
 
-    private FileInfoEntity fileInfoData;
+    private List<FileInfoEntity> fileInfo;
 
     public BBSReplyInfoEntity(String id, String itemId, String replyerId,
                               String replyerName, long time, String content, String userid) {
@@ -117,26 +122,38 @@ public class BBSReplyInfoEntity implements Serializable {
         this.userid = userid;
     }
 
-    public String getFileInfo() {
+    public String getFileInfoString() {
+        return fileInfoString;
+    }
+
+    public void setFileInfoString(String fileInfoString) {
+        this.fileInfoString = fileInfoString;
+    }
+
+    public List<FileInfoEntity> getFileInfo() {
         return fileInfo;
     }
-
-    public void setFileInfo(String fileInfo) {
+    public void setFileInfo(List<FileInfoEntity> fileInfo) {
         this.fileInfo = fileInfo;
     }
-
-    public FileInfoEntity getFileInfoData() {
-        return fileInfoData;
-    }
-
-    public void setFileInfoData(FileInfoEntity fileInfoData) {
-        this.fileInfoData = fileInfoData;
-    }
-    public FileInfoEntity getConvertTOFileInfo(){
-        if(fileInfo==null||fileInfo.equals("")){
-            return null;
+    public List<FileInfoEntity> getConvertTOFileInfo(){
+        if(!fileInfoString.isEmpty()){
+            try{
+                fileInfo = new ArrayList<FileInfoEntity>();
+                JSONArray jsonArray = new JSONArray(fileInfoString);
+                if(jsonArray.length()==0){
+                    return null;
+                }
+                for(int i=0;i<jsonArray.length();i++){
+                    FileInfoEntity fileInfoEntity = new Gson().fromJson(jsonArray.get(i).toString(),FileInfoEntity.class);
+                    fileInfo.add(fileInfoEntity);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                LogUtil.e("ReplyfileInfo转换失败");
+            }
         }
-        return new Gson().fromJson(fileInfo,FileInfoEntity.class);
+        return fileInfo;
     }
     @Override
     public String toString() {

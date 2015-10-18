@@ -35,12 +35,14 @@ import com.aspirecn.corpsocial.bundle.workgrp.event.CreateOrModifyBBSEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.event.CreateOrModifyBBSRespEvent;
 import com.aspirecn.corpsocial.bundle.workgrp.listener.CreateOrModifyBBSRespSubject.CreateOrModifyBBSRespListener;
 import com.aspirecn.corpsocial.bundle.workgrp.repository.BBSItemDao;
+import com.aspirecn.corpsocial.bundle.workgrp.repository.entity.FileInfoEntity;
 import com.aspirecn.corpsocial.bundle.workgrp.ui.widget.BBSUtil;
 import com.aspirecn.corpsocial.common.config.Path;
 import com.aspirecn.corpsocial.common.eventbus.ErrorCode;
 import com.aspirecn.corpsocial.common.eventbus.EventFragmentActivity;
 import com.aspirecn.corpsocial.common.util.BitmapUtil;
 import com.aspirecn.corpsocial.common.util.FaceConversionUtil;
+import com.aspirecn.corpsocial.common.util.ImageDownloadUtil;
 import com.aspiren.corpsocial.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -48,6 +50,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -92,7 +95,6 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
     private String groupid = null;
     private BBSItem item = null;
     private Bitmap mBitmap = null;
-    private String picturePath = null;
     private String cameraPath = null;
     private BBSItemDao itemDao = null;
     private String itemId;
@@ -188,7 +190,6 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
                 build();
         getSupportFragmentManager().beginTransaction().add(R.id.layout_actionbar, fab).commit();
         fab.setLifeCycleListener(this);
-        // fileDao = new FileInfoDao();
         itemDao = new BBSItemDao();
         itemId = getIntent().getStringExtra("itemid");
         groupid = getIntent().getStringExtra("groupid");
@@ -198,34 +199,30 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
             titleEt.setText(item.getBbsItemEntity().getTitle());
             contentEt.setText(FaceConversionUtil.getInstace()
                     .getExpressionString(this, item.getBbsItemEntity().getContent()));
-            if (item.getFileInfoList() != null
-                    && item.getFileInfoList().get(0).getUrl() != null) {
-                String imageUrl = item.getFileInfoList().get(0).getUrl();
-                if (imageUrl.startsWith(Environment
-                        .getExternalStorageDirectory().getAbsolutePath())) {
-//                    resultImageView.setImageDrawable(BBSUtil
-//                            .getLocalDrawablePicture(imageUrl));
-                    picturePath = imageUrl;
-                } else {
-//					ImageDownloadUtil.INSTANCE.showImage(item.getFileInfo()
-//							.getUrl(), "bbs", resultImageView);
-//                    ImageLoader.getInstance().displayImage(item.getFileInfoList().get(0).getUrl(), resultImageView);
-                    try {
-                        picturePath = ImageLoader.getInstance().getDiskCache().get(item.getFileInfoList().get(0).getUrl()).getAbsolutePath();
-                    } catch (Exception e) {
-                        picturePath = imageUrl;
-                        e.printStackTrace();
+            List<FileInfoEntity> fileInfoEntityList = item.getFileInfoList();
+            if (fileInfoEntityList!=null) {
+                List<String> listImagePaths = new ArrayList<String>();
+                for(FileInfoEntity fileInfo:fileInfoEntityList){
+                    String imageUrl = fileInfo.getUrl();
+                    String imagePath;
+                    if (imageUrl.startsWith(Environment
+                            .getExternalStorageDirectory().getAbsolutePath())) {
+                        imagePath = imageUrl;
+                    } else {
+                        try {
+                            imagePath = ImageDownloadUtil.INSTANCE.getFileName(imageUrl,"bbs");
+//                            imagePath = ImageLoader.getInstance().getDiskCache().get(imageUrl).getAbsolutePath();
+                        } catch (Exception e) {
+                            imagePath = imageUrl;
+                            e.printStackTrace();
+                        }
                     }
-//                    pictureShowlayout.setVisibility(View.VISIBLE);
-//                    picturePath = ImageLoader.getInstance().getDiskCache().get(item.getFileInfo().getUrl()).getAbsolutePath();
-//					String path = Constant.PICTURE_PATH + "bbs"
-//							+ File.separator;
-//					picturePath = path
-//							+ MD5Util.getMD5String(item.getFileInfo().getUrl())
-//							+ ".jpg";
+                    listImagePaths.add(imagePath);
                 }
+                mListImagePaths.clear();
+                mListImagePaths.addAll(listImagePaths);
+                notifyAdapterChange();
             }
-//			confirmBtn.setText("提交");
         }
         titleLimit.setText("20");
         titleEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -357,9 +354,11 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
         createOrModifyBBSEvent.setContent(content);
         createOrModifyBBSEvent.setTitle(titleEt.getText().toString().trim());
         createOrModifyBBSEvent.setGroupId(groupid);
-        if (picturePath != null) {
+        if (mListImagePaths != null&&mListImagePaths.size()>0) {
             createOrModifyBBSEvent.setHasPic(true);
-            createOrModifyBBSEvent.setPath(picturePath);
+            createOrModifyBBSEvent.setListFilePath(mListImagePaths);
+        }else{
+            createOrModifyBBSEvent.setHasPic(false);
         }
         uiEventHandleFacade.handle(createOrModifyBBSEvent);
     }
@@ -386,12 +385,7 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
                 List<String> listImagePaths = data.getStringArrayListExtra("selectorImagePaths");
                 mListImagePaths.clear();
                 mListImagePaths.addAll(listImagePaths);
-                if(mGridViewAdapter==null){
-                    mGridViewAdapter = new WorkgrpNewGridAdapter(this,mListImagePaths);
-                    mGV_picture.setAdapter(mGridViewAdapter);
-                }else{
-                    mGridViewAdapter.notifyDataSetChanged();
-                }
+                notifyAdapterChange();
 //                Uri uri = data.getData();
 //                String[] proj = {MediaStore.Images.Media.DATA};
 //                Cursor cursor = managedQuery(uri, proj, null, null, null);
@@ -409,19 +403,28 @@ public class WorkGrpNewBBSActivity extends EventFragmentActivity implements
             }
         } else if (requestCode == BBSUtil.BBS_REQUEST_CAMERA) {
             if (resultCode == RESULT_OK) {
-                picturePath = cameraPath;
+                mListImagePaths.clear();
+                mListImagePaths.add(cameraPath);
+                notifyAdapterChange();
                 recycleBitmap();
 
-                BitmapUtil.correction(picturePath);
+//                BitmapUtil.correction(picturePath);
 
-                mBitmap = BBSUtil.getLocalBitmapPicture(picturePath);
+//                mBitmap = BBSUtil.getLocalBitmapPicture(picturePath);
 //                resultImageView.setImageBitmap(mBitmap);
 //
 //                pictureShowlayout.setVisibility(View.VISIBLE);
-            } else {
-
             }
             cameraPath = null;
+        }
+    }
+    @UiThread
+    public void notifyAdapterChange() {
+        if(mGridViewAdapter==null){
+            mGridViewAdapter = new WorkgrpNewGridAdapter(this,mListImagePaths);
+            mGV_picture.setAdapter(mGridViewAdapter);
+        }else{
+            mGridViewAdapter.notifyDataSetChanged();
         }
     }
 

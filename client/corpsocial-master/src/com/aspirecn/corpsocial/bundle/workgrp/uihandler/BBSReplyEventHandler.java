@@ -16,6 +16,8 @@ import com.aspirecn.corpsocial.common.eventbus.Null;
 import com.aspirecn.corpsocial.common.util.BitmapUtil;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 @UIEventHandler(eventType = BBSReplyEvent.class)
 public class BBSReplyEventHandler implements IHandler<Null, BBSReplyEvent> {
@@ -50,10 +52,14 @@ public class BBSReplyEventHandler implements IHandler<Null, BBSReplyEvent> {
             }
         };
         if (args.getReplyType() == ReplyType.REPLY && args.isHasPic()) {
-            File mFile = BitmapUtil.uploadFile(args.getPath());
-            HttpRequest.request(WorkgrpConfig.BBS_REPLY, args.getJson(), mFile, httpCallBack);
+            List<File> fileList = new ArrayList<File>();
+            for(String path :args.getListFilePath()){
+                File mFile = BitmapUtil.uploadFile(path);
+                fileList.add(mFile);
+            }
+            HttpRequest.request(WorkgrpConfig.CREATE_OR_MODIFY_ITEM, args.getJson(), fileList, httpCallBack);
         } else {
-            HttpRequest.request(WorkgrpConfig.BBS_REPLY, args.getJson(), httpCallBack);
+            HttpRequest.request(WorkgrpConfig.CREATE_OR_MODIFY_ITEM, args.getJson(), httpCallBack);
         }
 
         return new Null();

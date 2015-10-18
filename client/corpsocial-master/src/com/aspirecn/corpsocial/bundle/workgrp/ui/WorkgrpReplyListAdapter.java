@@ -63,7 +63,9 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
 //			context.startActivity(intent);
             Intent intent = new Intent(context, ImagePagerActivity.class);
             ArrayList<String> urls = new ArrayList<String>();
-            urls.add(((FileInfoEntity) arg0.getTag()).getOrginalUrl());
+            for(FileInfoEntity fileInfoEntity:(List<FileInfoEntity>)arg0.getTag()){
+            urls.add(fileInfoEntity.getOrginalUrl().isEmpty()?fileInfoEntity.getUrl():fileInfoEntity.getOrginalUrl());
+            }
             intent.putStringArrayListExtra("urls", urls);
             context.startActivity(intent);
         }
@@ -281,9 +283,9 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
         // 设置用户头像
         BBSUtil.setUserHeadImg(bbsReplyInfoEntity.getReplyerId(),
                 viewHolder.replyUserHead);
-        final FileInfoEntity fileInfoEntity = bbsReplyInfoEntity.getConvertTOFileInfo();
-        if (null != fileInfoEntity) {
-            String imageUrl = fileInfoEntity.getUrl();
+        final List<FileInfoEntity> fileInfoEntityList = bbsReplyInfoEntity.getConvertTOFileInfo();
+        if (null != fileInfoEntityList&&fileInfoEntityList.size()>0) {
+            String imageUrl = fileInfoEntityList.get(0).getUrl();
             if (!TextUtils.isEmpty(imageUrl)) {
                 viewHolder.replyPicture.setVisibility(View.VISIBLE);
                 if (imageUrl.startsWith(Environment
@@ -299,7 +301,7 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
             } else {
                 viewHolder.replyPicture.setVisibility(View.GONE);
             }
-            viewHolder.replyPicture.setTag(fileInfoEntity);
+            viewHolder.replyPicture.setTag(fileInfoEntityList);
             viewHolder.replyPicture.setOnClickListener(pictureClickListener);
         } else {
             viewHolder.replyPicture.setVisibility(View.GONE);
@@ -373,7 +375,7 @@ public class WorkgrpReplyListAdapter extends BaseAdapter {
                             .getLocalDrawablePicture(imageUrl));
                 } else {
 					ImageDownloadUtil.INSTANCE.showImage(bbsItem.getFileInfoList().get(0).getUrl(), "bbs", titleViewHolder.contentPicture);
-//                    ImageLoader.getInstance().displayImage(bbsItem.getFileInfoList().getUrl(), titleViewHolder.contentPicture);
+//                    ImageLoader.getInstance().displayImage(bbsItem.getFileInfoList().get(0).getUrl(), titleViewHolder.contentPicture);
                 }
                 titleViewHolder.contentPicture.setTag(bbsItem.getFileInfoList());
                 titleViewHolder.contentPicture

@@ -8,6 +8,8 @@ import com.aspirecn.corpsocial.common.util.LogUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 public class BBSReplyEvent extends BusEvent {
     /**
      * 帖子的回应，如果是回复则类型为ReplyType.REPLY，如果是点赞则为ReplyType.PARISE
@@ -28,7 +30,7 @@ public class BBSReplyEvent extends BusEvent {
     /**
      * 附件在本地的绝对路径，上传时需使用
      */
-    private String path;
+    private List<String> listFilePath;
     /**
      * 回复或点赞对应 的帖子的模块id
      */
@@ -36,16 +38,6 @@ public class BBSReplyEvent extends BusEvent {
 
     public BBSReplyEvent() {
         super();
-    }
-
-    public BBSReplyEvent(ReplyType replyType, String itemId, String content,
-                         int actId, boolean hasPic, String path) {
-        super();
-        this.replyType = replyType;
-        this.itemId = itemId;
-        this.content = content;
-        this.hasPic = hasPic;
-        this.path = path;
     }
 
     public ReplyType getReplyType() {
@@ -80,12 +72,12 @@ public class BBSReplyEvent extends BusEvent {
         this.hasPic = hasPic;
     }
 
-    public String getPath() {
-        return path;
+    public List<String> getListFilePath() {
+        return listFilePath;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setListFilePath(List<String> listFilePath) {
+        this.listFilePath = listFilePath;
     }
 
     public String getGroupId() {

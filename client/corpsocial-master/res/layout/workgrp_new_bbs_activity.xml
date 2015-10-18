@@ -72,6 +72,7 @@
         android:id="@+id/workgrp_new_bbs_picture_gv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
         android:layout_below="@id/workgrp_newbbs_content_etid"
         android:cacheColorHint="@android:color/transparent"

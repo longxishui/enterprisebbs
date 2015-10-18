@@ -4,25 +4,13 @@
 package com.aspirecn.corpsocial.bundle.net;
 
 import com.aspirecn.corpsocial.common.eventbus.ErrorCode;
+import com.aspirecn.corpsocial.common.util.LogUtil;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.http.Header;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 /**
@@ -46,8 +34,20 @@ public class HttpReq {
     public static void uploadFile(ReqParameter reqParameter,String url, final HttpCallBack httpCallBack) throws Exception {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        if (reqParameter.getFile()!=null&&reqParameter.getFile().length()>0) {
-            params.put("attach", reqParameter.getFile());
+        if (reqParameter.getFiles()!=null) {
+            int size = reqParameter.getFiles().size();
+            if(size>=1)
+            params.put("attach", reqParameter.getFiles().get(0));
+//            if(size>=2)
+//            params.put("attach1", reqParameter.getFiles().get(1));
+//            if(size>=3)
+//            params.put("attach2", reqParameter.getFiles().get(2));
+//            if(size>=4)
+//            params.put("attach3", reqParameter.getFiles().get(3));
+//            if(size>=5)
+//            params.put("attach4", reqParameter.getFiles().get(4));
+//            if(size>=6)
+//            params.put("attach5",reqParameter.getFiles().get(5));
         }
         JSONObject jsonObject = new JSONObject(reqParameter.getJsonData());
             String userId = "";
@@ -94,6 +94,7 @@ public class HttpReq {
                                       byte[] responseBody, Throwable error) {
                     // 上传失败后要做到工作
 //                    Toast.makeText(mContext, "上传失败", Toast.LENGTH_LONG).show();
+                    LogUtil.e("HttpReq:网络异常");
                     httpCallBack.notifyResult(ErrorCode.TIMEOUT.getValue(),"发送失败");
                 }
 
